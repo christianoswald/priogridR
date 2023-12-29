@@ -1,4 +1,5 @@
-#' Get first order neighbors in PRIO-GRID.
+#' @title pgtheme
+#' @description Provides a function to get first order neighbors in PRIO-GRID.
 #' TODO: does this work as cell2nb in spdep? Must probably map to PG indices?
 #'
 #' @param x The GID to the cell that you would like to find the neighbors of.

@@ -1,11 +1,19 @@
 Package: priogridR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Functions for working with PRIO-GRID data
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Author: person("Christian", "Oswald", email = "coswald@tcd.ie", 
+             role = c("cre", "aut"), comment = c(ORCID = "0000-0001-8291-9544"))
+Maintainer: Christian Oswald <coswald@tcd.ie>
+Description: This package contains several convenience functions and additional functionality such as creating spatial lags and aggregating the grid to higher levels to address the Modifiable Areal Unit Problem.
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: GPL-3
+URL: https://github.com/christianoswald/priogridR
+BugReports: https://github.com/christianoswald/priogridR/issues
+Depends:
+  R (>= 3.5.0)
+Imports:
+  ggplot2 (>= 3.3.0)
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.2.3
