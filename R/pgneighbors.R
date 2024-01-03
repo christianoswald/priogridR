@@ -1,14 +1,22 @@
-#' @title pgtheme
+#' @title pgneighbors
 #' @description Provides a function to get first order neighbors in PRIO-GRID.
-#' TODO: does this work as cell2nb in spdep? Must probably map to PG indices?
 #'
-#' @param x The GID to the cell that you would like to find the neighbors of.
+#' @param x The GID to the cell you would like to find the neighbors of.
 #' @param ncol The number of columns in the grid.
 #' @param nrow The number of rows in the grid.
-#' @return If asmat=TRUE: A matrix of the neighbors, If asmat=FALSE: A vector of the neighbors.
+#' @return A vector of the neighbors.
 #' @examples
-#' pg <- create_pg_indices(5, 5)
-#' pgneighbors(1, ncol=5, nrow=5)
+#' dat <- as.data.frame(matrix(nrow = 9, ncol = 3))
+#' dat[,1] <- c(234534, 234535, 234536,
+#'              234208, 234209, 234210,
+#'              233882, 233883, 233884)
+#' dat[,2] <- c(534, 535, 536,
+#'              208, 209, 2010,
+#'              602, 603, 604)
+#' dat[,3] <- c(326, 326, 326,
+#'              326, 326, 326,
+#'              325, 325, 325)
+#' pgneighbors(234209, ncol = 209, nrow = 326)
 pgneighbors <- function(x, ncol, nrow){
 
   farright <- ncol*1:nrow

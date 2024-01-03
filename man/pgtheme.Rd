@@ -16,6 +16,7 @@ A ggplot theme object
 Provides a theme for plotting PRIO-GRID.
 }
 \examples{
-pg <- create_pg_indices(5, 5)
-pgneighbors(1, ncol=5, nrow=5)
+ggplot2::ggplot(mtcars, ggplot2::aes(x = hp, y = mpg)) +
+ggplot2::geom_point() +
+pgtheme()
 }
