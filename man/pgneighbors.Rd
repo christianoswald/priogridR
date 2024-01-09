@@ -4,14 +4,10 @@
 \alias{pgneighbors}
 \title{pgneighbors}
 \usage{
-pgneighbors(x, ncol, nrow)
+pgneighbors(x)
 }
 \arguments{
 \item{x}{The GID to the cell you would like to find the neighbors of.}
-
-\item{ncol}{The number of columns in the grid.}
-
-\item{nrow}{The number of rows in the grid.}
 }
 \value{
 A vector of the neighbors.
