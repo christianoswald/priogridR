@@ -31,6 +31,9 @@ jobs:
           extra-packages: any::pkgdown
           needs: website
 
+      - name: Install priogridR
+        run: R CMD INSTALL .
+
       - name: Configure Git identity
         run: |
           git config user.name "github-actions[bot]"
