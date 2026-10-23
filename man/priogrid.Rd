@@ -7,12 +7,12 @@
 \format{
 An object of class \code{"data.frame"}
 \describe{
- \item{gid}{grid cell identifier, a unique id code for each cell in the grid}
- \item{xcoord}{longitude coordinate (decimal degrees) for the centroid of the grid cell. Negative coordinates are located west of the Prime Meridian (Greenwich) at 0 degrees longitude}
- \item{ycoord}{latitude coordinate (decimal degrees) for the centroid of the grid cell. Negative coordinates are located south of the Equator at 0 degrees latitude}
- \item{col}{column number for the grid cell. Column 1 is the westernmost column in the grid, between 180 and 179.5 decimal degrees W. With one column per half degree, there are 720 columns in PRIO-GRID.}
- \item{row}{row number for the grid cell. Row 1 is the southernmost row (between 90 and 89.5 degrees S) and row 360 is the northernmost row in the full grid in the underlying data}
- \item{geometry}{Polygon information about each individual cell}
+\item{gid}{grid cell identifier, a unique id code for each cell in the grid}
+\item{xcoord}{longitude coordinate (decimal degrees) for the centroid of the grid cell. Negative coordinates are located west of the Prime Meridian (Greenwich) at 0 degrees longitude}
+\item{ycoord}{latitude coordinate (decimal degrees) for the centroid of the grid cell. Negative coordinates are located south of the Equator at 0 degrees latitude}
+\item{col}{column number for the grid cell. Column 1 is the westernmost column in the grid, between 180 and 179.5 decimal degrees W. With one column per half degree, there are 720 columns in PRIO-GRID.}
+\item{row}{row number for the grid cell. Row 1 is the southernmost row (between 90 and 89.5 degrees S) and row 360 is the northernmost row in the full grid in the underlying data}
+\item{geometry}{Polygon information about each individual cell}
 }
 }
 \source{

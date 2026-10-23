@@ -1,0 +1,13 @@
+bibentry(
+  bibtype = "Manual",
+  title = "priogridR: Functions for Working with PRIO-GRID Data",
+  author = person(
+    given = "Christian",
+    family = "Oswald",
+    comment = c(ORCID = "0000-0001-8291-9544")
+  ),
+  year = "2026",
+  note = "R package version 0.3.0.9000",
+  url = "https://github.com/christianoswald/priogridR"
+)
+

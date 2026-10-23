@@ -1,0 +1,30 @@
+url: https://christianoswald.github.io/priogridR/
+
+template:
+  bootstrap: 5
+
+reference:
+  - title: Convert data to PRIO-GRID
+    contents:
+      - starts_with("pg_from_")
+  - title: Grid utilities
+    contents:
+      - pg_create_indices
+      - pg_neighbors
+      - pg_paths
+      - pg_theme
+  - title: Results and output
+    contents:
+      - pg_write_result
+      - print.pg_result
+      - as.data.frame.pg_result
+  - title: Data
+    contents:
+      - priogrid
+
+articles:
+  - title: Get started
+    navbar: ~
+    contents:
+      - getting-started
+      - conversion-workflows

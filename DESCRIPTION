@@ -1,21 +1,41 @@
 Package: priogridR
 Type: Package
-Title: Functions for working with PRIO-GRID data
-Version: 0.1.0
-Author: person(given = "Christian", 
-               family = "Oswald", 
-               email = "coswald@tcd.ie", 
-               role = c("cre", "aut"), 
-               comment = c(ORCID = "0000-0001-8291-9544"))
-Maintainer: Christian Oswald <coswald@tcd.ie>
-Description: This package contains several convenience functions and additional functionality such as creating spatial lags and aggregating the grid to higher levels to address the Modifiable Areal Unit Problem.
-License: GPL-3
-URL: https://github.com/christianoswald/priogridR
+Title: Functions for Working with PRIO-GRID Data
+Version: 0.3.0.9000
+Authors@R: person(
+    given = "Christian",
+    family = "Oswald",
+    email = "coswald@tcd.ie",
+    role = c("cre", "aut"),
+    comment = c(ORCID = "0000-0001-8291-9544")
+  )
+Description: Convenience functions for working with PRIO-GRID data, including
+    grid indexing, neighborhood lookup, plotting, and conversion of raster,
+    vector, point-event, NetCDF, and geographically indexed tabular data to
+    configurable PRIO-GRID formats.
+License: GPL (>= 3)
+URL: https://github.com/christianoswald/priogridR,
+    https://christianoswald.github.io/priogridR/
 BugReports: https://github.com/christianoswald/priogridR/issues
 Depends:
-  R (>= 3.5.0)
+    R (>= 4.1.0)
 Imports:
-  ggplot2 (>= 3.3.0)
+    ggplot2 (>= 3.3.0),
+    lubridate,
+    priogrid (>= 3.0.2),
+    sf,
+    terra,
+    units
+Suggests:
+    arrow,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
 Encoding: UTF-8
+Language: en-US
 LazyData: true
-RoxygenNote: 7.2.3
+LazyDataCompression: xz
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0

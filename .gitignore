@@ -2,6 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
+*.Rcheck/
+*.tar.gz
+docs/
 R/testscript.R
 data/prio.rds
 
+.positai

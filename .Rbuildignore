@@ -1,2 +1,14 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.positai$
+^\.claude$
+^LICENSE\.md$
+^\.github$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+^CITATION\.cff$
+^README\.Rmd$
+^cran-comments\.md$
+^paper$
+^_pkgdown\.yml$
+^FUNCTIONS\.md$
