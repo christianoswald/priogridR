@@ -1,0 +1,82 @@
+# Convert NetCDF data to PRIO-GRID
+
+Convert NetCDF data to PRIO-GRID
+
+## Usage
+
+``` r
+pg_from_netcdf(
+  x,
+  variable,
+  source_variable = NULL,
+  aggregation,
+  time = NULL,
+  layer = NULL,
+  na_values = NULL,
+  disagg_method = c("near", "bilinear", "cubic"),
+  return = c("data", "raster", "result"),
+  config = priogrid::pg_current_config(),
+  filename = NULL,
+  overwrite = FALSE,
+  ...
+)
+```
+
+## Arguments
+
+- x:
+
+  A NetCDF path or `SpatRaster` opened from NetCDF.
+
+- variable:
+
+  Name of the resulting variable.
+
+- source_variable:
+
+  Optional NetCDF subdataset name.
+
+- aggregation:
+
+  Spatial raster aggregation rule.
+
+- time:
+
+  Optional explicit layer dates or years.
+
+- layer:
+
+  Optional layer selection passed to `[[`.
+
+- na_values:
+
+  Optional source values to replace with `NA`.
+
+- disagg_method:
+
+  Disaggregation method.
+
+- return:
+
+  One of `"data"`, `"raster"`, or `"result"`.
+
+- config:
+
+  A PRIO-GRID configuration object.
+
+- filename:
+
+  Optional output filename.
+
+- overwrite:
+
+  Replace an existing output file?
+
+- ...:
+
+  Additional arguments passed to
+  [`priogrid::robust_transformation()`](http://prio-data.github.io/priogrid/reference/robust_transformation.md).
+
+## Value
+
+A data frame, `SpatRaster`, or `pg_result`.
