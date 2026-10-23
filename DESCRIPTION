@@ -26,6 +26,8 @@ Imports:
     sf,
     terra,
     units
+Remotes:
+    prio-data/priogrid
 Suggests:
     arrow,
     knitr,
