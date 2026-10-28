@@ -1,6 +1,14 @@
 # Changelog
 
-## priogridR 0.3.0.9000
+## priogridR 0.4.1
+
+### Improvements
+
+- Made the raster and NetCDF vignettes portable across local, GitHub
+  Actions, and CRAN build environments by avoiding changes to persistent
+  `priogrid` configuration during rendering.
+
+## priogridR 0.4.0
 
 ### Breaking changes
 
@@ -23,6 +31,7 @@
 - Added structured conversion results and output helpers.
 - Added tests, vignettes, continuous integration, and publication
   scaffolding.
+- Added focused workflow vignettes for every `pg_from_*()` converter.
 
 ### Improvements
 
@@ -30,5 +39,7 @@
   optional longitudinal wrapping.
 - Added validation for grid dimensions and function arguments.
 - Added metric/geodesic handling for polygon areas and line lengths.
+- Made raster and NetCDF vignettes self-contained by using temporary
+  PRIO-GRID working directories during rendering.
 - Improved documentation and package organization for eventual CRAN and
   JOSS submission.

@@ -87,7 +87,9 @@ See
 [`vignette("getting-started", package = "priogridR")`](https://christianoswald.github.io/priogridR/articles/getting-started.md)
 and
 [`vignette("conversion-workflows", package = "priogridR")`](https://christianoswald.github.io/priogridR/articles/conversion-workflows.md)
-for additional examples.
+for an introduction and a guide to choosing a converter. The package
+website also provides a focused article for every `pg_from_*()`
+function.
 
 ## Contributing
 

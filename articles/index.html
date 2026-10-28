@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,10 +16,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with priogridR</a></li>
-    <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Converting data to PRIO-GRID</a></li>
+    <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -37,15 +39,31 @@
     </div>
 
     <div class="section ">
-      <h3>Get started</h3>
+      <h3>Start here</h3>
       <div class="section-desc"></div>
 
       <dl><dt><a href="getting-started.html">Getting started with priogridR</a></dt>
-        <dd>
-        </dd><dt><a href="conversion-workflows.html">Converting data to PRIO-GRID</a></dt>
-        <dd>
+        <dd><p>Learn the core grid utilities, return types, output helpers, and plotting conventions in priogridR.</p>
+        </dd><dt><a href="conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></dt>
+        <dd><p>Choose the appropriate priogridR converter for raster, vector, point-event, NetCDF, or geographically indexed tabular data.</p>
       </dd></dl></div>
-  </main></div>
+    <div class="section ">
+      <h3>Conversion guides</h3>
+      <div class="section-desc"><p>Detailed workflows for each supported source-data format.</p></div>
+
+      <dl><dt><a href="pg_from_points.html">Converting point and event data</a></dt>
+        <dd><p>Aggregate coordinates and point events to PRIO-GRID cells, including values, dates, groups, and structural zeros.</p>
+        </dd><dt><a href="pg_from_raster.html">Converting raster data</a></dt>
+        <dd><p>Align static and time-varying rasters to PRIO-GRID and choose suitable aggregation, disaggregation, and output options.</p>
+        </dd><dt><a href="pg_from_vector.html">Converting vector data</a></dt>
+        <dd><p>Aggregate point, line, and polygon geometries to PRIO-GRID using counts, lengths, areas, coverage, and weighted values.</p>
+        </dd><dt><a href="pg_from_netcdf.html">Converting NetCDF data</a></dt>
+        <dd><p>Select NetCDF variables and layers, handle time and missing values, and convert them to PRIO-GRID.</p>
+        </dd><dt><a href="pg_from_table.html">Converting geographically indexed tables</a></dt>
+        <dd><p>Join tabular observations to polygon geographies and transfer totals, rates, or constant values to PRIO-GRID cells.</p>
+      </dd></dl></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
