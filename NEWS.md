@@ -1,3 +1,11 @@
+# priogridR 0.4.1
+
+## Improvements
+
+* Made the raster and NetCDF vignettes portable across local, GitHub Actions,
+  and CRAN build environments by avoiding changes to persistent `priogrid`
+  configuration during rendering.
+
 # priogridR 0.4.0
 
 ## Breaking changes

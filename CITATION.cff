@@ -6,7 +6,7 @@ authors:
   - family-names: Oswald
     given-names: Christian
     orcid: "https://orcid.org/0000-0001-8291-9544"
-version: 0.4.0
+version: 0.4.1
 license: GPL-3.0-or-later
 repository-code: "https://github.com/christianoswald/priogridR"
 url: "https://christianoswald.github.io/priogridR/"

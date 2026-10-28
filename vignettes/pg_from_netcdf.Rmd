@@ -10,9 +10,6 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-pg_example_raw <- file.path(tempdir(), "priogridR-vignette")
-dir.create(pg_example_raw, recursive = TRUE, showWarnings = FALSE)
-priogrid::pg_set_rawfolder(pg_example_raw)
 ```
 
 ```{r attach}
@@ -25,9 +22,14 @@ raster time metadata, replace sentinel values, and then use the same alignment
 workflow as `pg_from_raster()`.
 
 The underlying raster transformation requires a `priogrid` working directory.
-Set a persistent project location with, for example,
-`priogrid::pg_set_rawfolder("data/priogrid")`. This vignette instead uses an
-isolated temporary directory so that documentation checks remain self-contained.
+Configure a persistent project location before running the conversion examples:
+
+```{r configure-priogrid, eval=FALSE}
+priogrid::pg_set_rawfolder("data/priogrid")
+```
+
+The conversion chunks are not evaluated while the vignette is built because
+the working directory is a persistent, user-specific setting.
 
 ## An in-memory example
 
@@ -62,7 +64,7 @@ terra::values(precipitation) <- cbind(
 
 Supply explicit dates when the object does not contain reliable time metadata:
 
-```{r convert}
+```{r convert, eval=FALSE}
 precipitation_pg <- pg_from_netcdf(
   x = precipitation,
   variable = "precipitation",
