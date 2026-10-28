@@ -1,5 +1,6 @@
 ---
 title: "Getting started with priogridR"
+description: "Learn the core grid utilities, return types, output helpers, and plotting conventions in priogridR."
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Getting started with priogridR}

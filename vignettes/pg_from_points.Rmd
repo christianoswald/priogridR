@@ -1,0 +1,126 @@
+---
+title: "Converting point and event data"
+description: "Aggregate coordinates and point events to PRIO-GRID cells, including values, dates, groups, and structural zeros."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Converting point and event data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r attach}
+library(priogridR)
+```
+
+`pg_from_points()` converts coordinate tables, `sf` objects, `SpatVector`
+objects, and point-vector files to cell-level data. Use it for event counts,
+presence indicators, or summaries of a numeric value.
+
+## Example data and grid
+
+```{r data}
+events <- data.frame(
+  longitude = c(10.1, 10.4, 20.2, 20.4),
+  latitude = c(50.1, 50.4, 60.2, 60.4),
+  event_date = as.Date(c(
+    "2020-03-01", "2020-07-15", "2021-02-01", "2021-09-10"
+  )),
+  fatalities = c(2, 3, 1, 4),
+  event_type = c("A", "A", "B", "B")
+)
+
+config <- priogrid::pg_config(
+  nrow = 18,
+  ncol = 36,
+  temporal_resolution = "1 year",
+  start_date = as.Date("2020-12-31"),
+  end_date = as.Date("2021-12-31"),
+  verbose = FALSE
+)
+```
+
+## Count events
+
+Specify coordinate columns when `x` is a data frame. Coordinates are assumed
+to use EPSG:4326 unless `input_crs` says otherwise.
+
+```{r count}
+event_counts <- pg_from_points(
+  x = events,
+  variable = "event_count",
+  longitude = "longitude",
+  latitude = "latitude",
+  aggregation = "count",
+  time_column = "event_date",
+  config = config
+)
+
+event_counts
+```
+
+## Aggregate values
+
+The `sum`, `mean`, `min`, and `max` rules require a `value` column.
+
+```{r values}
+fatality_totals <- pg_from_points(
+  x = events,
+  variable = "fatalities",
+  longitude = "longitude",
+  latitude = "latitude",
+  value = "fatalities",
+  aggregation = "sum",
+  time_column = "event_date",
+  config = config
+)
+
+fatality_totals
+```
+
+## Groups and empty cells
+
+Use `group_columns` to retain separate summaries, for example by event type.
+Grouped results support `return = "data"` only.
+
+```{r groups}
+counts_by_type <- pg_from_points(
+  x = events,
+  variable = "event_count",
+  longitude = "longitude",
+  latitude = "latitude",
+  aggregation = "count",
+  group_columns = "event_type",
+  config = config
+)
+```
+
+With `keep_empty = TRUE`, unobserved cells receive zero only for `count`,
+`presence`, and `sum`. Missing means, minima, and maxima remain missing because
+zero would have a different substantive meaning.
+
+## Spatial inputs and output
+
+If `x` is already an `sf` or `SpatVector` point object, omit `longitude`,
+`latitude`, and `input_crs`. Set `return = "result"` when both tabular and
+raster representations plus metadata are useful.
+
+```{r output, eval=FALSE}
+result <- pg_from_points(
+  events,
+  variable = "event_count",
+  longitude = "longitude",
+  latitude = "latitude",
+  aggregation = "count",
+  return = "result",
+  config = config
+)
+
+pg_write_result(result, "event_counts.csv")
+```
+
+See `vignette("pg_from_vector", package = "priogridR")` for mixed vector
+workflows involving lines or polygons.

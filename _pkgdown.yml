@@ -23,8 +23,16 @@ reference:
       - priogrid
 
 articles:
-  - title: Get started
+  - title: Start here
     navbar: ~
     contents:
       - getting-started
       - conversion-workflows
+  - title: Conversion guides
+    desc: Detailed workflows for each supported source-data format.
+    contents:
+      - pg_from_points
+      - pg_from_raster
+      - pg_from_vector
+      - pg_from_netcdf
+      - pg_from_table

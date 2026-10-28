@@ -4,8 +4,9 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/christianoswald/priogridR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/christianoswald/priogridR/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/christianoswald/priogridR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/christianoswald/priogridR)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Codecov test coverage](https://codecov.io/gh/christianoswald/priogridR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/christianoswald/priogridR)
 <!-- badges: end -->
 
 `priogridR` provides a consistent interface for working with PRIO-GRID data.
@@ -78,8 +79,9 @@ event_counts <- pg_from_points(
 ```
 
 See `vignette("getting-started", package = "priogridR")` and
-`vignette("conversion-workflows", package = "priogridR")` for additional
-examples.
+`vignette("conversion-workflows", package = "priogridR")` for an introduction
+and a guide to choosing a converter. The package website also provides a
+focused article for every `pg_from_*()` function.
 
 ## Contributing
 
