@@ -15,7 +15,7 @@ Further information can be found here: https://grid.prio.org/#/codebook"></head>
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,9 @@ Further information can be found here: https://grid.prio.org/#/codebook"></head>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with priogridR</a></li>
+    <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
+    <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
@@ -98,20 +101,18 @@ Further information can be found here: https://grid.prio.org/#/codebook</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">priogrid</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">priogrid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      gid xcoord ycoord col row</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 259168 163.75  89.75 688 360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 259169 164.25  89.75 689 360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 259170 164.75  89.75 690 360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 259171 165.25  89.75 691 360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 259172 165.75  89.75 692 360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 259173 166.25  89.75 693 360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                          geometry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 163.5, 163.5, 164.0, 164.0, 163.5, 89.5, 90.0, 90.0, 89.5, 89.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 164.0, 164.0, 164.5, 164.5, 164.0, 89.5, 90.0, 90.0, 89.5, 89.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 164.5, 164.5, 165.0, 165.0, 164.5, 89.5, 90.0, 90.0, 89.5, 89.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 165.0, 165.0, 165.5, 165.5, 165.0, 89.5, 90.0, 90.0, 89.5, 89.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 165.5, 165.5, 166.0, 166.0, 165.5, 89.5, 90.0, 90.0, 89.5, 89.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 166.0, 166.0, 166.5, 166.5, 166.0, 89.5, 90.0, 90.0, 89.5, 89.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 6 features and 5 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 163.5 ymin: 89.5 xmax: 166.5 ymax: 90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      gid xcoord ycoord col row                       geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 259168 163.75  89.75 688 360 POLYGON ((163.5 89.5, 163.5...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 259169 164.25  89.75 689 360 POLYGON ((164 89.5, 164 90,...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 259170 164.75  89.75 690 360 POLYGON ((164.5 89.5, 164.5...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 259171 165.25  89.75 691 360 POLYGON ((165 89.5, 165 90,...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 259172 165.75  89.75 692 360 POLYGON ((165.5 89.5, 165.5...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 259173 166.25  89.75 693 360 POLYGON ((166 89.5, 166 90,...</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

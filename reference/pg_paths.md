@@ -31,3 +31,36 @@ pg_paths(
 ## Value
 
 A named list of normalized paths.
+
+## Examples
+
+``` r
+pg_paths(root = tempdir())
+#> $root
+#> [1] "/tmp/Rtmpsxr35T"
+#> 
+#> $raw
+#> [1] "/tmp/Rtmpsxr35T/data/raw"
+#> 
+#> $processed
+#> [1] "/tmp/Rtmpsxr35T/data/processed"
+#> 
+#> $temporary
+#> [1] "/tmp/Rtmpsxr35T/data/temp"
+#> 
+
+example_root <- file.path(tempdir(), "priogridR-project")
+pg_paths(root = example_root, create = TRUE)
+#> $root
+#> [1] "/tmp/Rtmpsxr35T/priogridR-project"
+#> 
+#> $raw
+#> [1] "/tmp/Rtmpsxr35T/priogridR-project/data/raw"
+#> 
+#> $processed
+#> [1] "/tmp/Rtmpsxr35T/priogridR-project/data/processed"
+#> 
+#> $temporary
+#> [1] "/tmp/Rtmpsxr35T/priogridR-project/data/temp"
+#> 
+```

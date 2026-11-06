@@ -1,5 +1,51 @@
 # Changelog
 
+## priogridR 0.5.1
+
+### Documentation
+
+- Added executable reference examples for the point, vector, and table
+  converters, project paths, and result writing.
+- Added guarded interactive examples for raster and NetCDF conversion,
+  whose execution requires a configured `priogrid` working directory.
+- Added focused vignettes for grid identifiers and neighborhoods, and
+  for structured results, output, project paths, and visualization.
+- Ensured that every public function has a reference example and that
+  every public function group has focused vignette coverage.
+
+## priogridR 0.5.0
+
+### New functionality
+
+- Added
+  [`pg_id_from_coords()`](https://christianoswald.github.io/priogridR/reference/pg_id_from_coords.md)
+  and
+  [`pg_coords_from_id()`](https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.md)
+  for converting between coordinates and configured PRIO-GRID cell
+  identifiers.
+- Added
+  [`pg_geometry()`](https://christianoswald.github.io/priogridR/reference/pg_geometry.md)
+  for creating polygon or centre-point geometries.
+- Added
+  [`pg_validate_data()`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
+  for checking identifiers, panel keys, duplicates, and completeness.
+- Added
+  [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md)
+  for explicitly completing cells and cell-time combinations.
+- Added
+  [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md)
+  for relationship-checked joins that guard against accidental
+  many-to-many expansion.
+- Added
+  [`pg_plot()`](https://christianoswald.github.io/priogridR/reference/pg_plot.md)
+  for quickly mapping cell-level variables.
+
+### Improvements
+
+- Added a grid-foundations vignette and comprehensive tests for the new
+  API.
+- Extended the function inventory and pkgdown reference organization.
+
 ## priogridR 0.4.1
 
 ### Improvements

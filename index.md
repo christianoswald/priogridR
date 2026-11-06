@@ -3,7 +3,9 @@
 `priogridR` provides a consistent interface for working with PRIO-GRID
 data. It combines grid utilities with general converters that transfer
 raster, vector, point-event, NetCDF, and geographically indexed tabular
-data to a configurable PRIO-GRID.
+data to a configurable PRIO-GRID. It also supports coordinate lookup,
+geometry creation, panel validation and completion, safe joins, and
+rapid mapping.
 
 The package builds on the official
 [`priogrid`](https://prio-data.github.io/priogrid/) package for grid
@@ -36,8 +38,22 @@ All user-facing functions begin with `pg_` and use snake case:
   transfers geographically indexed tabular data.
 - [`pg_create_indices()`](https://christianoswald.github.io/priogridR/reference/pg_create_indices.md)
   creates PRIO-GRID identifier matrices.
+- [`pg_id_from_coords()`](https://christianoswald.github.io/priogridR/reference/pg_id_from_coords.md)
+  and
+  [`pg_coords_from_id()`](https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.md)
+  convert between locations and cell identifiers.
+- [`pg_geometry()`](https://christianoswald.github.io/priogridR/reference/pg_geometry.md)
+  creates cell polygons or centre points.
 - [`pg_neighbors()`](https://christianoswald.github.io/priogridR/reference/pg_neighbors.md)
   returns first-order neighboring cells.
+- [`pg_validate_data()`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
+  checks cell and panel structure.
+- [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md)
+  creates complete cell or cell-time panels.
+- [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md)
+  performs relationship-checked joins.
+- [`pg_plot()`](https://christianoswald.github.io/priogridR/reference/pg_plot.md)
+  maps cell-level variables.
 - [`pg_paths()`](https://christianoswald.github.io/priogridR/reference/pg_paths.md)
   constructs reproducible project paths.
 - [`pg_theme()`](https://christianoswald.github.io/priogridR/reference/pg_theme.md)

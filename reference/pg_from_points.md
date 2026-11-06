@@ -85,3 +85,25 @@ pg_from_points(
 ## Value
 
 A data frame, `SpatRaster`, or `pg_result`.
+
+## Examples
+
+``` r
+events <- data.frame(
+  longitude = c(10, 10.1, 20),
+  latitude = c(50, 50.1, 60)
+)
+config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+pg_from_points(
+  events,
+  variable = "event_count",
+  longitude = "longitude",
+  latitude = "latitude",
+  aggregation = "count",
+  config = config
+)
+#>   pgid event_count
+#> 1  488           1
+#> 2  524           1
+#> 3  525           1
+```

@@ -3,7 +3,9 @@
 `priogridR` provides a consistent interface for working with PRIO-GRID
 data. It combines grid utilities with general converters that transfer
 raster, vector, point-event, NetCDF, and geographically indexed tabular
-data to a configurable PRIO-GRID.
+data to a configurable PRIO-GRID. It also supports coordinate lookup,
+geometry creation, panel validation and completion, safe joins, and
+rapid mapping.
 
 The package builds on the official
 [`priogrid`](https://prio-data.github.io/priogrid/) package for grid
@@ -36,8 +38,22 @@ All user-facing functions begin with `pg_` and use snake case:
   transfers geographically indexed tabular data.
 - [`pg_create_indices()`](https://christianoswald.github.io/priogridR/reference/pg_create_indices.md)
   creates PRIO-GRID identifier matrices.
+- [`pg_id_from_coords()`](https://christianoswald.github.io/priogridR/reference/pg_id_from_coords.md)
+  and
+  [`pg_coords_from_id()`](https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.md)
+  convert between locations and cell identifiers.
+- [`pg_geometry()`](https://christianoswald.github.io/priogridR/reference/pg_geometry.md)
+  creates cell polygons or centre points.
 - [`pg_neighbors()`](https://christianoswald.github.io/priogridR/reference/pg_neighbors.md)
   returns first-order neighboring cells.
+- [`pg_validate_data()`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
+  checks cell and panel structure.
+- [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md)
+  creates complete cell or cell-time panels.
+- [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md)
+  performs relationship-checked joins.
+- [`pg_plot()`](https://christianoswald.github.io/priogridR/reference/pg_plot.md)
+  maps cell-level variables.
 - [`pg_paths()`](https://christianoswald.github.io/priogridR/reference/pg_paths.md)
   constructs reproducible project paths.
 - [`pg_theme()`](https://christianoswald.github.io/priogridR/reference/pg_theme.md)
@@ -120,8 +136,29 @@ contributions are welcome. See `CONTRIBUTING.md` and
 
 - [`pg_create_indices()`](https://christianoswald.github.io/priogridR/reference/pg_create_indices.md)
   : Create a matrix of PRIO-GRID identifiers
+- [`pg_id_from_coords()`](https://christianoswald.github.io/priogridR/reference/pg_id_from_coords.md)
+  : Convert coordinates to PRIO-GRID cell IDs
+- [`pg_coords_from_id()`](https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.md)
+  : Convert PRIO-GRID cell IDs to centre coordinates
+- [`pg_geometry()`](https://christianoswald.github.io/priogridR/reference/pg_geometry.md)
+  : Create PRIO-GRID geometries
 - [`pg_neighbors()`](https://christianoswald.github.io/priogridR/reference/pg_neighbors.md)
   : Find first-order PRIO-GRID neighbors
+
+## Data foundations
+
+- [`pg_validate_data()`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
+  [`print(`*`<pg_validation>`*`)`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
+  : Validate PRIO-GRID data
+- [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md)
+  : Complete a PRIO-GRID panel
+- [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md)
+  : Safely join PRIO-GRID data
+
+## Visualization and workflow
+
+- [`pg_plot()`](https://christianoswald.github.io/priogridR/reference/pg_plot.md)
+  : Plot PRIO-GRID data
 - [`pg_paths()`](https://christianoswald.github.io/priogridR/reference/pg_paths.md)
   : Construct standard project data paths
 - [`pg_theme()`](https://christianoswald.github.io/priogridR/reference/pg_theme.md)
@@ -150,6 +187,24 @@ contributions are welcome. See `CONTRIBUTING.md` and
 
   Learn the core grid utilities, return types, output helpers, and
   plotting conventions in priogridR.
+
+- [Grid
+  foundations](https://christianoswald.github.io/priogridR/articles/grid-foundations.md):
+
+  Convert cells and coordinates, create geometries, validate and
+  complete panels, join variables safely, and map results.
+
+- [Grid identifiers and
+  neighborhoods](https://christianoswald.github.io/priogridR/articles/grid-utilities.md):
+
+  Create identifier matrices, inspect neighboring cells, and connect
+  these utilities to configurable PRIO-GRID geometries.
+
+- [Results, output, and
+  visualization](https://christianoswald.github.io/priogridR/articles/results-output-visualization.md):
+
+  Work with structured conversion results, create reproducible project
+  paths, write supported formats, and customize PRIO-GRID maps.
 
 - [Choosing a PRIO-GRID conversion
   workflow](https://christianoswald.github.io/priogridR/articles/conversion-workflows.md):

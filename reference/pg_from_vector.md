@@ -80,3 +80,22 @@ pg_from_vector(
 ## Value
 
 A data frame, `SpatRaster`, or `pg_result`.
+
+## Examples
+
+``` r
+events <- sf::st_as_sf(
+  data.frame(longitude = c(10, 20), latitude = c(50, 60)),
+  coords = c("longitude", "latitude"), crs = 4326
+)
+config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+pg_from_vector(
+  events,
+  variable = "event_count",
+  aggregation = "count",
+  config = config
+)
+#>   pgid event_count
+#> 1  488           1
+#> 2  525           1
+```

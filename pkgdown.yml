@@ -4,12 +4,15 @@ pkgdown_sha: ~
 articles:
   conversion-workflows: conversion-workflows.html
   getting-started: getting-started.html
+  grid-foundations: grid-foundations.html
+  grid-utilities: grid-utilities.html
   pg_from_netcdf: pg_from_netcdf.html
   pg_from_points: pg_from_points.html
   pg_from_raster: pg_from_raster.html
   pg_from_table: pg_from_table.html
   pg_from_vector: pg_from_vector.html
-last_built: 2026-10-28T15:28Z
+  results-output-visualization: results-output-visualization.html
+last_built: 2026-11-06T12:26Z
 urls:
   reference: https://christianoswald.github.io/priogridR/reference
   article: https://christianoswald.github.io/priogridR/articles

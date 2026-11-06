@@ -17,8 +17,29 @@
 
 - [`pg_create_indices()`](https://christianoswald.github.io/priogridR/reference/pg_create_indices.md)
   : Create a matrix of PRIO-GRID identifiers
+- [`pg_id_from_coords()`](https://christianoswald.github.io/priogridR/reference/pg_id_from_coords.md)
+  : Convert coordinates to PRIO-GRID cell IDs
+- [`pg_coords_from_id()`](https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.md)
+  : Convert PRIO-GRID cell IDs to centre coordinates
+- [`pg_geometry()`](https://christianoswald.github.io/priogridR/reference/pg_geometry.md)
+  : Create PRIO-GRID geometries
 - [`pg_neighbors()`](https://christianoswald.github.io/priogridR/reference/pg_neighbors.md)
   : Find first-order PRIO-GRID neighbors
+
+## Data foundations
+
+- [`pg_validate_data()`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
+  [`print(`*`<pg_validation>`*`)`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
+  : Validate PRIO-GRID data
+- [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md)
+  : Complete a PRIO-GRID panel
+- [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md)
+  : Safely join PRIO-GRID data
+
+## Visualization and workflow
+
+- [`pg_plot()`](https://christianoswald.github.io/priogridR/reference/pg_plot.md)
+  : Plot PRIO-GRID data
 - [`pg_paths()`](https://christianoswald.github.io/priogridR/reference/pg_paths.md)
   : Construct standard project data paths
 - [`pg_theme()`](https://christianoswald.github.io/priogridR/reference/pg_theme.md)

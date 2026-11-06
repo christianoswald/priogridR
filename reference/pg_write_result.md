@@ -26,3 +26,16 @@ pg_write_result(x, filename, overwrite = FALSE)
 ## Value
 
 `filename`, invisibly.
+
+## Examples
+
+``` r
+output <- tempfile(fileext = ".csv")
+pg_write_result(data.frame(pgid = 1:3, value = c(2, 4, 1)), output)
+utils::read.csv(output)
+#>   pgid value
+#> 1    1     2
+#> 2    2     4
+#> 3    3     1
+unlink(output)
+```

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,9 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with priogridR</a></li>
+    <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
+    <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
@@ -39,6 +42,33 @@
       <small>Source: <a href="https://github.com/christianoswald/priogridR/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.1" id="priogridr-051">priogridR 0.5.1<a class="anchor" aria-label="anchor" href="#priogridr-051"></a></h2>
+<div class="section level3">
+<h3 id="documentation-0-5-1">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-5-1"></a></h3>
+<ul><li>Added executable reference examples for the point, vector, and table converters, project paths, and result writing.</li>
+<li>Added guarded interactive examples for raster and NetCDF conversion, whose execution requires a configured <code>priogrid</code> working directory.</li>
+<li>Added focused vignettes for grid identifiers and neighborhoods, and for structured results, output, project paths, and visualization.</li>
+<li>Ensured that every public function has a reference example and that every public function group has focused vignette coverage.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.0" id="priogridr-050">priogridR 0.5.0<a class="anchor" aria-label="anchor" href="#priogridr-050"></a></h2>
+<div class="section level3">
+<h3 id="new-functionality-0-5-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-0-5-0"></a></h3>
+<ul><li>Added <code><a href="../reference/pg_id_from_coords.html">pg_id_from_coords()</a></code> and <code><a href="../reference/pg_coords_from_id.html">pg_coords_from_id()</a></code> for converting between coordinates and configured PRIO-GRID cell identifiers.</li>
+<li>Added <code><a href="../reference/pg_geometry.html">pg_geometry()</a></code> for creating polygon or centre-point geometries.</li>
+<li>Added <code><a href="../reference/pg_validate_data.html">pg_validate_data()</a></code> for checking identifiers, panel keys, duplicates, and completeness.</li>
+<li>Added <code><a href="../reference/pg_complete_panel.html">pg_complete_panel()</a></code> for explicitly completing cells and cell-time combinations.</li>
+<li>Added <code><a href="../reference/pg_join.html">pg_join()</a></code> for relationship-checked joins that guard against accidental many-to-many expansion.</li>
+<li>Added <code><a href="../reference/pg_plot.html">pg_plot()</a></code> for quickly mapping cell-level variables.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-0-5-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-0"></a></h3>
+<ul><li>Added a grid-foundations vignette and comprehensive tests for the new API.</li>
+<li>Extended the function inventory and pkgdown reference organization.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.1" id="priogridr-041">priogridR 0.4.1<a class="anchor" aria-label="anchor" href="#priogridr-041"></a></h2>
 <div class="section level3">

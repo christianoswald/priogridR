@@ -8,6 +8,24 @@
   Learn the core grid utilities, return types, output helpers, and
   plotting conventions in priogridR.
 
+- [Grid
+  foundations](https://christianoswald.github.io/priogridR/articles/grid-foundations.md):
+
+  Convert cells and coordinates, create geometries, validate and
+  complete panels, join variables safely, and map results.
+
+- [Grid identifiers and
+  neighborhoods](https://christianoswald.github.io/priogridR/articles/grid-utilities.md):
+
+  Create identifier matrices, inspect neighboring cells, and connect
+  these utilities to configurable PRIO-GRID geometries.
+
+- [Results, output, and
+  visualization](https://christianoswald.github.io/priogridR/articles/results-output-visualization.md):
+
+  Work with structured conversion results, create reproducible project
+  paths, write supported formats, and customize PRIO-GRID maps.
+
 - [Choosing a PRIO-GRID conversion
   workflow](https://christianoswald.github.io/priogridR/articles/conversion-workflows.md):
 

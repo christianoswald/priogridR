@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,9 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="articles/getting-started.html">Getting started with priogridR</a></li>
+    <li><a class="dropdown-item" href="articles/grid-foundations.html">Grid foundations</a></li>
+    <li><a class="dropdown-item" href="articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="articles/index.html">More articles...</a></li>
@@ -41,7 +44,7 @@
 
 <div id="priogridr-function-inventory" class="section level1">
 
-<p>This inventory describes the functions in priogridR 0.3.0.9000 after the public API was standardized. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
+<p>This inventory describes the functions in priogridR 0.5.1. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
 <div class="section level2">
 <h2 id="public-api">Public API<a class="anchor" aria-label="anchor" href="#public-api"></a></h2>
 <table class="table"><colgroup><col width="25%"><col width="25%"><col width="25%"><col width="25%"></colgroup><thead><tr><th>Function</th>
@@ -52,10 +55,41 @@
 <td>Create a matrix of cell identifiers using PRIO-GRID’s south-west-to-north-east numbering while presenting the northern row first.</td>
 <td>Integer matrix.</td>
 <td>Keep. Dimension validation was added and the orientation is covered by tests. Renamed from <code>create_pg_indices()</code>.</td>
+</tr><tr><td><code><a href="reference/pg_id_from_coords.html">pg_id_from_coords()</a></code></td>
+<td>Assign coordinates to cells in a configurable grid after CRS transformation.</td>
+<td>Integer vector.</td>
+<td>Core foundation. Supports custom extents and projections through the configured blank grid.</td>
+</tr><tr><td><code><a href="reference/pg_coords_from_id.html">pg_coords_from_id()</a></code></td>
+<td>Return cell-centre coordinates in a requested CRS.</td>
+<td>Data frame.</td>
+<td>Core foundation and inverse of coordinate lookup for cell centres.</td>
+</tr><tr><td><code><a href="reference/pg_geometry.html">pg_geometry()</a></code></td>
+<td>Create polygons or centre points for all or selected configured cells.</td>
+<td>
+<code>sf</code> object.</td>
+<td>Core foundation for mapping and spatial joins.</td>
 </tr><tr><td><code><a href="reference/pg_neighbors.html">pg_neighbors()</a></code></td>
 <td>Find first-order queen-contiguity neighbors for a cell, with optional longitude wrapping and no wrapping over the poles.</td>
 <td>Integer vector of cell identifiers.</td>
 <td>Keep. Edge, pole, antimeridian, and custom-dimension behavior are covered by tests. Renamed from <code>pgneighbors()</code>.</td>
+</tr><tr><td><code><a href="reference/pg_validate_data.html">pg_validate_data()</a></code></td>
+<td>Check IDs, missing keys, duplicate panel observations, and optional completeness.</td>
+<td>
+<code>pg_validation</code> object.</td>
+<td>Core data-quality foundation.</td>
+</tr><tr><td><code><a href="reference/pg_complete_panel.html">pg_complete_panel()</a></code></td>
+<td>Add absent cells or cell-time combinations without overwriting existing missing values.</td>
+<td>Data frame.</td>
+<td>Core panel foundation.</td>
+</tr><tr><td><code><a href="reference/pg_join.html">pg_join()</a></code></td>
+<td>Join grid data with explicit relationship and unmatched-key checks.</td>
+<td>Data frame.</td>
+<td>Guards against accidental many-to-many expansion.</td>
+</tr><tr><td><code><a href="reference/pg_plot.html">pg_plot()</a></code></td>
+<td>Join values to configured cell polygons and produce a default map.</td>
+<td>
+<code>ggplot</code> object.</td>
+<td>Core visualization convenience function.</td>
 </tr><tr><td><code><a href="reference/pg_theme.html">pg_theme()</a></code></td>
 <td>Apply a minimal ggplot2 theme intended for PRIO-GRID maps and plots.</td>
 <td>A ggplot2 theme object.</td>
@@ -100,6 +134,9 @@
 </tr><tr><td><code><a href="reference/as.data.frame.pg_result.html">as.data.frame.pg_result()</a></code></td>
 <td>Extract the tabular component of a conversion result.</td>
 <td>Keep. The name must follow R’s <code>generic.class</code> S3 convention.</td>
+</tr><tr><td><code><a href="reference/pg_validate_data.html">print.pg_validation()</a></code></td>
+<td>Print a compact validation status and issue table.</td>
+<td>Keep. The name follows R’s required S3 convention.</td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="internal-conversion-and-aggregation-functions">Internal conversion and aggregation functions<a class="anchor" aria-label="anchor" href="#internal-conversion-and-aggregation-functions"></a></h2>
@@ -180,6 +217,18 @@
 <td>Require a configuration created by <code><a href="http://prio-data.github.io/priogrid/reference/pg_config.html" class="external-link">priogrid::pg_config()</a></code>.</td>
 </tr><tr><td><code>validate_grid_dimension()</code></td>
 <td>Validate a positive integer grid dimension.</td>
+</tr><tr><td><code>pg_cell_lookup()</code></td>
+<td>Derive configured cell IDs and raster-cell positions.</td>
+</tr><tr><td><code>validate_pg_id_column()</code></td>
+<td>Require numeric PRIO-GRID identifiers.</td>
+</tr><tr><td><code>recycle_coordinate_pair()</code></td>
+<td>Recycle scalar coordinates safely for vectorized lookup.</td>
+</tr><tr><td><code>unique_helper_name()</code></td>
+<td>Create collision-free temporary column names.</td>
+</tr><tr><td><code>infer_pg_join_columns()</code></td>
+<td>Infer conventional spatial and temporal join keys.</td>
+</tr><tr><td><code>check_join_keys()</code></td>
+<td>Validate join-column presence and completeness.</td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="test-only-helper">Test-only helper<a class="anchor" aria-label="anchor" href="#test-only-helper"></a></h2>

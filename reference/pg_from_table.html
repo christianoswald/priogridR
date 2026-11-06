@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,9 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with priogridR</a></li>
+    <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
+    <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../articles/index.html">More articles...</a></li>
@@ -124,6 +127,35 @@
     <p>A data frame, <code>SpatRaster</code>, or <code>pg_result</code>.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">rectangle</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">45</span>, <span class="fl">15</span>, <span class="fl">45</span>, <span class="fl">15</span>, <span class="fl">55</span>, <span class="fl">5</span>, <span class="fl">55</span>, <span class="fl">5</span>, <span class="fl">45</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">districts</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">st_sf</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  district_id <span class="op">=</span> <span class="st">"A"</span>,</span></span>
+<span class="r-in"><span>  geometry <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span><span class="va">rectangle</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>district_id <span class="op">=</span> <span class="st">"A"</span>, total <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">priogrid</span><span class="fu">::</span><span class="fu"><a href="http://prio-data.github.io/priogrid/reference/pg_config.html" class="external-link">pg_config</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">18</span>, ncol <span class="op">=</span> <span class="fl">36</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pg_from_table</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">population</span>,</span></span>
+<span class="r-in"><span>  variable <span class="op">=</span> <span class="st">"population"</span>,</span></span>
+<span class="r-in"><span>  value <span class="op">=</span> <span class="st">"total"</span>,</span></span>
+<span class="r-in"><span>  geography <span class="op">=</span> <span class="va">districts</span>,</span></span>
+<span class="r-in"><span>  source_id <span class="op">=</span> <span class="st">"district_id"</span>,</span></span>
+<span class="r-in"><span>  geography_id <span class="op">=</span> <span class="st">"district_id"</span>,</span></span>
+<span class="r-in"><span>  aggregation <span class="op">=</span> <span class="st">"area_weighted_sum"</span>,</span></span>
+<span class="r-in"><span>  config <span class="op">=</span> <span class="va">config</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   pgid population</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  487   26308.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  488   26308.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  523   23691.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  524   23691.04</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
