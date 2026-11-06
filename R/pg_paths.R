@@ -4,6 +4,11 @@
 #' @param raw,processed,temporary Relative subdirectory names.
 #' @param create Create missing subdirectories?
 #' @return A named list of normalized paths.
+#' @examples
+#' pg_paths(root = tempdir())
+#'
+#' example_root <- file.path(tempdir(), "priogridR-project")
+#' pg_paths(root = example_root, create = TRUE)
 #' @export
 pg_paths <- function(
   root = ".",

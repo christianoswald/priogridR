@@ -1,0 +1,133 @@
+---
+title: "Grid foundations"
+description: "Convert cells and coordinates, create geometries, validate and complete panels, join variables safely, and map results."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Grid foundations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r attach}
+library(priogridR)
+```
+
+The foundation functions provide a consistent route from locations to cells,
+from cells to geometries, and from incomplete observations to analysis-ready
+PRIO-GRID panels. All functions accept a `priogrid` configuration, so the same
+workflow can be used with alternative resolutions and extents.
+
+## Configure a small grid
+
+The examples use a deliberately coarse global grid so they render quickly.
+
+```{r config}
+config <- priogrid::pg_config(
+  nrow = 18,
+  ncol = 36,
+  start_date = as.Date("2020-12-31"),
+  end_date = as.Date("2021-12-31"),
+  temporal_resolution = "1 year",
+  verbose = FALSE
+)
+```
+
+## Convert coordinates and cell IDs
+
+`pg_id_from_coords()` assigns longitude-latitude coordinates to configured
+cells. Coordinates outside a regional grid return `NA` by default.
+
+```{r coordinate-to-id}
+cells <- pg_id_from_coords(
+  longitude = c(10, 20),
+  latitude = c(50, 60),
+  config = config
+)
+cells
+```
+
+Cell centres can be recovered in any requested coordinate reference system.
+
+```{r id-to-coordinate}
+pg_coords_from_id(cells, config = config)
+```
+
+## Create spatial geometries
+
+Use `pg_geometry()` to create polygons for mapping or points for distance and
+nearest-feature operations.
+
+```{r geometry}
+cell_polygons <- pg_geometry(cells, config = config)
+cell_centres <- pg_geometry(cells, geometry = "point", config = config)
+cell_centres
+```
+
+## Validate and complete data
+
+Validation reports missing or unknown IDs, missing time values, duplicate
+panel keys, and—when requested—absent cell-time combinations.
+
+```{r validation}
+observations <- data.frame(
+  pgid = cells,
+  year = c(2020L, 2020L),
+  events = c(3L, 1L)
+)
+
+pg_validate_data(
+  observations,
+  time = "year",
+  config = config
+)
+```
+
+`pg_complete_panel()` makes missing combinations explicit. Fill values are
+applied only to rows created by the function; existing `NA` values are left
+unchanged.
+
+```{r completion}
+panel <- pg_complete_panel(
+  observations,
+  time = "year",
+  cells = cells,
+  times = 2020:2021,
+  fill = list(events = 0L),
+  config = config
+)
+panel
+```
+
+## Join variables safely
+
+The default relationship is many-to-one: the right-hand table must contain at
+most one row for each inferred grid-time key. State another relationship only
+when it is substantively intended.
+
+```{r join}
+cell_attributes <- data.frame(
+  pgid = cells,
+  region = c("A", "B")
+)
+
+panel <- pg_join(panel, cell_attributes, by = "pgid")
+panel
+```
+
+## Plot a variable
+
+`pg_plot()` creates a `ggplot2` map and returns it for further customization.
+
+```{r plot, fig.width=7, fig.height=3.5}
+pg_plot(
+  panel,
+  variable = "events",
+  time = "year",
+  time_value = 2020L,
+  config = config
+)
+```

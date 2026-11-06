@@ -10,7 +10,18 @@ reference:
   - title: Grid utilities
     contents:
       - pg_create_indices
+      - pg_id_from_coords
+      - pg_coords_from_id
+      - pg_geometry
       - pg_neighbors
+  - title: Data foundations
+    contents:
+      - pg_validate_data
+      - pg_complete_panel
+      - pg_join
+  - title: Visualization and workflow
+    contents:
+      - pg_plot
       - pg_paths
       - pg_theme
   - title: Results and output
@@ -27,6 +38,9 @@ articles:
     navbar: ~
     contents:
       - getting-started
+      - grid-foundations
+      - grid-utilities
+      - results-output-visualization
       - conversion-workflows
   - title: Conversion guides
     desc: Detailed workflows for each supported source-data format.

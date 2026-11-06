@@ -25,3 +25,9 @@ A named list of normalized paths.
 \description{
 Construct standard project data paths
 }
+\examples{
+pg_paths(root = tempdir())
+
+example_root <- file.path(tempdir(), "priogridR-project")
+pg_paths(root = example_root, create = TRUE)
+}

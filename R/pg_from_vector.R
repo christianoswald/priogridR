@@ -15,6 +15,18 @@
 #' @param filename Optional output filename.
 #' @param overwrite Replace an existing output file?
 #' @return A data frame, `SpatRaster`, or `pg_result`.
+#' @examples
+#' events <- sf::st_as_sf(
+#'   data.frame(longitude = c(10, 20), latitude = c(50, 60)),
+#'   coords = c("longitude", "latitude"), crs = 4326
+#' )
+#' config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+#' pg_from_vector(
+#'   events,
+#'   variable = "event_count",
+#'   aggregation = "count",
+#'   config = config
+#' )
 #' @export
 pg_from_vector <- function(
   x,

@@ -57,3 +57,18 @@ A data frame, \code{SpatRaster}, or \code{pg_result}.
 \description{
 Convert point or event data to PRIO-GRID
 }
+\examples{
+events <- data.frame(
+  longitude = c(10, 10.1, 20),
+  latitude = c(50, 50.1, 60)
+)
+config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+pg_from_points(
+  events,
+  variable = "event_count",
+  longitude = "longitude",
+  latitude = "latitude",
+  aggregation = "count",
+  config = config
+)
+}

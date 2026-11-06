@@ -5,7 +5,9 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+Results for version 0.5.1 have not yet been recorded. Run the full local and
+GitHub Actions check matrix before submission and replace this paragraph with
+the final results.
 
 ## Downstream dependencies
 

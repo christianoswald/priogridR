@@ -20,3 +20,9 @@ pg_write_result(x, filename, overwrite = FALSE)
 \description{
 Write a PRIO-GRID conversion result
 }
+\examples{
+output <- tempfile(fileext = ".csv")
+pg_write_result(data.frame(pgid = 1:3, value = c(2, 4, 1)), output)
+utils::read.csv(output)
+unlink(output)
+}

@@ -12,7 +12,8 @@
 `priogridR` provides a consistent interface for working with PRIO-GRID data.
 It combines grid utilities with general converters that transfer raster,
 vector, point-event, NetCDF, and geographically indexed tabular data to a
-configurable PRIO-GRID.
+configurable PRIO-GRID. It also supports coordinate lookup, geometry creation,
+panel validation and completion, safe joins, and rapid mapping.
 
 The package builds on the official [`priogrid`](https://prio-data.github.io/priogrid/)
 package for grid definitions and raster transformations.
@@ -37,7 +38,14 @@ All user-facing functions begin with `pg_` and use snake case:
 * `pg_from_netcdf()` converts NetCDF variables and layers.
 * `pg_from_table()` transfers geographically indexed tabular data.
 * `pg_create_indices()` creates PRIO-GRID identifier matrices.
+* `pg_id_from_coords()` and `pg_coords_from_id()` convert between locations and
+  cell identifiers.
+* `pg_geometry()` creates cell polygons or centre points.
 * `pg_neighbors()` returns first-order neighboring cells.
+* `pg_validate_data()` checks cell and panel structure.
+* `pg_complete_panel()` creates complete cell or cell-time panels.
+* `pg_join()` performs relationship-checked joins.
+* `pg_plot()` maps cell-level variables.
 * `pg_paths()` constructs reproducible project paths.
 * `pg_theme()` supplies a map-oriented ggplot2 theme.
 * `pg_write_result()` writes conversion outputs.

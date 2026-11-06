@@ -52,3 +52,20 @@ A data frame, \code{SpatRaster}, or \code{pg_result}.
 \description{
 Convert raster data to PRIO-GRID
 }
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+priogrid::pg_set_rawfolder(file.path(tempdir(), "priogrid-example"))
+temperature <- terra::rast(
+  nrows = 18, ncols = 36,
+  xmin = -180, xmax = 180, ymin = -90, ymax = 90,
+  crs = "EPSG:4326", vals = 1:648
+)
+config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+pg_from_raster(
+  temperature,
+  variable = "temperature",
+  aggregation = "mean",
+  config = config
+)
+\dontshow{\}) # examplesIf}
+}

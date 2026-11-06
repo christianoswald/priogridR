@@ -14,6 +14,27 @@
 #' @param filename Optional output filename.
 #' @param overwrite Replace an existing output file?
 #' @return A data frame, `SpatRaster`, or `pg_result`.
+#' @examples
+#' rectangle <- sf::st_polygon(list(matrix(
+#'   c(5, 45, 15, 45, 15, 55, 5, 55, 5, 45),
+#'   ncol = 2, byrow = TRUE
+#' )))
+#' districts <- sf::st_sf(
+#'   district_id = "A",
+#'   geometry = sf::st_sfc(rectangle, crs = 4326)
+#' )
+#' population <- data.frame(district_id = "A", total = 100000)
+#' config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+#' pg_from_table(
+#'   population,
+#'   variable = "population",
+#'   value = "total",
+#'   geography = districts,
+#'   source_id = "district_id",
+#'   geography_id = "district_id",
+#'   aggregation = "area_weighted_sum",
+#'   config = config
+#' )
 #' @export
 pg_from_table <- function(
   x,

@@ -1,7 +1,7 @@
 # priogridR function inventory
 
-This inventory describes the functions in priogridR 0.3.0.9000 after the
-public API was standardized. All exported package functions begin with
+This inventory describes the functions in priogridR 0.5.1. All exported
+package functions begin with
 `pg_`. The two exported S3 methods retain the names required by R's method
 dispatch system.
 
@@ -10,7 +10,14 @@ dispatch system.
 | Function | Purpose | Main result | Audit conclusion |
 |---|---|---|---|
 | `pg_create_indices()` | Create a matrix of cell identifiers using PRIO-GRID's south-west-to-north-east numbering while presenting the northern row first. | Integer matrix. | Keep. Dimension validation was added and the orientation is covered by tests. Renamed from `create_pg_indices()`. |
+| `pg_id_from_coords()` | Assign coordinates to cells in a configurable grid after CRS transformation. | Integer vector. | Core foundation. Supports custom extents and projections through the configured blank grid. |
+| `pg_coords_from_id()` | Return cell-centre coordinates in a requested CRS. | Data frame. | Core foundation and inverse of coordinate lookup for cell centres. |
+| `pg_geometry()` | Create polygons or centre points for all or selected configured cells. | `sf` object. | Core foundation for mapping and spatial joins. |
 | `pg_neighbors()` | Find first-order queen-contiguity neighbors for a cell, with optional longitude wrapping and no wrapping over the poles. | Integer vector of cell identifiers. | Keep. Edge, pole, antimeridian, and custom-dimension behavior are covered by tests. Renamed from `pgneighbors()`. |
+| `pg_validate_data()` | Check IDs, missing keys, duplicate panel observations, and optional completeness. | `pg_validation` object. | Core data-quality foundation. |
+| `pg_complete_panel()` | Add absent cells or cell-time combinations without overwriting existing missing values. | Data frame. | Core panel foundation. |
+| `pg_join()` | Join grid data with explicit relationship and unmatched-key checks. | Data frame. | Guards against accidental many-to-many expansion. |
+| `pg_plot()` | Join values to configured cell polygons and produce a default map. | `ggplot` object. | Core visualization convenience function. |
 | `pg_theme()` | Apply a minimal ggplot2 theme intended for PRIO-GRID maps and plots. | A ggplot2 theme object. | Keep as a small convenience function. It now has a usable default legend position. Renamed from `pgtheme()`. |
 | `pg_paths()` | Construct standard raw, processed, and temporary project-data paths and optionally create them. | Named list of normalized paths. | Keep, but it is a general workflow helper rather than a spatial conversion function; reconsider if a narrower package scope is desired. |
 | `pg_from_raster()` | Transform a `SpatRaster` or raster file into a configurable PRIO-GRID raster, table, or combined result. | Data frame, `SpatRaster`, or `pg_result`. | Keep. Uses the supported `priogrid` transformation API and validates variables, time, configuration, and output choices. |
@@ -26,6 +33,7 @@ dispatch system.
 |---|---|---|
 | `print.pg_result()` | Print a compact summary of a conversion result. | Keep. The name must follow R's `generic.class` S3 convention. |
 | `as.data.frame.pg_result()` | Extract the tabular component of a conversion result. | Keep. The name must follow R's `generic.class` S3 convention. |
+| `print.pg_validation()` | Print a compact validation status and issue table. | Keep. The name follows R's required S3 convention. |
 
 ## Internal conversion and aggregation functions
 
@@ -75,6 +83,12 @@ These are implementation details and are not exported.
 | `validate_output_path()` | Validate a filename and prevent accidental replacement. |
 | `validate_pg_config()` | Require a configuration created by `priogrid::pg_config()`. |
 | `validate_grid_dimension()` | Validate a positive integer grid dimension. |
+| `pg_cell_lookup()` | Derive configured cell IDs and raster-cell positions. |
+| `validate_pg_id_column()` | Require numeric PRIO-GRID identifiers. |
+| `recycle_coordinate_pair()` | Recycle scalar coordinates safely for vectorized lookup. |
+| `unique_helper_name()` | Create collision-free temporary column names. |
+| `infer_pg_join_columns()` | Infer conventional spatial and temporal join keys. |
+| `check_join_keys()` | Validate join-column presence and completeness. |
 
 ## Test-only helper
 

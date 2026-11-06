@@ -1,0 +1,73 @@
+---
+title: "Grid identifiers and neighborhoods"
+description: "Create identifier matrices, inspect neighboring cells, and connect these utilities to configurable PRIO-GRID geometries."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Grid identifiers and neighborhoods}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r attach}
+library(priogridR)
+```
+
+PRIO-GRID cell identifiers increase from west to east and then from south to
+north. The utility functions in this vignette expose that indexing convention
+and make local neighborhood operations explicit.
+
+## Identifier matrices
+
+`pg_create_indices()` creates a matrix with north at the top, as grids are
+normally displayed, even though numbering starts in the south-west.
+
+```{r indices}
+indices <- pg_create_indices(nrow = 3, ncol = 4)
+indices
+```
+
+The south-western cell is therefore in the bottom-left matrix position.
+
+```{r orientation}
+indices[3, 1]
+indices[1, 4]
+```
+
+## First-order neighbors
+
+`pg_neighbors()` returns queen-contiguity neighbors: cells sharing an edge or
+a corner with the selected cell.
+
+```{r interior-neighbors}
+pg_neighbors(6, nrow = 3, ncol = 4)
+```
+
+Longitude wraps across the antimeridian by default. Latitude does not wrap
+across either pole.
+
+```{r edge-neighbors}
+pg_neighbors(1, nrow = 3, ncol = 4)
+pg_neighbors(1, nrow = 3, ncol = 4, wrap_longitude = FALSE)
+```
+
+Set `wrap_longitude = FALSE` for regional grids whose eastern and western
+edges should not be treated as adjacent.
+
+## Connect IDs to locations
+
+For configured grids, `pg_coords_from_id()` and `pg_geometry()` translate
+these abstract identifiers into centre coordinates or spatial features.
+
+```{r geometry}
+config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+
+pg_coords_from_id(1:3, config = config)
+pg_geometry(1:3, geometry = "point", config = config)
+```
+
+See `vignette("grid-foundations", package = "priogridR")` for coordinate
+assignment, panel validation, completion, safe joins, and mapping.

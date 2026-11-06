@@ -31,6 +31,11 @@ write_pg_raster <- function(x, filename, overwrite = FALSE) {
 #'   `.parquet`, `.tif`, `.tiff`, and `.vrt`.
 #' @param overwrite Replace an existing file?
 #' @return `filename`, invisibly.
+#' @examples
+#' output <- tempfile(fileext = ".csv")
+#' pg_write_result(data.frame(pgid = 1:3, value = c(2, 4, 1)), output)
+#' utils::read.csv(output)
+#' unlink(output)
 #' @export
 pg_write_result <- function(x, filename, overwrite = FALSE) {
   extension <- tolower(tools::file_ext(filename))

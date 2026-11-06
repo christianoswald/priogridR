@@ -42,7 +42,9 @@ test_that("pg_theme has a usable default", {
 
 test_that("the public API consistently uses the pg_ prefix", {
   exports <- getNamespaceExports("priogridR")
-  s3_methods <- c("print.pg_result", "as.data.frame.pg_result")
+  s3_methods <- c(
+    "print.pg_result", "as.data.frame.pg_result", "print.pg_validation"
+  )
 
   expect_true(all(startsWith(setdiff(exports, s3_methods), "pg_")))
   expect_false(any(c(

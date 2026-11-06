@@ -1,0 +1,110 @@
+---
+title: "Results, output, and visualization"
+description: "Work with structured conversion results, create reproducible project paths, write supported formats, and customize PRIO-GRID maps."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Results, output, and visualization}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r attach}
+library(priogridR)
+```
+
+The conversion functions can return ordinary data frames, rasters, or a
+structured `pg_result`. The workflow helpers make it easier to organize,
+inspect, save, and visualize those outputs consistently.
+
+## Reproducible project paths
+
+`pg_paths()` constructs conventional raw, processed, and temporary data paths
+without changing the working directory.
+
+```{r paths}
+project_root <- file.path(tempdir(), "priogridR-vignette-project")
+paths <- pg_paths(project_root, create = TRUE)
+paths
+```
+
+The returned list can be passed directly to `file.path()` when creating input
+or output filenames.
+
+## Structured conversion results
+
+Request `return = "result"` when both the converted data and its metadata are
+useful.
+
+```{r result}
+events <- data.frame(
+  longitude = c(10, 10.1, 20),
+  latitude = c(50, 50.1, 60)
+)
+
+config <- priogrid::pg_config(nrow = 18, ncol = 36, verbose = FALSE)
+
+event_result <- pg_from_points(
+  events,
+  variable = "event_count",
+  longitude = "longitude",
+  latitude = "latitude",
+  aggregation = "count",
+  return = "result",
+  config = config
+)
+
+event_result
+```
+
+The ordinary tabular representation is available through `as.data.frame()`.
+
+```{r result-data}
+event_data <- as.data.frame(event_result)
+head(event_data)
+```
+
+## Write outputs
+
+`pg_write_result()` selects the writer from the filename extension. Data frames
+and tabular `pg_result` objects support CSV, RDS, and—when `arrow` is
+installed—Parquet. Rasters support TIFF and VRT.
+
+```{r write-table}
+csv_file <- file.path(paths$temporary, "event-counts.csv")
+pg_write_result(event_result, csv_file, overwrite = TRUE)
+utils::read.csv(csv_file)
+```
+
+Use explicit overwrite permission in reproducible scripts when replacing an
+earlier output is intended.
+
+```{r raster-output, eval=FALSE}
+pg_write_result(raster_result, "data/processed/variable.tif", overwrite = TRUE)
+```
+
+## Plot grid data
+
+`pg_plot()` joins a variable to configured cell polygons and returns an
+ordinary `ggplot2` object.
+
+```{r map, fig.width=7, fig.height=3.5}
+map <- pg_plot(event_data, "event_count", config = config)
+map
+```
+
+Add layers or replace theme components as with any other ggplot. `pg_theme()`
+can also be used independently.
+
+```{r customize, fig.width=7, fig.height=3.5}
+map +
+  ggplot2::labs(title = "Example event counts") +
+  pg_theme(legend.position = "bottom")
+```
+
+Temporary example files are removed when the R session ends. In a real
+project, use a persistent project root and keep raw and processed data in
+separate directories.
