@@ -122,12 +122,6 @@ for an introduction and a guide to choosing a converter. The package
 website also provides a focused article for every `pg_from_*()`
 function.
 
-## Contributing
-
-Bug reports, feature requests, documentation improvements, and code
-contributions are welcome. See `CONTRIBUTING.md` and
-`CODE_OF_CONDUCT.md`.
-
 ## Package direction
 
 Future convenience functions will build on the same principles:
@@ -165,15 +159,22 @@ developers of the official `priogrid` package.
 
 The bundled `priogrid` data object contains PRIO-GRID cell identifiers,
 coordinates, and geometries derived from the PRIO-GRID dataset and is
-made available under the Open Data Commons Attribution License (ODC-By)
-1.0. Other data accessed, converted, or analyzed with `priogridR` remain
-subject to their original providers’ licenses, documentation, citation
-requirements, and terms of use.
+made available under the [Open Data Commons Attribution License (ODC-By)
+1.0](https://opendatacommons.org/licenses/by/1-0/). Other data accessed,
+converted, or analyzed with `priogridR` remain subject to their original
+providers’ licenses, documentation, citation requirements, and terms of
+use.
 
 Users should cite the original PRIO-GRID publication and all underlying
 data sources relevant to their analyses. The citation and licensing
 information provided by the official `priogrid` package remains
 authoritative for official PRIO-GRID variables and source datasets.
+
+## Contributing
+
+Bug reports, feature requests, documentation improvements, and code
+contributions are welcome. See `CONTRIBUTING.md` and
+`CODE_OF_CONDUCT.md`.
 
 ## License
 
