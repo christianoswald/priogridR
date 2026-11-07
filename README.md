@@ -109,21 +109,15 @@ See `vignette("getting-started", package = "priogridR")` and
 introduction and a guide to choosing a converter. The package website
 also provides a focused article for every `pg_from_*()` function.
 
-## Contributing
-
-Bug reports, feature requests, documentation improvements, and code
-contributions are welcome. See `CONTRIBUTING.md` and
-`CODE_OF_CONDUCT.md`.
-
 ## Package direction
 
-Future convenience functions will build on the same principles: reproducible
-inputs, explicit spatial and temporal configurations, transparent
-transformations, and outputs that fit ordinary R workflows. The aim is to
-reduce recurring data-management and spatial-processing work for PRIO-GRID
-users while keeping aggregation rules, missing-data decisions, neighborhood
-definitions, and other analytical choices visible and under the researcher's
-control.
+Future convenience functions will build on the same principles:
+reproducible inputs, explicit spatial and temporal configurations,
+transparent transformations, and outputs that fit ordinary R workflows.
+The aim is to reduce recurring data-management and spatial-processing
+work for PRIO-GRID users while keeping aggregation rules, missing-data
+decisions, neighborhood definitions, and other analytical choices
+visible and under the researcher’s control.
 
 Development will continue to complement the official
 [`priogrid`](https://prio-data.github.io/priogrid/) package rather than
@@ -132,34 +126,42 @@ infrastructure.
 
 ## AI-assisted development
 
-This package has been developed with assistance from OpenAI's ChatGPT and
-Codex. AI tools have been used to support code drafting and refactoring, test
-development, documentation, troubleshooting, literature review, and discussion
-of package design.
+This package has been developed with assistance from OpenAI’s ChatGPT
+and Codex. AI tools have been used to support code drafting and
+refactoring, test development, documentation, troubleshooting,
+literature review, and discussion of package design.
 
 All substantive design decisions, review of generated material, package
 testing, and responsibility for the correctness and maintenance of
-`priogridR` remain with the package author. AI-assisted contributions are
-reviewed and validated through the package's test suite, examples, vignettes,
-continuous-integration workflows, and `R CMD check` before release.
+`priogridR` remain with the package author. AI-assisted contributions
+are reviewed and validated through the package’s test suite, examples,
+vignettes, continuous-integration workflows, and `R CMD check` before
+release.
 
 ## Scope and attribution
 
-`priogridR` is an independent community package. It is not affiliated with or
-endorsed by the Peace Research Institute Oslo (PRIO) or the developers of the
-official `priogrid` package.
+`priogridR` is an independent community package. It is not affiliated
+with or endorsed by the Peace Research Institute Oslo (PRIO) or the
+developers of the official `priogrid` package.
 
 The bundled `priogrid` data object contains PRIO-GRID cell identifiers,
-coordinates, and geometries derived from the PRIO-GRID dataset and is made
-available under the Open Data Commons Attribution License (ODC-By) 1.0. Other
-data accessed, converted, or analyzed with `priogridR` remain subject to their
-original providers' licenses, documentation, citation requirements, and terms
-of use.
+coordinates, and geometries derived from the PRIO-GRID dataset and is
+made available under the [Open Data Commons Attribution License (ODC-By)
+1.0](https://opendatacommons.org/licenses/by/1-0/). Other data accessed,
+converted, or analyzed with `priogridR` remain subject to their original
+providers’ licenses, documentation, citation requirements, and terms of
+use.
 
-Users should cite the original PRIO-GRID publication and all underlying data
-sources relevant to their analyses. The citation and licensing information
-provided by the official `priogrid` package remains authoritative for official
-PRIO-GRID variables and source datasets.
+Users should cite the original PRIO-GRID publication and all underlying
+data sources relevant to their analyses. The citation and licensing
+information provided by the official `priogrid` package remains
+authoritative for official PRIO-GRID variables and source datasets.
+
+## Contributing
+
+Bug reports, feature requests, documentation improvements, and code
+contributions are welcome. See `CONTRIBUTING.md` and
+`CODE_OF_CONDUCT.md`.
 
 ## License
 
