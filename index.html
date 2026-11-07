@@ -118,10 +118,16 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/christianoswald/priogridR" class="external-link">priogridR</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/pg_create_indices.html">pg_create_indices</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/pg_neighbors.html">pg_neighbors</a></span><span class="op">(</span><span class="fl">5</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/pg_create_indices.html">pg_create_indices</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3]</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="do">## [1,]    7    8    9</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="do">## [2,]    4    5    6</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="do">## [3,]    1    2    3</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/pg_neighbors.html">pg_neighbors</a></span><span class="op">(</span><span class="fl">5</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">## [1] 7 8 9 4 6 1 2 3</span></span></code></pre></div>
 <p>Point-event data can be aggregated using the temporal and spatial settings in a PRIO-GRID configuration:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10.1</span>, <span class="fl">20</span><span class="op">)</span>,</span>
 <span>  latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">50.1</span>, <span class="fl">60</span><span class="op">)</span>,</span>
@@ -149,6 +155,25 @@
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
 </h2>
 <p>Bug reports, feature requests, documentation improvements, and code contributions are welcome. See <code>CONTRIBUTING.md</code> and <code>CODE_OF_CONDUCT.md</code>.</p>
+</div>
+<div class="section level2">
+<h2 id="package-direction">Package direction<a class="anchor" aria-label="anchor" href="#package-direction"></a>
+</h2>
+<p>Future convenience functions will build on the same principles: reproducible inputs, explicit spatial and temporal configurations, transparent transformations, and outputs that fit ordinary R workflows. The aim is to reduce recurring data-management and spatial-processing work for PRIO-GRID users while keeping aggregation rules, missing-data decisions, neighborhood definitions, and other analytical choices visible and under the researcher’s control.</p>
+<p>Development will continue to complement the official <a href="https://prio-data.github.io/priogrid/" class="external-link"><code>priogrid</code></a> package rather than duplicate its data-access, configuration, metadata, and citation infrastructure.</p>
+</div>
+<div class="section level2">
+<h2 id="ai-assisted-development">AI-assisted development<a class="anchor" aria-label="anchor" href="#ai-assisted-development"></a>
+</h2>
+<p>This package has been developed with assistance from OpenAI’s ChatGPT and Codex. AI tools have been used to support code drafting and refactoring, test development, documentation, troubleshooting, literature review, and discussion of package design.</p>
+<p>All substantive design decisions, review of generated material, package testing, and responsibility for the correctness and maintenance of <code>priogridR</code> remain with the package author. AI-assisted contributions are reviewed and validated through the package’s test suite, examples, vignettes, continuous-integration workflows, and <code>R CMD check</code> before release.</p>
+</div>
+<div class="section level2">
+<h2 id="scope-and-attribution">Scope and attribution<a class="anchor" aria-label="anchor" href="#scope-and-attribution"></a>
+</h2>
+<p><code>priogridR</code> is an independent community package. It is not affiliated with or endorsed by the Peace Research Institute Oslo (PRIO) or the developers of the official <code>priogrid</code> package.</p>
+<p>The bundled <code>priogrid</code> data object contains PRIO-GRID cell identifiers, coordinates, and geometries derived from the PRIO-GRID dataset and is made available under the Open Data Commons Attribution License (ODC-By) 1.0. Other data accessed, converted, or analyzed with <code>priogridR</code> remain subject to their original providers’ licenses, documentation, citation requirements, and terms of use.</p>
+<p>Users should cite the original PRIO-GRID publication and all underlying data sources relevant to their analyses. The citation and licensing information provided by the official <code>priogrid</code> package remains authoritative for official PRIO-GRID variables and source datasets.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
