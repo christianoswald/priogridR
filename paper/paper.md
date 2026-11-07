@@ -11,9 +11,8 @@ authors:
     orcid: 0000-0001-8291-9544
     affiliation: "1"
 affiliations:
-  - name: "TODO: confirm institutional affiliation before submission"
+  - name: "Center for Crisis Early Warning, University of the Bundeswehr Munich"
     index: 1
-date: "TODO"
 bibliography: paper.bib
 ---
 
