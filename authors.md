@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/christianoswald/priogridR/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/christianoswald/priogridR/blob/v0.5.1/inst/CITATION)
 
 Oswald C (2026). *priogridR: Functions for Working with PRIO-GRID Data*.
 R package version 0.5.1, <https://github.com/christianoswald/priogridR>.
