@@ -20,6 +20,12 @@
   Create identifier matrices, inspect neighboring cells, and connect
   these utilities to configurable PRIO-GRID geometries.
 
+- [Spatial
+  context](https://christianoswald.github.io/priogridR/articles/spatial-context.md):
+
+  Define neighbors and weights, calculate spatial lags and distances,
+  and summarize nearby cell values.
+
 - [Results, output, and
   visualization](https://christianoswald.github.io/priogridR/articles/results-output-visualization.md):
 

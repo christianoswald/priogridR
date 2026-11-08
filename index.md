@@ -4,8 +4,9 @@
 data. It combines grid utilities with general converters that transfer
 raster, vector, point-event, NetCDF, and geographically indexed tabular
 data to a configurable PRIO-GRID. It also supports coordinate lookup,
-geometry creation, panel validation and completion, safe joins, and
-rapid mapping.
+geometry creation, spatial neighborhoods, weights, lags, distances and
+buffer summaries, panel validation and completion, safe joins, and rapid
+mapping.
 
 The package builds on the official
 [`priogrid`](https://prio-data.github.io/priogrid/) package for grid
@@ -46,6 +47,18 @@ All user-facing functions begin with `pg_` and use snake case:
   creates cell polygons or centre points.
 - [`pg_neighbors()`](https://christianoswald.github.io/priogridR/reference/pg_neighbors.md)
   returns first-order neighboring cells.
+- [`pg_neighbor_table()`](https://christianoswald.github.io/priogridR/reference/pg_neighbor_table.md)
+  creates reusable contiguity, distance-band, or nearest-neighbor
+  relationships.
+- [`pg_weights()`](https://christianoswald.github.io/priogridR/reference/pg_weights.md)
+  constructs binary or inverse-distance spatial weights.
+- [`pg_spatial_lag()`](https://christianoswald.github.io/priogridR/reference/pg_spatial_lag.md)
+  calculates weighted neighboring-cell values.
+- [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md),
+  [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md),
+  and
+  [`pg_nearest()`](https://christianoswald.github.io/priogridR/reference/pg_nearest.md)
+  support common spatial-context workflows.
 - [`pg_validate_data()`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md)
   checks cell and panel structure.
 - [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md)

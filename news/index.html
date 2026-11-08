@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with priogridR</a></li>
     <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -39,9 +40,26 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/christianoswald/priogridR/blob/v0.5.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/christianoswald/priogridR/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.0" id="priogridr-060">priogridR 0.6.0<a class="anchor" aria-label="anchor" href="#priogridr-060"></a></h2>
+<div class="section level3">
+<h3 id="new-functionality-0-6-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-0-6-0"></a></h3>
+<ul><li>Added <code><a href="../reference/pg_neighbor_table.html">pg_neighbor_table()</a></code> for reusable queen, rook, distance-band, and k-nearest-neighbor definitions.</li>
+<li>Added <code><a href="../reference/pg_weights.html">pg_weights()</a></code> for binary and inverse-distance spatial weights with optional row standardization.</li>
+<li>Added <code><a href="../reference/pg_spatial_lag.html">pg_spatial_lag()</a></code> for cell-level and cell-period spatial lags without leakage across temporal groups.</li>
+<li>Added <code><a href="../reference/pg_distance.html">pg_distance()</a></code> and <code><a href="../reference/pg_nearest.html">pg_nearest()</a></code> for cell-centre distance and nearest neighbor workflows.</li>
+<li>Added <code><a href="../reference/pg_buffer_summary.html">pg_buffer_summary()</a></code> for cell-level summaries within explicitly defined distance buffers.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-and-quality-0-6-0">Documentation and quality<a class="anchor" aria-label="anchor" href="#documentation-and-quality-0-6-0"></a></h3>
+<ul><li>Added a spatial-context vignette with end-to-end examples.</li>
+<li>Added tests for contiguity, antimeridian behavior, candidate restrictions, distance calculations, weight construction, temporal isolation, missing values, buffer summaries, and input validation.</li>
+<li>Linked the README license badge to the bundled license to avoid dependence on an external license page during URL checks.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.1" id="priogridr-051">priogridR 0.5.1<a class="anchor" aria-label="anchor" href="#priogridr-051"></a></h2>
 <div class="section level3">

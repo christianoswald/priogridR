@@ -1,6 +1,6 @@
 # priogridR function inventory
 
-This inventory describes the functions in priogridR 0.5.1. All exported
+This inventory describes the functions in priogridR 0.6.0. All exported
 package functions begin with `pg_`. The two exported S3 methods retain
 the names required by R’s method dispatch system.
 
@@ -13,6 +13,12 @@ the names required by R’s method dispatch system.
 | [`pg_coords_from_id()`](https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.md) | Return cell-centre coordinates in a requested CRS. | Data frame. | Core foundation and inverse of coordinate lookup for cell centres. |
 | [`pg_geometry()`](https://christianoswald.github.io/priogridR/reference/pg_geometry.md) | Create polygons or centre points for all or selected configured cells. | `sf` object. | Core foundation for mapping and spatial joins. |
 | [`pg_neighbors()`](https://christianoswald.github.io/priogridR/reference/pg_neighbors.md) | Find first-order queen-contiguity neighbors for a cell, with optional longitude wrapping and no wrapping over the poles. | Integer vector of cell identifiers. | Keep. Edge, pole, antimeridian, and custom-dimension behavior are covered by tests. Renamed from `pgneighbors()`. |
+| [`pg_neighbor_table()`](https://christianoswald.github.io/priogridR/reference/pg_neighbor_table.md) | Build reusable queen, rook, distance-band, or k-nearest-neighbor relationships. | Data frame of directed cell pairs, with distances where relevant. | Core spatial-context foundation. |
+| [`pg_weights()`](https://christianoswald.github.io/priogridR/reference/pg_weights.md) | Add binary or inverse-distance weights to a neighbor table. | Weighted neighbor table. | Core spatial-context foundation with explicit row standardization. |
+| [`pg_spatial_lag()`](https://christianoswald.github.io/priogridR/reference/pg_spatial_lag.md) | Calculate weighted neighboring-cell values within optional temporal groups. | Input data with an appended lag column. | Core spatial-context foundation; temporal isolation is tested. |
+| [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md) | Calculate paired or all-combination great-circle distances between cell centres. | Data frame of cell pairs and kilometres. | Keep as a transparent distance primitive. |
+| [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md) | Summarize cell values within a centre-to-centre distance radius. | Input data with an appended summary column. | Core convenience function with explicit time grouping and self inclusion. |
+| [`pg_nearest()`](https://christianoswald.github.io/priogridR/reference/pg_nearest.md) | Identify the nearest candidate cells to each source cell. | Ranked data frame with distances. | Keep as a deterministic nearest-cell helper. |
 | [`pg_validate_data()`](https://christianoswald.github.io/priogridR/reference/pg_validate_data.md) | Check IDs, missing keys, duplicate panel observations, and optional completeness. | `pg_validation` object. | Core data-quality foundation. |
 | [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md) | Add absent cells or cell-time combinations without overwriting existing missing values. | Data frame. | Core panel foundation. |
 | [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md) | Join grid data with explicit relationship and unmatched-key checks. | Data frame. | Guards against accidental many-to-many expansion. |
@@ -88,6 +94,15 @@ These are implementation details and are not exported.
 | `unique_helper_name()` | Create collision-free temporary column names. |
 | `infer_pg_join_columns()` | Infer conventional spatial and temporal join keys. |
 | `check_join_keys()` | Validate join-column presence and completeness. |
+| `validate_pgid_values()` | Validate cell identifiers against a configured grid. |
+| `validate_flag()` | Validate one non-missing logical argument. |
+| `validate_positive_number()` | Validate finite positive or non-negative scalar values. |
+| `pg_distance_matrix()` | Calculate internal centre-to-centre distance matrices in kilometres. |
+| `pg_pairwise_distances()` | Calculate element-wise cell-centre distances without constructing a Cartesian matrix. |
+| `empty_neighbor_table()` | Construct a typed empty neighbor table. |
+| `split_panel_rows()` | Split spatial operations into temporal groups. |
+| `summarise_buffer_values()` | Apply the selected buffer statistic with explicit missing-value behavior. |
+| `check_distance_workload()` | Guard against accidental all-global distance matrices and direct users toward chunked workflows. |
 
 ## Test-only helper
 

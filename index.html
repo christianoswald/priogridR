@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Functions for Working with PRIO-GRID Data">
-<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
-<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, lags, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, lags, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@
 <li><a class="dropdown-item" href="articles/getting-started.html">Getting started with priogridR</a></li>
     <li><a class="dropdown-item" href="articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -63,7 +64,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, panel validation and completion, safe joins, and rapid mapping.</p>
+<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, spatial neighborhoods, weights, lags, distances and buffer summaries, panel validation and completion, safe joins, and rapid mapping.</p>
 <p>The package builds on the official <a href="https://prio-data.github.io/priogrid/" class="external-link"><code>priogrid</code></a> package for grid definitions and raster transformations.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -96,6 +97,14 @@
 <code><a href="reference/pg_geometry.html">pg_geometry()</a></code> creates cell polygons or centre points.</li>
 <li>
 <code><a href="reference/pg_neighbors.html">pg_neighbors()</a></code> returns first-order neighboring cells.</li>
+<li>
+<code><a href="reference/pg_neighbor_table.html">pg_neighbor_table()</a></code> creates reusable contiguity, distance-band, or nearest-neighbor relationships.</li>
+<li>
+<code><a href="reference/pg_weights.html">pg_weights()</a></code> constructs binary or inverse-distance spatial weights.</li>
+<li>
+<code><a href="reference/pg_spatial_lag.html">pg_spatial_lag()</a></code> calculates weighted neighboring-cell values.</li>
+<li>
+<code><a href="reference/pg_distance.html">pg_distance()</a></code>, <code><a href="reference/pg_buffer_summary.html">pg_buffer_summary()</a></code>, and <code><a href="reference/pg_nearest.html">pg_nearest()</a></code> support common spatial-context workflows.</li>
 <li>
 <code><a href="reference/pg_validate_data.html">pg_validate_data()</a></code> checks cell and panel structure.</li>
 <li>
@@ -224,7 +233,7 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/christianoswald/priogridR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/christianoswald/priogridR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="License: GPL v3"></a></li>
+<li><a href="LICENSE.html"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" alt="License: GPL v3"></a></li>
 <li><a href="https://app.codecov.io/gh/christianoswald/priogridR" class="external-link"><img src="https://codecov.io/gh/christianoswald/priogridR/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>

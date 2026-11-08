@@ -8,15 +8,15 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/christianoswald/priogridR/blob/v0.5.1/inst/CITATION)
+[`inst/CITATION`](https://github.com/christianoswald/priogridR/blob/main/inst/CITATION)
 
 Oswald C (2026). *priogridR: Functions for Working with PRIO-GRID Data*.
-R package version 0.5.1, <https://github.com/christianoswald/priogridR>.
+R package version 0.6.0, <https://github.com/christianoswald/priogridR>.
 
     @Manual{,
       title = {priogridR: Functions for Working with PRIO-GRID Data},
       author = {Christian Oswald},
       year = {2026},
-      note = {R package version 0.5.1},
+      note = {R package version 0.6.0},
       url = {https://github.com/christianoswald/priogridR},
     }

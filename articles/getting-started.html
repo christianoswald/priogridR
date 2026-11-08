@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@
 <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started with priogridR</a></li>
     <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -67,7 +68,7 @@
       <h1>Getting started with priogridR</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/v0.5.1/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/main/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
       <div class="d-none name"><code>getting-started.Rmd</code></div>
     </div>
 
@@ -123,16 +124,16 @@ changing the working directory:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pg_paths.html">pg_paths</a></span><span class="op">(</span>root <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $root</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpUt2l4x"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpVz7w7m"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $raw</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpUt2l4x/data/raw"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpVz7w7m/data/raw"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $processed</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpUt2l4x/data/processed"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpVz7w7m/data/processed"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $temporary</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpUt2l4x/data/temp"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpVz7w7m/data/temp"</span></span></code></pre></div>
 <p>Pass <code>create = TRUE</code> when the directories should be
 created.</p>
 </div>

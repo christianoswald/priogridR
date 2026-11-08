@@ -37,30 +37,30 @@ A named list of normalized paths.
 ``` r
 pg_paths(root = tempdir())
 #> $root
-#> [1] "/tmp/RtmpXV8zuW"
+#> [1] "/tmp/RtmpZyCaWV"
 #> 
 #> $raw
-#> [1] "/tmp/RtmpXV8zuW/data/raw"
+#> [1] "/tmp/RtmpZyCaWV/data/raw"
 #> 
 #> $processed
-#> [1] "/tmp/RtmpXV8zuW/data/processed"
+#> [1] "/tmp/RtmpZyCaWV/data/processed"
 #> 
 #> $temporary
-#> [1] "/tmp/RtmpXV8zuW/data/temp"
+#> [1] "/tmp/RtmpZyCaWV/data/temp"
 #> 
 
 example_root <- file.path(tempdir(), "priogridR-project")
 pg_paths(root = example_root, create = TRUE)
 #> $root
-#> [1] "/tmp/RtmpXV8zuW/priogridR-project"
+#> [1] "/tmp/RtmpZyCaWV/priogridR-project"
 #> 
 #> $raw
-#> [1] "/tmp/RtmpXV8zuW/priogridR-project/data/raw"
+#> [1] "/tmp/RtmpZyCaWV/priogridR-project/data/raw"
 #> 
 #> $processed
-#> [1] "/tmp/RtmpXV8zuW/priogridR-project/data/processed"
+#> [1] "/tmp/RtmpZyCaWV/priogridR-project/data/processed"
 #> 
 #> $temporary
-#> [1] "/tmp/RtmpXV8zuW/priogridR-project/data/temp"
+#> [1] "/tmp/RtmpZyCaWV/priogridR-project/data/temp"
 #> 
 ```

@@ -94,4 +94,7 @@ pg_geometry(1:3, geometry = "point", config = config)
 See
 [`vignette("grid-foundations", package = "priogridR")`](https://christianoswald.github.io/priogridR/articles/grid-foundations.md)
 for coordinate assignment, panel validation, completion, safe joins, and
-mapping.
+mapping. See
+[`vignette("spatial-context", package = "priogridR")`](https://christianoswald.github.io/priogridR/articles/spatial-context.md)
+for reusable neighbor tables, spatial weights and lags, distance
+calculations, nearest cells, and buffer summaries.

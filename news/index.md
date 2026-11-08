@@ -1,5 +1,39 @@
 # Changelog
 
+## priogridR 0.6.0
+
+### New functionality
+
+- Added
+  [`pg_neighbor_table()`](https://christianoswald.github.io/priogridR/reference/pg_neighbor_table.md)
+  for reusable queen, rook, distance-band, and k-nearest-neighbor
+  definitions.
+- Added
+  [`pg_weights()`](https://christianoswald.github.io/priogridR/reference/pg_weights.md)
+  for binary and inverse-distance spatial weights with optional row
+  standardization.
+- Added
+  [`pg_spatial_lag()`](https://christianoswald.github.io/priogridR/reference/pg_spatial_lag.md)
+  for cell-level and cell-period spatial lags without leakage across
+  temporal groups.
+- Added
+  [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md)
+  and
+  [`pg_nearest()`](https://christianoswald.github.io/priogridR/reference/pg_nearest.md)
+  for cell-centre distance and nearest neighbor workflows.
+- Added
+  [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md)
+  for cell-level summaries within explicitly defined distance buffers.
+
+### Documentation and quality
+
+- Added a spatial-context vignette with end-to-end examples.
+- Added tests for contiguity, antimeridian behavior, candidate
+  restrictions, distance calculations, weight construction, temporal
+  isolation, missing values, buffer summaries, and input validation.
+- Linked the README license badge to the bundled license to avoid
+  dependence on an external license page during URL checks.
+
 ## priogridR 0.5.1
 
 ### Documentation

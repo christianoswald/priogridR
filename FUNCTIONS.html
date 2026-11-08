@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="articles/getting-started.html">Getting started with priogridR</a></li>
     <li><a class="dropdown-item" href="articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
+    <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -39,12 +40,12 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>priogridR function inventory</h1>
-      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/v0.5.1/FUNCTIONS.md" class="external-link"><code>FUNCTIONS.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/main/FUNCTIONS.md" class="external-link"><code>FUNCTIONS.md</code></a></small>
     </div>
 
 <div id="priogridr-function-inventory" class="section level1">
 
-<p>This inventory describes the functions in priogridR 0.5.1. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
+<p>This inventory describes the functions in priogridR 0.6.0. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
 <div class="section level2">
 <h2 id="public-api">Public API<a class="anchor" aria-label="anchor" href="#public-api"></a></h2>
 <table class="table"><colgroup><col width="25%"><col width="25%"><col width="25%"><col width="25%"></colgroup><thead><tr><th>Function</th>
@@ -72,6 +73,30 @@
 <td>Find first-order queen-contiguity neighbors for a cell, with optional longitude wrapping and no wrapping over the poles.</td>
 <td>Integer vector of cell identifiers.</td>
 <td>Keep. Edge, pole, antimeridian, and custom-dimension behavior are covered by tests. Renamed from <code>pgneighbors()</code>.</td>
+</tr><tr><td><code><a href="reference/pg_neighbor_table.html">pg_neighbor_table()</a></code></td>
+<td>Build reusable queen, rook, distance-band, or k-nearest-neighbor relationships.</td>
+<td>Data frame of directed cell pairs, with distances where relevant.</td>
+<td>Core spatial-context foundation.</td>
+</tr><tr><td><code><a href="reference/pg_weights.html">pg_weights()</a></code></td>
+<td>Add binary or inverse-distance weights to a neighbor table.</td>
+<td>Weighted neighbor table.</td>
+<td>Core spatial-context foundation with explicit row standardization.</td>
+</tr><tr><td><code><a href="reference/pg_spatial_lag.html">pg_spatial_lag()</a></code></td>
+<td>Calculate weighted neighboring-cell values within optional temporal groups.</td>
+<td>Input data with an appended lag column.</td>
+<td>Core spatial-context foundation; temporal isolation is tested.</td>
+</tr><tr><td><code><a href="reference/pg_distance.html">pg_distance()</a></code></td>
+<td>Calculate paired or all-combination great-circle distances between cell centres.</td>
+<td>Data frame of cell pairs and kilometres.</td>
+<td>Keep as a transparent distance primitive.</td>
+</tr><tr><td><code><a href="reference/pg_buffer_summary.html">pg_buffer_summary()</a></code></td>
+<td>Summarize cell values within a centre-to-centre distance radius.</td>
+<td>Input data with an appended summary column.</td>
+<td>Core convenience function with explicit time grouping and self inclusion.</td>
+</tr><tr><td><code><a href="reference/pg_nearest.html">pg_nearest()</a></code></td>
+<td>Identify the nearest candidate cells to each source cell.</td>
+<td>Ranked data frame with distances.</td>
+<td>Keep as a deterministic nearest-cell helper.</td>
 </tr><tr><td><code><a href="reference/pg_validate_data.html">pg_validate_data()</a></code></td>
 <td>Check IDs, missing keys, duplicate panel observations, and optional completeness.</td>
 <td>
@@ -229,6 +254,24 @@
 <td>Infer conventional spatial and temporal join keys.</td>
 </tr><tr><td><code>check_join_keys()</code></td>
 <td>Validate join-column presence and completeness.</td>
+</tr><tr><td><code>validate_pgid_values()</code></td>
+<td>Validate cell identifiers against a configured grid.</td>
+</tr><tr><td><code>validate_flag()</code></td>
+<td>Validate one non-missing logical argument.</td>
+</tr><tr><td><code>validate_positive_number()</code></td>
+<td>Validate finite positive or non-negative scalar values.</td>
+</tr><tr><td><code>pg_distance_matrix()</code></td>
+<td>Calculate internal centre-to-centre distance matrices in kilometres.</td>
+</tr><tr><td><code>pg_pairwise_distances()</code></td>
+<td>Calculate element-wise cell-centre distances without constructing a Cartesian matrix.</td>
+</tr><tr><td><code>empty_neighbor_table()</code></td>
+<td>Construct a typed empty neighbor table.</td>
+</tr><tr><td><code>split_panel_rows()</code></td>
+<td>Split spatial operations into temporal groups.</td>
+</tr><tr><td><code>summarise_buffer_values()</code></td>
+<td>Apply the selected buffer statistic with explicit missing-value behavior.</td>
+</tr><tr><td><code>check_distance_workload()</code></td>
+<td>Guard against accidental all-global distance matrices and direct users toward chunked workflows.</td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="test-only-helper">Test-only helper<a class="anchor" aria-label="anchor" href="#test-only-helper"></a></h2>

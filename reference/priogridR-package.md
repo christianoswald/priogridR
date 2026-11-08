@@ -1,7 +1,8 @@
 # priogridR: Tools for working with PRIO-GRID data
 
 Convenience functions for grid indexing, coordinate conversion,
-geometry, validation, panel completion, safe joins, plotting, and
+geometry, spatial neighborhoods, weights, lags, distances, buffer
+summaries, validation, panel completion, safe joins, plotting, and
 converting common spatial data formats to configurable PRIO-GRID rasters
 and data frames.
 

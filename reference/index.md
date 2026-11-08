@@ -25,6 +25,18 @@
   : Create PRIO-GRID geometries
 - [`pg_neighbors()`](https://christianoswald.github.io/priogridR/reference/pg_neighbors.md)
   : Find first-order PRIO-GRID neighbors
+- [`pg_neighbor_table()`](https://christianoswald.github.io/priogridR/reference/pg_neighbor_table.md)
+  : Build a PRIO-GRID neighbor table
+- [`pg_weights()`](https://christianoswald.github.io/priogridR/reference/pg_weights.md)
+  : Create spatial weights
+- [`pg_spatial_lag()`](https://christianoswald.github.io/priogridR/reference/pg_spatial_lag.md)
+  : Calculate a spatial lag
+- [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md)
+  : Calculate distances between PRIO-GRID cells
+- [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md)
+  : Summarize values around PRIO-GRID cells
+- [`pg_nearest()`](https://christianoswald.github.io/priogridR/reference/pg_nearest.md)
+  : Find nearest PRIO-GRID cells
 
 ## Data foundations
 
