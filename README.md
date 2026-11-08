@@ -9,7 +9,7 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License: GPL
-v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE.md)
 [![Codecov test
 coverage](https://codecov.io/gh/christianoswald/priogridR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/christianoswald/priogridR)
 <!-- badges: end -->
@@ -18,8 +18,9 @@ coverage](https://codecov.io/gh/christianoswald/priogridR/branch/main/graph/badg
 data. It combines grid utilities with general converters that transfer
 raster, vector, point-event, NetCDF, and geographically indexed tabular
 data to a configurable PRIO-GRID. It also supports coordinate lookup,
-geometry creation, panel validation and completion, safe joins, and
-rapid mapping.
+geometry creation, spatial neighborhoods, weights, lags, distances and
+buffer summaries, panel validation and completion, safe joins, and rapid
+mapping.
 
 The package builds on the official
 [`priogrid`](https://prio-data.github.io/priogrid/) package for grid
@@ -50,6 +51,12 @@ All user-facing functions begin with `pg_` and use snake case:
   locations and cell identifiers.
 - `pg_geometry()` creates cell polygons or centre points.
 - `pg_neighbors()` returns first-order neighboring cells.
+- `pg_neighbor_table()` creates reusable contiguity, distance-band, or
+  nearest-neighbor relationships.
+- `pg_weights()` constructs binary or inverse-distance spatial weights.
+- `pg_spatial_lag()` calculates weighted neighboring-cell values.
+- `pg_distance()`, `pg_buffer_summary()`, and `pg_nearest()` support
+  common spatial-context workflows.
 - `pg_validate_data()` checks cell and panel structure.
 - `pg_complete_panel()` creates complete cell or cell-time panels.
 - `pg_join()` performs relationship-checked joins.

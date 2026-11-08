@@ -1,0 +1,167 @@
+---
+title: "Spatial context"
+description: "Define neighbors and weights, calculate spatial lags and distances, and summarize nearby cell values."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Spatial context}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r attach}
+library(priogridR)
+```
+
+Spatial analyses often require choices about which cells count as neighbors,
+how strongly neighbors are weighted, and whether observations from different
+periods may interact. The spatial-context functions make these choices
+explicit and return ordinary data frames that can be inspected or reused.
+
+## Configure an example grid
+
+The examples use a coarse grid so that they render quickly.
+
+```{r config}
+config <- priogrid::pg_config(
+  nrow = 18,
+  ncol = 36,
+  start_date = as.Date("2020-12-31"),
+  end_date = as.Date("2021-12-31"),
+  temporal_resolution = "1 year",
+  verbose = FALSE
+)
+```
+
+## Define neighborhoods
+
+`pg_neighbor_table()` creates directed source-neighbor pairs. Queen neighbors
+share an edge or corner, whereas rook neighbors must share an edge.
+
+```{r contiguity}
+queen <- pg_neighbor_table(20:22, method = "queen", config = config)
+rook <- pg_neighbor_table(20:22, method = "rook", config = config)
+
+queen
+rook
+```
+
+Candidate cells can be restricted explicitly. This is useful when an analysis
+contains only a regional or otherwise selected subset of the global grid.
+
+```{r candidates}
+pg_neighbor_table(
+  pgid = 20:22,
+  candidates = 18:25,
+  method = "rook",
+  config = config
+)
+```
+
+Distance-band and k-nearest-neighbor definitions include distances between
+cell centres in kilometres.
+
+```{r distance-neighbors}
+distance_neighbors <- pg_neighbor_table(
+  20:22,
+  candidates = 18:25,
+  method = "distance",
+  distance = 1200,
+  config = config
+)
+
+nearest_neighbors <- pg_neighbor_table(
+  20:22,
+  candidates = 18:25,
+  method = "knn",
+  k = 2,
+  config = config
+)
+
+distance_neighbors
+nearest_neighbors
+```
+
+## Construct weights
+
+Binary weights treat all listed neighbors equally. Row standardization, which
+is enabled by default, makes the weights for each focal cell sum to one.
+
+```{r weights}
+rook_weights <- pg_weights(rook)
+rook_weights
+```
+
+Inverse-distance weights require a table containing `distance_km`.
+
+```{r inverse-distance}
+pg_weights(nearest_neighbors, type = "inverse_distance")
+```
+
+## Calculate spatial lags
+
+`pg_spatial_lag()` adds a weighted neighboring-cell value to a data frame. If
+no weights are supplied, it uses a row-standardized queen neighborhood. Time
+columns isolate periods, preventing values from one year from leaking into
+another.
+
+```{r spatial-lag}
+panel <- data.frame(
+  pgid = rep(20:25, 2),
+  year = rep(2020:2021, each = 6),
+  events = c(0, 1, 2, 0, 3, 1, 1, 2, 4, 0, 2, 3)
+)
+
+lagged <- pg_spatial_lag(
+  panel,
+  value = "events",
+  time = "year",
+  config = config
+)
+
+lagged
+```
+
+## Distances and nearest cells
+
+`pg_distance()` supports paired comparisons and all source-destination
+combinations. `pg_nearest()` returns an ordered, deterministic nearest-cell
+table.
+
+```{r distances}
+pg_distance(20:22, 23:25, config = config)
+pg_distance(20:21, 22:25, pairwise = FALSE, config = config)
+
+pg_nearest(
+  from = 20:22,
+  candidates = 18:25,
+  n = 2,
+  config = config
+)
+```
+
+## Summarize values within buffers
+
+`pg_buffer_summary()` calculates a sum, mean, count, minimum, or maximum over
+cells within a radius. The focal cell is included by default, and time columns
+again keep periods separate.
+
+```{r buffers}
+buffered <- pg_buffer_summary(
+  panel,
+  value = "events",
+  radius = 1200,
+  statistic = "sum",
+  time = "year",
+  config = config
+)
+
+buffered
+```
+
+Distances are based on cell centres. A distance-band or buffer therefore does
+not mean that the corresponding cell polygons overlap the specified radius.
+This distinction should be reported when it is substantively important.

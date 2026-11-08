@@ -41,8 +41,9 @@ The package converts raster layers, vector geometries, point events, NetCDF
 variables, and tables linked to polygon geographies. Conversion behavior is
 controlled by `priogrid::pg_config()` objects, allowing researchers to vary
 spatial and temporal resolution without rewriting data-processing code. The
-package also provides grid-index creation, neighborhood lookup, reproducible
-path construction, output writing, and plot styling.
+package also provides grid-index creation, reusable spatial neighborhoods and
+weights, spatial lags, distances, buffer summaries, reproducible path
+construction, output writing, and plot styling.
 
 # Quality assurance
 

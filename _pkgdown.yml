@@ -14,6 +14,12 @@ reference:
       - pg_coords_from_id
       - pg_geometry
       - pg_neighbors
+      - pg_neighbor_table
+      - pg_weights
+      - pg_spatial_lag
+      - pg_distance
+      - pg_buffer_summary
+      - pg_nearest
   - title: Data foundations
     contents:
       - pg_validate_data
@@ -40,6 +46,7 @@ articles:
       - getting-started
       - grid-foundations
       - grid-utilities
+      - spatial-context
       - results-output-visualization
       - conversion-workflows
   - title: Conversion guides

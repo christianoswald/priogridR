@@ -11,7 +11,7 @@ editor_options:
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/christianoswald/priogridR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/christianoswald/priogridR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE.md)
 [![Codecov test coverage](https://codecov.io/gh/christianoswald/priogridR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/christianoswald/priogridR)
 <!-- badges: end -->
 
@@ -19,7 +19,8 @@ editor_options:
 It combines grid utilities with general converters that transfer raster,
 vector, point-event, NetCDF, and geographically indexed tabular data to a
 configurable PRIO-GRID. It also supports coordinate lookup, geometry creation,
-panel validation and completion, safe joins, and rapid mapping.
+spatial neighborhoods, weights, lags, distances and buffer summaries, panel
+validation and completion, safe joins, and rapid mapping.
 
 The package builds on the official [`priogrid`](https://prio-data.github.io/priogrid/)
 package for grid definitions and raster transformations.
@@ -48,6 +49,12 @@ All user-facing functions begin with `pg_` and use snake case:
   cell identifiers.
 * `pg_geometry()` creates cell polygons or centre points.
 * `pg_neighbors()` returns first-order neighboring cells.
+* `pg_neighbor_table()` creates reusable contiguity, distance-band, or
+  nearest-neighbor relationships.
+* `pg_weights()` constructs binary or inverse-distance spatial weights.
+* `pg_spatial_lag()` calculates weighted neighboring-cell values.
+* `pg_distance()`, `pg_buffer_summary()`, and `pg_nearest()` support common
+  spatial-context workflows.
 * `pg_validate_data()` checks cell and panel structure.
 * `pg_complete_panel()` creates complete cell or cell-time panels.
 * `pg_join()` performs relationship-checked joins.
@@ -134,7 +141,9 @@ official `priogrid` package.
 The bundled `priogrid` data object contains PRIO-GRID cell identifiers,
 coordinates, and geometries derived from the PRIO-GRID dataset and is made
 available under the [Open Data Commons Attribution License (ODC-By)
-1.0](https://opendatacommons.org/licenses/by/1-0/). Other data accessed, converted, or analyzed with `priogridR` remain subject to their original providers' licenses, documentation, citation requirements, and terms of use.
+1.0](https://opendatacommons.org/licenses/by/1-0/). Other data accessed,
+converted, or analyzed with `priogridR` remain subject to their original
+providers' licenses, documentation, citation requirements, and terms of use.
 
 Users should cite the original PRIO-GRID publication and all underlying data
 sources relevant to their analyses. The citation and licensing information

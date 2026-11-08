@@ -1,7 +1,7 @@
 Package: priogridR
 Type: Package
 Title: Functions for Working with PRIO-GRID Data
-Version: 0.5.1
+Version: 0.6.0
 Authors@R: person(
     given = "Christian",
     family = "Oswald",
@@ -10,7 +10,8 @@ Authors@R: person(
     comment = c(ORCID = "0000-0001-8291-9544")
   )
 Description: Convenience functions for working with PRIO-GRID data, including
-    coordinate and cell conversion, geometry creation, panel validation and
+    coordinate and cell conversion, geometry creation, spatial neighborhoods,
+    weights, lags, distances and buffer summaries, panel validation and
     completion, safe joins, plotting, and conversion of raster, vector,
     point-event, NetCDF, and geographically indexed tabular data to configurable
     PRIO-GRID formats.
