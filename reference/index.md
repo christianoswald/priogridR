@@ -65,8 +65,3 @@
   : Print a PRIO-GRID conversion result
 - [`as.data.frame(`*`<pg_result>`*`)`](https://christianoswald.github.io/priogridR/reference/as.data.frame.pg_result.md)
   : Convert a PRIO-GRID result to a data frame
-
-## Data
-
-- [`priogrid`](https://christianoswald.github.io/priogridR/reference/priogrid.md)
-  : PRIO-GRID information

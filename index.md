@@ -170,13 +170,12 @@ release.
 with or endorsed by the Peace Research Institute Oslo (PRIO) or the
 developers of the official `priogrid` package.
 
-The bundled `priogrid` data object contains PRIO-GRID cell identifiers,
-coordinates, and geometries derived from the PRIO-GRID dataset and is
-made available under the [Open Data Commons Attribution License (ODC-By)
-1.0](https://opendatacommons.org/licenses/by/1-0/). Other data accessed,
-converted, or analyzed with `priogridR` remain subject to their original
-providers’ licenses, documentation, citation requirements, and terms of
-use.
+`priogridR` does not redistribute official PRIO-GRID variables. Grid
+definitions, official variables, and metadata remain available through
+the official [`priogrid`](https://prio-data.github.io/priogrid/)
+package. Data accessed, converted, or analyzed with `priogridR` remain
+subject to their original providers’ licenses, documentation, citation
+requirements, and terms of use.
 
 Users should cite the original PRIO-GRID publication and all underlying
 data sources relevant to their analyses. The citation and licensing

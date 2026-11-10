@@ -1,5 +1,28 @@
 # Changelog
 
+## priogridR 0.6.0.9000
+
+### Development infrastructure
+
+- Started the development cycle following the 0.6.0 release.
+- Expanded offline tests for raster, NetCDF, vector, and geographically
+  indexed table conversion, including geometry, temporal, return-type,
+  and validation cases.
+- Standardized GitHub Actions on `actions/checkout@v6` and narrowed
+  read-only workflow permissions.
+
+### Breaking changes
+
+- Removed the unused bundled `priogrid` data object. Use
+  [`pg_geometry()`](https://christianoswald.github.io/priogridR/reference/pg_geometry.md)
+  for configured cell polygons or centre points and the official
+  `priogrid` package for official PRIO-GRID data and metadata.
+
+### Documentation
+
+- Expanded the JOSS paper draft with state-of-the-field,
+  software-design, research-impact, and AI-usage-disclosure sections.
+
 ## priogridR 0.6.0
 
 ### New functionality
