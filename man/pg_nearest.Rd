@@ -14,22 +14,13 @@ pg_nearest(
 }
 \arguments{
 \item{from}{Source cell IDs.}
-
 \item{candidates}{Candidate destination cell IDs.}
-
 \item{n}{Number of nearest candidates to return per source cell.}
-
 \item{include_self}{Should a source cell be eligible as its own nearest cell?}
-
 \item{config}{A PRIO-GRID configuration object.}
 }
-\value{
-A data frame with source and nearest cell IDs, distance in
-kilometres, and rank.
-}
-\description{
-Finds the nearest candidate cell centres for one or more source cells.
-}
+\value{A data frame with source and nearest cell IDs, distance in kilometres, and rank.}
+\description{Finds the nearest candidate cell centres for one or more source cells.}
 \examples{
 config <- priogrid::pg_config(nrow = 18, ncol = 36)
 pg_nearest(1:2, candidates = 1:6, n = 2, config = config)

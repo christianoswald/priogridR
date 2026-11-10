@@ -53,7 +53,7 @@ A data frame, \code{SpatRaster}, or \code{pg_result}.
 Convert raster data to PRIO-GRID
 }
 \examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+\dontrun{
 priogrid::pg_set_rawfolder(file.path(tempdir(), "priogrid-example"))
 temperature <- terra::rast(
   nrows = 18, ncols = 36,
@@ -67,5 +67,5 @@ pg_from_raster(
   aggregation = "mean",
   config = config
 )
-\dontshow{\}) # examplesIf}
+}
 }

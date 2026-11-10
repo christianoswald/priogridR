@@ -4,24 +4,21 @@
 \alias{pg_distance}
 \title{Calculate distances between PRIO-GRID cells}
 \usage{
-pg_distance(from, to, pairwise = TRUE, config = priogrid::pg_current_config())
+pg_distance(
+  from,
+  to,
+  pairwise = TRUE,
+  config = priogrid::pg_current_config()
+)
 }
 \arguments{
 \item{from}{Source cell IDs.}
-
 \item{to}{Destination cell IDs.}
-
-\item{pairwise}{If \code{TRUE}, calculate element-wise distances with safe scalar
-recycling. If \code{FALSE}, calculate every source-destination combination.}
-
+\item{pairwise}{If \code{TRUE}, calculate element-wise distances with safe scalar recycling. If \code{FALSE}, calculate every source-destination combination.}
 \item{config}{A PRIO-GRID configuration object.}
 }
-\value{
-A data frame with source and destination IDs and \code{distance_km}.
-}
-\description{
-Calculates great-circle distances between cell centres.
-}
+\value{A data frame with source and destination IDs and \code{distance_km}.}
+\description{Calculates great-circle distances between cell centres.}
 \examples{
 config <- priogrid::pg_config(nrow = 18, ncol = 36)
 pg_distance(1:2, 2:3, config = config)

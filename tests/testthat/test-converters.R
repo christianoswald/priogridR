@@ -1,5 +1,5 @@
 test_that("raster conversion preserves an already aligned static surface", {
-  test_priogrid_rawfolder()
+  test_mock_raster_transform()
   config <- test_config()
   source <- terra::rast(
     nrows = 18, ncols = 36,
@@ -22,7 +22,7 @@ test_that("raster conversion preserves an already aligned static surface", {
 })
 
 test_that("raster conversion handles files, missing values, and return types", {
-  test_priogrid_rawfolder()
+  test_mock_raster_transform()
   config <- test_config()
   source <- terra::rast(
     nrows = 18, ncols = 36,
@@ -55,7 +55,7 @@ test_that("raster conversion handles files, missing values, and return types", {
 })
 
 test_that("raster conversion requires time for multiple layers", {
-  test_priogrid_rawfolder()
+  test_mock_raster_transform()
   config <- test_config()
   layer <- terra::rast(
     nrows = 18, ncols = 36,
@@ -81,7 +81,7 @@ test_that("raster conversion requires time for multiple layers", {
 })
 
 test_that("NetCDF conversion uses raster time and supports layer selection", {
-  test_priogrid_rawfolder()
+  test_mock_raster_transform()
   config <- test_config()
   layer <- terra::rast(
     nrows = 18, ncols = 36,

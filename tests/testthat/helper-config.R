@@ -8,12 +8,20 @@ test_config <- function() {
   )
 }
 
-test_priogrid_rawfolder <- function() {
-  path <- file.path(tempdir(), "priogridR-tests")
-  dir.create(path, recursive = TRUE, showWarnings = FALSE)
-  path <- normalizePath(path, winslash = "/", mustWork = TRUE)
-  priogrid::pg_set_rawfolder(path)
-  invisible(path)
+test_mock_raster_transform <- function(env = parent.frame()) {
+  testthat::local_mocked_bindings(
+    transform_raster_to_pg = function(
+      raster,
+      aggregation,
+      disagg_method,
+      config,
+      ...
+    ) {
+      raster
+    },
+    .package = "priogridR",
+    .env = env
+  )
 }
 
 test_cell_center <- function(pgid = 325L, config = test_config()) {

@@ -6,9 +6,10 @@
 * Expanded offline tests for raster, NetCDF, vector, and geographically
   indexed table conversion, including geometry, temporal, return-type, and
   validation cases.
-* Isolated the test process from persistent user configuration and cache
-  directories so `priogrid` integration tests remain portable across local
-  sessions and GitHub Actions runners.
+* Decoupled converter unit tests from `priogrid`'s process-global working
+  directory cache while retaining explicit compatibility checks for the
+  upstream transformation API. This keeps tests portable under `R CMD check`
+  and coverage instrumentation.
 * Standardized GitHub Actions on `actions/checkout@v6` and narrowed read-only
   workflow permissions.
 
