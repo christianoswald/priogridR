@@ -59,6 +59,30 @@ pg_from_table <- function(
   validate_columns(x, c(source_id, value, time_column))
   geography <- read_vector_input(geography)
   validate_columns(geography, geography_id)
+  if (anyNA(x[[source_id]])) {
+    stop("`x` contains missing source identifiers.", call. = FALSE)
+  }
+  if (anyNA(geography[[geography_id]])) {
+    stop("`geography` contains missing geography identifiers.", call. = FALSE)
+  }
+  if (anyDuplicated(geography[[geography_id]])) {
+    stop("`geography_id` must uniquely identify geography features.",
+         call. = FALSE)
+  }
+  table_keys <- c(source_id, time_column)
+  if (anyDuplicated(x[table_keys])) {
+    stop("`x` contains duplicate geography-time identifiers.", call. = FALSE)
+  }
+  unmatched <- setdiff(unique(x[[source_id]]), unique(geography[[geography_id]]))
+  if (length(unmatched)) {
+    stop(
+      "`x` contains source identifiers with no matching geography: ",
+      paste(utils::head(unmatched, 10L), collapse = ", "),
+      if (length(unmatched) > 10L) ", ..." else "",
+      ".",
+      call. = FALSE
+    )
+  }
   merged <- merge(
     geography,
     x,

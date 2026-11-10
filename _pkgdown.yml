@@ -35,10 +35,6 @@ reference:
       - pg_write_result
       - print.pg_result
       - as.data.frame.pg_result
-  - title: Data
-    contents:
-      - priogrid
-
 articles:
   - title: Start here
     navbar: ~

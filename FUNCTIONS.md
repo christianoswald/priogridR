@@ -1,6 +1,6 @@
 # priogridR function inventory
 
-This inventory describes the functions in priogridR 0.6.0. All exported
+This inventory describes the functions in priogridR 0.6.0.9000. All exported
 package functions begin with
 `pg_`. The two exported S3 methods retain the names required by R's method
 dispatch system.
@@ -110,11 +110,6 @@ These are implementation details and are not exported.
 | Function | Purpose |
 |---|---|
 | `test_config()` | Create a small PRIO-GRID configuration so tests run quickly. |
-
-## Data object
-
-`priogrid` is a documented package dataset rather than a function. It contains
-cell identifiers, centroids, row and column numbers, and cell geometries.
 
 ## Recommended next decisions
 
