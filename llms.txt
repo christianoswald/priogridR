@@ -81,22 +81,7 @@ All user-facing functions begin with `pg_` and use snake case:
 library(priogridR)
 
 pg_create_indices(nrow = 3, ncol = 3)
-```
-
-``` R
-##      [,1] [,2] [,3]
-## [1,]    7    8    9
-## [2,]    4    5    6
-## [3,]    1    2    3
-```
-
-``` r
-
 pg_neighbors(5, nrow = 3, ncol = 3)
-```
-
-``` R
-## [1] 7 8 9 4 6 1 2 3
 ```
 
 Point-event data can be aggregated using the temporal and spatial

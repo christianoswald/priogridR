@@ -40,7 +40,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Convert PRIO-GRID cell IDs to centre coordinates</h1>
-      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/main/R/pg_coords_from_id.R" class="external-link"><code>R/pg_coords_from_id.R</code></a></small>
+
       <div class="d-none name"><code>pg_coords_from_id.Rd</code></div>
     </div>
 
@@ -65,16 +65,11 @@
 <dl><dt id="arg-pgid">pgid<a class="anchor" aria-label="anchor" href="#arg-pgid"></a></dt>
 <dd><p>Numeric vector of PRIO-GRID cell IDs.</p></dd>
 
-
 <dt id="arg-crs">crs<a class="anchor" aria-label="anchor" href="#arg-crs"></a></dt>
-<dd><p>Coordinate reference system for the returned coordinates. Any
-value accepted by <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::st_crs()</a></code> may be used.</p></dd>
-
+<dd><p>Coordinate reference system for the returned coordinates. Any value accepted by <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::st_crs()</a></code> may be used.</p></dd>
 
 <dt id="arg-invalid">invalid<a class="anchor" aria-label="anchor" href="#arg-invalid"></a></dt>
-<dd><p>How unknown or missing IDs should be handled: raise an error
-or return missing coordinates.</p></dd>
-
+<dd><p>How unknown or missing IDs should be handled: raise an error or return missing coordinates.</p></dd>
 
 <dt id="arg-config">config<a class="anchor" aria-label="anchor" href="#arg-config"></a></dt>
 <dd><p>A PRIO-GRID configuration object.</p></dd>

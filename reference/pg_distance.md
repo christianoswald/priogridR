@@ -5,7 +5,12 @@ Calculates great-circle distances between cell centres.
 ## Usage
 
 ``` r
-pg_distance(from, to, pairwise = TRUE, config = priogrid::pg_current_config())
+pg_distance(
+  from,
+  to,
+  pairwise = TRUE,
+  config = priogrid::pg_current_config()
+)
 ```
 
 ## Arguments

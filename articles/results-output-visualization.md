@@ -21,16 +21,16 @@ project_root <- file.path(tempdir(), "priogridR-vignette-project")
 paths <- pg_paths(project_root, create = TRUE)
 paths
 #> $root
-#> [1] "/tmp/RtmpDlwBTW/priogridR-vignette-project"
+#> [1] "/tmp/RtmpRF6GuY/priogridR-vignette-project"
 #> 
 #> $raw
-#> [1] "/tmp/RtmpDlwBTW/priogridR-vignette-project/data/raw"
+#> [1] "/tmp/RtmpRF6GuY/priogridR-vignette-project/data/raw"
 #> 
 #> $processed
-#> [1] "/tmp/RtmpDlwBTW/priogridR-vignette-project/data/processed"
+#> [1] "/tmp/RtmpRF6GuY/priogridR-vignette-project/data/processed"
 #> 
 #> $temporary
-#> [1] "/tmp/RtmpDlwBTW/priogridR-vignette-project/data/temp"
+#> [1] "/tmp/RtmpRF6GuY/priogridR-vignette-project/data/temp"
 ```
 
 The returned list can be passed directly to

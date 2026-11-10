@@ -49,7 +49,7 @@
 <h3 id="development-infrastructure-0-6-0-9000">Development infrastructure<a class="anchor" aria-label="anchor" href="#development-infrastructure-0-6-0-9000"></a></h3>
 <ul><li>Started the development cycle following the 0.6.0 release.</li>
 <li>Expanded offline tests for raster, NetCDF, vector, and geographically indexed table conversion, including geometry, temporal, return-type, and validation cases.</li>
-<li>Isolated the test process from persistent user configuration and cache directories so <code>priogrid</code> integration tests remain portable across local sessions and GitHub Actions runners.</li>
+<li>Decoupled converter unit tests from <code>priogrid</code>’s process-global working directory cache while retaining explicit compatibility checks for the upstream transformation API. This keeps tests portable under <code>R CMD check</code> and coverage instrumentation.</li>
 <li>Standardized GitHub Actions on <code>actions/checkout@v6</code> and narrowed read-only workflow permissions.</li>
 </ul></div>
 <div class="section level3">
