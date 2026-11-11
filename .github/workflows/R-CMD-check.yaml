@@ -11,6 +11,7 @@ permissions:
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
+    continue-on-error: ${{ matrix.config.allow_failure || false }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
@@ -20,7 +21,10 @@ jobs:
         config:
           - {os: macos-latest, r: release}
           - {os: windows-latest, r: release}
-          - {os: ubuntu-latest, r: devel, http-user-agent: release, extra: rspatial/terra}
+          # terra currently fails to install against R-devel's changed median()
+          # generic. Keep this job visible, but do not fail the workflow until
+          # upstream compatibility is restored.
+          - {os: ubuntu-latest, r: devel, http-user-agent: release, extra: rspatial/terra, allow_failure: true}
           - {os: ubuntu-latest, r: release}
           - {os: ubuntu-latest, r: oldrel-1}
 
