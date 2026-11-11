@@ -55,7 +55,7 @@ A data frame, \code{SpatRaster}, or \code{pg_result}.
 Convert NetCDF data to PRIO-GRID
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 priogrid::pg_set_rawfolder(file.path(tempdir(), "priogrid-example"))
 climate <- terra::rast(
   nrows = 18, ncols = 36, nlyrs = 2,
@@ -76,5 +76,5 @@ pg_from_netcdf(
   time = 2020:2021,
   config = config
 )
-}
+\dontshow{\}) # examplesIf}
 }

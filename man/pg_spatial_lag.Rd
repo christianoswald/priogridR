@@ -19,18 +19,35 @@ pg_spatial_lag(
 }
 \arguments{
 \item{data}{A data frame containing cell IDs and the variable to lag.}
+
 \item{value}{Name of the numeric value column.}
+
 \item{pgid}{Name of the PRIO-GRID cell-ID column.}
+
 \item{time}{Optional character vector naming temporal grouping columns.}
-\item{weights}{Optional table with \code{pgid}, \code{neighbor_pgid}, and \code{weight}. When omitted, weights are created from \code{\link[=pg_neighbor_table]{pg_neighbor_table()}}.}
+
+\item{weights}{Optional table with \code{pgid}, \code{neighbor_pgid}, and \code{weight}.
+When omitted, weights are created from \code{\link[=pg_neighbor_table]{pg_neighbor_table()}}.}
+
 \item{method}{Contiguity method used when \code{weights} is omitted.}
-\item{wrap_longitude}{Should default neighborhoods wrap across the antimeridian?}
+
+\item{wrap_longitude}{Should default neighborhoods wrap across the
+antimeridian?}
+
 \item{na_rm}{Should missing and unavailable neighbor values be omitted?}
+
 \item{name}{Name of the new spatial-lag column.}
+
 \item{config}{A PRIO-GRID configuration object.}
 }
-\value{\code{data} with the spatial-lag column appended.}
-\description{Adds a weighted sum of neighboring cell values to a cell-level or cell-period data frame. The default is a row-standardized first-order queen neighborhood, so the resulting lag is the neighboring-cell mean.}
+\value{
+\code{data} with the spatial-lag column appended.
+}
+\description{
+Adds a weighted sum of neighboring cell values to a cell-level or
+cell-period data frame. The default is a row-standardized first-order queen
+neighborhood, so the resulting lag is the neighboring-cell mean.
+}
 \examples{
 config <- priogrid::pg_config(nrow = 18, ncol = 36)
 x <- data.frame(pgid = 1:4, value = c(1, 2, 3, 4))

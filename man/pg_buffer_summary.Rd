@@ -19,18 +19,33 @@ pg_buffer_summary(
 }
 \arguments{
 \item{data}{A data frame containing one observation per cell or cell-period.}
+
 \item{value}{Name of the numeric value column.}
+
 \item{radius}{Buffer radius in kilometres.}
+
 \item{statistic}{Summary to calculate.}
+
 \item{pgid}{Name of the cell-ID column.}
+
 \item{time}{Optional character vector naming temporal grouping columns.}
+
 \item{include_self}{Should the focal cell be included in its own buffer?}
+
 \item{na_rm}{Should missing values be omitted?}
+
 \item{name}{Name of the new summary column.}
+
 \item{config}{A PRIO-GRID configuration object.}
 }
-\value{\code{data} with the buffer-summary column appended.}
-\description{Adds a summary of values observed in cells whose centres fall within a specified radius of each focal cell. Temporal columns can be supplied to prevent values from different periods being combined.}
+\value{
+\code{data} with the buffer-summary column appended.
+}
+\description{
+Adds a summary of values observed in cells whose centres fall within a
+specified radius of each focal cell. Temporal columns can be supplied to
+prevent values from different periods being combined.
+}
 \examples{
 config <- priogrid::pg_config(nrow = 18, ncol = 36)
 x <- data.frame(pgid = 1:4, events = c(1, 0, 2, 1))

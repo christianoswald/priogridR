@@ -13,12 +13,20 @@ pg_weights(
 }
 \arguments{
 \item{neighbors}{A neighbor table produced by \code{\link[=pg_neighbor_table]{pg_neighbor_table()}}.}
+
 \item{type}{Use binary or inverse-distance weights.}
+
 \item{row_standardize}{Should weights sum to one within each source cell?}
+
 \item{power}{Positive distance-decay exponent for inverse-distance weights.}
 }
-\value{The neighbor table with an added \code{weight} column.}
-\description{Adds binary or inverse-distance weights to a neighbor table, with optional row standardization.}
+\value{
+The neighbor table with an added \code{weight} column.
+}
+\description{
+Adds binary or inverse-distance weights to a neighbor table, with optional
+row standardization.
+}
 \examples{
 neighbors <- data.frame(
   pgid = c(1L, 1L, 2L),

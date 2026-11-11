@@ -17,16 +17,32 @@ pg_neighbor_table(
 }
 \arguments{
 \item{pgid}{Source cell IDs. \code{NULL} uses all configured cells.}
-\item{candidates}{Candidate neighbor cell IDs. \code{NULL} uses all configured cells.}
-\item{method}{Neighborhood definition: queen contiguity, rook contiguity, a distance band, or k-nearest neighbors.}
-\item{distance}{Maximum great-circle distance in kilometres. Required for \code{method = "distance"}.}
+
+\item{candidates}{Candidate neighbor cell IDs. \code{NULL} uses all configured
+cells.}
+
+\item{method}{Neighborhood definition: queen contiguity, rook contiguity,
+a distance band, or k-nearest neighbors.}
+
+\item{distance}{Maximum great-circle distance in kilometres. Required for
+\code{method = "distance"}.}
+
 \item{k}{Number of neighbors for \code{method = "knn"}.}
+
 \item{include_self}{Should a cell be allowed to neighbor itself?}
+
 \item{wrap_longitude}{Should contiguity wrap across the antimeridian?}
+
 \item{config}{A PRIO-GRID configuration object.}
 }
-\value{A data frame with \code{pgid} and \code{neighbor_pgid}. Distance and k-nearest tables also contain \code{distance_km}.}
-\description{Creates a reusable directed table of neighboring PRIO-GRID cells using queen or rook contiguity, a distance band, or k-nearest neighbors.}
+\value{
+A data frame with \code{pgid} and \code{neighbor_pgid}. Distance and k-nearest
+tables also contain \code{distance_km}.
+}
+\description{
+Creates a reusable directed table of neighboring PRIO-GRID cells using
+queen or rook contiguity, a distance band, or k-nearest neighbors.
+}
 \examples{
 config <- priogrid::pg_config(nrow = 18, ncol = 36)
 pg_neighbor_table(20, method = "rook", config = config)

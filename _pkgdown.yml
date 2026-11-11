@@ -25,6 +25,13 @@ reference:
       - pg_validate_data
       - pg_complete_panel
       - pg_join
+  - title: Temporal utilities
+    contents:
+      - pg_temporal_lag
+      - pg_temporal_lead
+      - pg_temporal_change
+      - pg_rolling_summary
+      - pg_time_since
   - title: Visualization and workflow
     contents:
       - pg_plot
@@ -43,6 +50,7 @@ articles:
       - grid-foundations
       - grid-utilities
       - spatial-context
+      - temporal-utilities
       - results-output-visualization
       - conversion-workflows
   - title: Conversion guides

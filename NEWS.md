@@ -1,4 +1,23 @@
-# priogridR 0.6.0.9000
+# priogridR 0.7.0
+
+## New functionality
+
+* Added `pg_temporal_lag()` and `pg_temporal_lead()` for row-based shifts
+  within cells and optional additional groups.
+* Added `pg_temporal_change()` for differences, percentage changes, and log
+  differences over configurable lags.
+* Added `pg_rolling_summary()` for trailing, centered, and forward rolling
+  windows with explicit missing-value and minimum-observation rules.
+* Added `pg_time_since()` for periods or days since the most recent event.
+
+## Documentation and quality
+
+* Added a temporal-utilities vignette and focused tests for ordering, cell and
+  group isolation, missing values, event resets, duplicate keys, and invalid
+  arguments.
+* Documented that shifts and windows are row based and that users should call
+  `pg_complete_panel()` first when calculations require calendar-complete
+  periods.
 
 ## Development infrastructure
 
@@ -12,6 +31,9 @@
   and coverage instrumentation.
 * Standardized GitHub Actions on `actions/checkout@v6` and narrowed read-only
   workflow permissions.
+* Kept the R-devel check visible but temporarily non-blocking while the
+  upstream `terra` package adapts to R-devel's changed `median()` generic; it
+  should become mandatory again once upstream compatibility is restored.
 
 ## Breaking changes
 

@@ -19,7 +19,8 @@ editor_options:
 It combines grid utilities with general converters that transfer raster,
 vector, point-event, NetCDF, and geographically indexed tabular data to a
 configurable PRIO-GRID. It also supports coordinate lookup, geometry creation,
-spatial neighborhoods, weights, lags, distances and buffer summaries, panel
+spatial neighborhoods, weights, spatial and temporal lags, rolling summaries,
+temporal changes, event timing, distances and buffer summaries, panel
 validation and completion, safe joins, and rapid mapping.
 
 The package builds on the official [`priogrid`](https://prio-data.github.io/priogrid/)
@@ -53,6 +54,11 @@ All user-facing functions begin with `pg_` and use snake case:
   nearest-neighbor relationships.
 * `pg_weights()` constructs binary or inverse-distance spatial weights.
 * `pg_spatial_lag()` calculates weighted neighboring-cell values.
+* `pg_temporal_lag()` and `pg_temporal_lead()` shift observations within cells.
+* `pg_temporal_change()` calculates differences, percentage changes, or log
+  differences.
+* `pg_rolling_summary()` calculates explicitly aligned within-cell windows.
+* `pg_time_since()` measures periods or days since the latest event.
 * `pg_distance()`, `pg_buffer_summary()`, and `pg_nearest()` support common
   spatial-context workflows.
 * `pg_validate_data()` checks cell and panel structure.

@@ -25,7 +25,8 @@ and geographically indexed data to PRIO-GRID and for performing recurring
 grid-oriented data-management tasks. It provides a consistent interface for
 raster, vector, point-event, NetCDF, and tabular inputs. It also supports cell
 identification, grid geometries, validated panels, spatial neighborhoods,
-weights, lags, distances, buffers, joins, output, and visualization. The
+weights, spatial and temporal lags, rolling summaries, temporal changes,
+event timing, distances, buffers, joins, output, and visualization. The
 package builds on the official `priogrid` package for configurable grid
 definitions and core raster transformations [@priogrid], while keeping
 researchers' aggregation and missing-data choices explicit.
@@ -78,8 +79,9 @@ variables, and tables linked to polygon geographies. Conversion behavior is
 controlled by `priogrid::pg_config()` objects, allowing researchers to vary
 spatial and temporal resolution without rewriting data-processing code. The
 package also provides grid-index creation, reusable spatial neighborhoods and
-weights, spatial lags, distances, buffer summaries, reproducible path
-construction, output writing, and plot styling.
+weights, spatial and temporal lags, rolling summaries, temporal changes,
+event timing, distances, buffer summaries, reproducible path construction,
+output writing, and plot styling.
 
 # Software design
 

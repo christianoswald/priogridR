@@ -1,0 +1,142 @@
+---
+title: "Temporal utilities for PRIO-GRID panels"
+description: "Create within-cell lags, changes, rolling summaries, and event-history measures with explicit panel semantics."
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Temporal utilities for PRIO-GRID panels}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r attach}
+library(priogridR)
+```
+
+The temporal utilities operate within PRIO-GRID cells, order observations by
+an explicit time column, and return rows in their original order. Optional
+grouping columns can separate scenarios, sources, or other repeated panels.
+
+```{r data}
+config <- priogrid::pg_config(nrow = 2, ncol = 3, verbose = FALSE)
+
+panel <- data.frame(
+  pgid = rep(1:2, each = 5),
+  year = rep(2018:2022, 2),
+  events = c(0, 1, 3, 0, 2, 5, 4, 6, 8, 7),
+  onset = c(FALSE, TRUE, FALSE, FALSE, TRUE,
+            FALSE, FALSE, TRUE, FALSE, FALSE)
+)
+```
+
+## Lags and leads
+
+`pg_temporal_lag()` and `pg_temporal_lead()` shift observations only within
+the same cell. The first lag and final lead in each cell are therefore
+missing.
+
+```{r shifts}
+lagged <- pg_temporal_lag(
+  panel, value = "events", time = "year", config = config
+)
+
+shifted <- pg_temporal_lead(
+  lagged, value = "events", time = "year", config = config
+)
+
+shifted[c("pgid", "year", "events", "events_lag1", "events_lead1")]
+```
+
+Set `periods` to a positive integer for longer shifts. Use `group` when a cell
+contains several independent sequences, such as alternative scenarios.
+
+## Changes
+
+`pg_temporal_change()` provides ordinary differences, percentage changes, and
+log differences. Percentage changes are missing when the earlier value is
+zero. Log differences are missing unless both values are strictly positive.
+
+```{r changes}
+pg_temporal_change(
+  panel,
+  value = "events",
+  time = "year",
+  type = "difference",
+  config = config
+)[c("pgid", "year", "events", "events_difference")]
+```
+
+## Rolling summaries
+
+Rolling windows may be trailing (`"right"`), centered, or forward
+(`"left"`). `min_obs` controls how many non-missing values are required, while
+`na_rm` determines whether missing values invalidate an otherwise sufficiently
+populated window.
+
+```{r rolling}
+rolled <- pg_rolling_summary(
+  panel,
+  value = "events",
+  time = "year",
+  window = 3,
+  fun = "mean",
+  align = "right",
+  min_obs = 2,
+  na_rm = TRUE,
+  config = config
+)
+
+rolled[c("pgid", "year", "events", "events_rolling_mean_3")]
+```
+
+## Time since an event
+
+`pg_time_since()` resets to zero whenever an event occurs. Rows before the
+first event in each cell remain missing.
+
+```{r time-since}
+elapsed <- pg_time_since(
+  panel,
+  event = "onset",
+  time = "year",
+  units = "periods",
+  config = config
+)
+
+elapsed[c("pgid", "year", "onset", "onset_time_since")]
+```
+
+For irregularly spaced `Date` or `POSIXt` observations, use `units = "days"`
+to calculate elapsed calendar days.
+
+## Row-based versus calendar-complete periods
+
+Shifts and rolling windows are deliberately row based. If a cell has records
+for 2018 and 2020 but not 2019, its one-row lag treats 2018 as the previous
+observation. This avoids silently inventing observations or choosing values
+for structural gaps.
+
+When a lag or window must correspond to consecutive configured periods,
+complete the panel first:
+
+```{r complete}
+incomplete <- panel[!(panel$pgid == 1 & panel$year == 2020), ]
+
+complete <- pg_complete_panel(
+  incomplete,
+  time = "year",
+  cells = 1:2,
+  times = 2018:2022,
+  config = config
+)
+
+pg_temporal_lag(
+  complete, value = "events", time = "year", config = config
+)
+```
+
+The introduced row retains a missing value unless a substantively justified
+fill rule is supplied to `pg_complete_panel()`.

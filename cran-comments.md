@@ -5,7 +5,7 @@
 
 ## R CMD check results
 
-Results for version 0.6.0.9000 have not yet been recorded. Run the full local and
+Results for version 0.7.0 have not yet been recorded. Run the full local and
 GitHub Actions check matrix before submission and replace this paragraph with
 the final results.
 

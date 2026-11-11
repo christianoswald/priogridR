@@ -1,7 +1,7 @@
 Package: priogridR
 Type: Package
 Title: Functions for Working with PRIO-GRID Data
-Version: 0.6.0.9000
+Version: 0.7.0
 Authors@R: person(
     given = "Christian",
     family = "Oswald",
@@ -11,10 +11,11 @@ Authors@R: person(
   )
 Description: Convenience functions for working with PRIO-GRID data, including
     coordinate and cell conversion, geometry creation, spatial neighborhoods,
-    weights, lags, distances and buffer summaries, panel validation and
+    weights, spatial and temporal lags, rolling summaries, temporal changes,
+    event timing, distances and buffer summaries, panel validation and
     completion, safe joins, plotting, and conversion of raster, vector,
-    point-event, NetCDF, and geographically indexed tabular data to configurable
-    PRIO-GRID formats.
+    point-event, NetCDF, and geographically indexed tabular data to
+    configurable PRIO-GRID formats.
 License: GPL (>= 3)
 URL: https://github.com/christianoswald/priogridR,
     https://christianoswald.github.io/priogridR/
