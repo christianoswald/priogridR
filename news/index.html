@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,7 @@
     <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
+    <li><a class="dropdown-item" href="../articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -44,20 +45,33 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.6.0.9000" id="priogridr-0609000">priogridR 0.6.0.9000<a class="anchor" aria-label="anchor" href="#priogridr-0609000"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.7.0" id="priogridr-070">priogridR 0.7.0<a class="anchor" aria-label="anchor" href="#priogridr-070"></a></h2>
 <div class="section level3">
-<h3 id="development-infrastructure-0-6-0-9000">Development infrastructure<a class="anchor" aria-label="anchor" href="#development-infrastructure-0-6-0-9000"></a></h3>
+<h3 id="new-functionality-0-7-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-0-7-0"></a></h3>
+<ul><li>Added <code><a href="../reference/pg_temporal_lag.html">pg_temporal_lag()</a></code> and <code><a href="../reference/pg_temporal_lead.html">pg_temporal_lead()</a></code> for row-based shifts within cells and optional additional groups.</li>
+<li>Added <code><a href="../reference/pg_temporal_change.html">pg_temporal_change()</a></code> for differences, percentage changes, and log differences over configurable lags.</li>
+<li>Added <code><a href="../reference/pg_rolling_summary.html">pg_rolling_summary()</a></code> for trailing, centered, and forward rolling windows with explicit missing-value and minimum-observation rules.</li>
+<li>Added <code><a href="../reference/pg_time_since.html">pg_time_since()</a></code> for periods or days since the most recent event.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-and-quality-0-7-0">Documentation and quality<a class="anchor" aria-label="anchor" href="#documentation-and-quality-0-7-0"></a></h3>
+<ul><li>Added a temporal-utilities vignette and focused tests for ordering, cell and group isolation, missing values, event resets, duplicate keys, and invalid arguments.</li>
+<li>Documented that shifts and windows are row based and that users should call <code><a href="../reference/pg_complete_panel.html">pg_complete_panel()</a></code> first when calculations require calendar-complete periods.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="development-infrastructure-0-7-0">Development infrastructure<a class="anchor" aria-label="anchor" href="#development-infrastructure-0-7-0"></a></h3>
 <ul><li>Started the development cycle following the 0.6.0 release.</li>
 <li>Expanded offline tests for raster, NetCDF, vector, and geographically indexed table conversion, including geometry, temporal, return-type, and validation cases.</li>
 <li>Decoupled converter unit tests from <code>priogrid</code>’s process-global working directory cache while retaining explicit compatibility checks for the upstream transformation API. This keeps tests portable under <code>R CMD check</code> and coverage instrumentation.</li>
 <li>Standardized GitHub Actions on <code>actions/checkout@v6</code> and narrowed read-only workflow permissions.</li>
+<li>Kept the R-devel check visible but temporarily non-blocking while the upstream <code>terra</code> package adapts to R-devel’s changed <code><a href="https://rdrr.io/r/stats/median.html" class="external-link">median()</a></code> generic; it should become mandatory again once upstream compatibility is restored.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="breaking-changes-0-6-0-9000">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-6-0-9000"></a></h3>
+<h3 id="breaking-changes-0-7-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-7-0"></a></h3>
 <ul><li>Removed the unused bundled <code>priogrid</code> data object. Use <code><a href="../reference/pg_geometry.html">pg_geometry()</a></code> for configured cell polygons or centre points and the official <code>priogrid</code> package for official PRIO-GRID data and metadata.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="documentation-0-6-0-9000">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-6-0-9000"></a></h3>
+<h3 id="documentation-0-7-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-7-0"></a></h3>
 <ul><li>Expanded the JOSS paper draft with state-of-the-field, software-design, research-impact, and AI-usage-disclosure sections.</li>
 </ul></div>
 </div>

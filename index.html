@@ -10,8 +10,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Functions for Working with PRIO-GRID Data">
-<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, lags, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
-<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, lags, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@
     <li><a class="dropdown-item" href="articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
+    <li><a class="dropdown-item" href="articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -63,7 +64,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, spatial neighborhoods, weights, lags, distances and buffer summaries, panel validation and completion, safe joins, and rapid mapping.</p>
+<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances and buffer summaries, panel validation and completion, safe joins, and rapid mapping.</p>
 <p>The package builds on the official <a href="https://prio-data.github.io/priogrid/" class="external-link"><code>priogrid</code></a> package for grid definitions and raster transformations.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -103,6 +104,14 @@
 <li>
 <code><a href="reference/pg_spatial_lag.html">pg_spatial_lag()</a></code> calculates weighted neighboring-cell values.</li>
 <li>
+<code><a href="reference/pg_temporal_lag.html">pg_temporal_lag()</a></code> and <code><a href="reference/pg_temporal_lead.html">pg_temporal_lead()</a></code> shift observations within cells.</li>
+<li>
+<code><a href="reference/pg_temporal_change.html">pg_temporal_change()</a></code> calculates differences, percentage changes, or log differences.</li>
+<li>
+<code><a href="reference/pg_rolling_summary.html">pg_rolling_summary()</a></code> calculates explicitly aligned within-cell windows.</li>
+<li>
+<code><a href="reference/pg_time_since.html">pg_time_since()</a></code> measures periods or days since the latest event.</li>
+<li>
 <code><a href="reference/pg_distance.html">pg_distance()</a></code>, <code><a href="reference/pg_buffer_summary.html">pg_buffer_summary()</a></code>, and <code><a href="reference/pg_nearest.html">pg_nearest()</a></code> support common spatial-context workflows.</li>
 <li>
 <code><a href="reference/pg_validate_data.html">pg_validate_data()</a></code> checks cell and panel structure.</li>
@@ -126,10 +135,16 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/christianoswald/priogridR" class="external-link">priogridR</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/pg_create_indices.html">pg_create_indices</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/pg_neighbors.html">pg_neighbors</a></span><span class="op">(</span><span class="fl">5</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/pg_create_indices.html">pg_create_indices</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3]</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="do">## [1,]    7    8    9</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="do">## [2,]    4    5    6</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="do">## [3,]    1    2    3</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/pg_neighbors.html">pg_neighbors</a></span><span class="op">(</span><span class="fl">5</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">## [1] 7 8 9 4 6 1 2 3</span></span></code></pre></div>
 <p>Point-event data can be aggregated using the temporal and spatial settings in a PRIO-GRID configuration:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10.1</span>, <span class="fl">20</span><span class="op">)</span>,</span>
 <span>  latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">50.1</span>, <span class="fl">60</span><span class="op">)</span>,</span>

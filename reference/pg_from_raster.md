@@ -80,7 +80,7 @@ A data frame, `SpatRaster`, or `pg_result`.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+if (FALSE) { # interactive()
 priogrid::pg_set_rawfolder(file.path(tempdir(), "priogrid-example"))
 temperature <- terra::rast(
   nrows = 18, ncols = 36,
@@ -94,5 +94,5 @@ pg_from_raster(
   aggregation = "mean",
   config = config
 )
-} # }
+}
 ```

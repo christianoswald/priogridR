@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,7 @@
     <li><a class="dropdown-item" href="articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
+    <li><a class="dropdown-item" href="articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -45,7 +46,7 @@
 
 <div id="priogridr-function-inventory" class="section level1">
 
-<p>This inventory describes the functions in priogridR 0.6.0.9000. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
+<p>This inventory describes the functions in priogridR 0.7.0. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
 <div class="section level2">
 <h2 id="public-api">Public API<a class="anchor" aria-label="anchor" href="#public-api"></a></h2>
 <table class="table"><colgroup><col width="25%"><col width="25%"><col width="25%"><col width="25%"></colgroup><thead><tr><th>Function</th>
@@ -85,6 +86,26 @@
 <td>Calculate weighted neighboring-cell values within optional temporal groups.</td>
 <td>Input data with an appended lag column.</td>
 <td>Core spatial-context foundation; temporal isolation is tested.</td>
+</tr><tr><td><code><a href="reference/pg_temporal_lag.html">pg_temporal_lag()</a></code></td>
+<td>Shift observations backward within cells and optional groups after ordering by time.</td>
+<td>Input data with an appended lag column.</td>
+<td>Core temporal utility with explicit row-based semantics.</td>
+</tr><tr><td><code><a href="reference/pg_temporal_lead.html">pg_temporal_lead()</a></code></td>
+<td>Shift observations forward within cells and optional groups after ordering by time.</td>
+<td>Input data with an appended lead column.</td>
+<td>Core temporal utility with explicit row-based semantics.</td>
+</tr><tr><td><code><a href="reference/pg_temporal_change.html">pg_temporal_change()</a></code></td>
+<td>Calculate differences, percentage changes, or log differences within cells.</td>
+<td>Input data with an appended change column.</td>
+<td>Core temporal utility with explicit zero and positivity behavior.</td>
+</tr><tr><td><code><a href="reference/pg_rolling_summary.html">pg_rolling_summary()</a></code></td>
+<td>Calculate aligned rolling summaries within cells and optional groups.</td>
+<td>Input data with an appended summary column.</td>
+<td>Core temporal utility with explicit window, missing-value, and minimum-observation rules.</td>
+</tr><tr><td><code><a href="reference/pg_time_since.html">pg_time_since()</a></code></td>
+<td>Measure periods or days since the most recent event within cells.</td>
+<td>Input data with an appended elapsed-time column.</td>
+<td>Core event-history convenience function.</td>
 </tr><tr><td><code><a href="reference/pg_distance.html">pg_distance()</a></code></td>
 <td>Calculate paired or all-combination great-circle distances between cell centres.</td>
 <td>Data frame of cell pairs and kilometres.</td>
@@ -224,6 +245,18 @@
 <td>Map observation dates to configured PRIO-GRID interval end dates.</td>
 </tr><tr><td><code>add_measurement_date()</code></td>
 <td>Add a mapped measurement date to vector observations.</td>
+</tr><tr><td><code>validate_temporal_panel()</code></td>
+<td>Validate panel keys, cell IDs, grouping columns, and temporal ordering inputs.</td>
+</tr><tr><td><code>validate_periods()</code></td>
+<td>Validate positive integer lag and window sizes.</td>
+</tr><tr><td><code>temporal_shift_values()</code></td>
+<td>Shift a vector within precomputed panel groups.</td>
+</tr><tr><td><code>validate_new_column()</code></td>
+<td>Protect existing columns from accidental replacement.</td>
+</tr><tr><td><code>rolling_bounds()</code></td>
+<td>Determine aligned row-window bounds.</td>
+</tr><tr><td><code>apply_rolling_function()</code></td>
+<td>Apply supported rolling summaries with explicit missing-value behavior.</td>
 </tr><tr><td><code>new_pg_result()</code></td>
 <td>Construct and validate the package’s combined result object.</td>
 </tr><tr><td><code>write_pg_table()</code></td>
@@ -283,9 +316,8 @@
 <div class="section level2">
 <h2 id="recommended-next-decisions">Recommended next decisions<a class="anchor" aria-label="anchor" href="#recommended-next-decisions"></a></h2>
 <ol style="list-style-type: decimal"><li>Decide whether <code><a href="reference/pg_paths.html">pg_paths()</a></code> belongs in the long-term public scope; it is the only exported function not directly concerned with grids, conversion, output, or visualization.</li>
-<li>Add reference fixtures for line and polygon aggregation, temporal boundary dates, duplicate table keys, missing geometries, and multi-layer NetCDF.</li>
 <li>Decide whether compatibility wrappers for the four former names are needed. They were deliberately omitted here to enforce the requested clean API.</li>
-<li>Before submission, replace the affiliation placeholder in <code>paper/paper.md</code>, update <code>cran-comments.md</code>, and run checks on released, old-release, and development R versions.</li>
+<li>Before CRAN or JOSS submission, finalize the paper and <code>cran-comments.md</code>, run checks on released, old-release, and development R versions, and make the R-devel CI job mandatory again once the upstream <code>terra</code> incompatibility has been resolved.</li>
 </ol></div>
 </div>
 

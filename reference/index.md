@@ -48,6 +48,19 @@
 - [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md)
   : Safely join PRIO-GRID data
 
+## Temporal utilities
+
+- [`pg_temporal_lag()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lag.md)
+  : Lag values within PRIO-GRID cells
+- [`pg_temporal_lead()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lead.md)
+  : Lead values within PRIO-GRID cells
+- [`pg_temporal_change()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_change.md)
+  : Calculate within-cell temporal change
+- [`pg_rolling_summary()`](https://christianoswald.github.io/priogridR/reference/pg_rolling_summary.md)
+  : Calculate rolling summaries within PRIO-GRID cells
+- [`pg_time_since()`](https://christianoswald.github.io/priogridR/reference/pg_time_since.md)
+  : Calculate time since the most recent within-cell event
+
 ## Visualization and workflow
 
 - [`pg_plot()`](https://christianoswald.github.io/priogridR/reference/pg_plot.md)

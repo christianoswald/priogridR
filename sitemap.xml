@@ -17,6 +17,7 @@
 <url><loc>https://christianoswald.github.io/priogridR/articles/pg_from_vector.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/results-output-visualization.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/spatial-context.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/articles/temporal-utilities.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/authors.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/index.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/news/index.html</loc></url>
@@ -40,8 +41,13 @@
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_neighbors.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_paths.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_plot.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_rolling_summary.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_spatial_lag.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_temporal_change.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_temporal_lag.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_temporal_lead.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_theme.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_time_since.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_validate_data.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_weights.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_write_result.html</loc></url>

@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@
     <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
+    <li><a class="dropdown-item" href="../articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -123,16 +124,16 @@ changing the working directory:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pg_paths.html">pg_paths</a></span><span class="op">(</span>root <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $root</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpWsaoLu"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpqDEIVL"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $raw</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpWsaoLu/data/raw"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpqDEIVL/data/raw"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $processed</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpWsaoLu/data/processed"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpqDEIVL/data/processed"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $temporary</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpWsaoLu/data/temp"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpqDEIVL/data/temp"</span></span></code></pre></div>
 <p>Pass <code>create = TRUE</code> when the directories should be
 created.</p>
 </div>

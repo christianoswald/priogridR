@@ -4,7 +4,8 @@
 data. It combines grid utilities with general converters that transfer
 raster, vector, point-event, NetCDF, and geographically indexed tabular
 data to a configurable PRIO-GRID. It also supports coordinate lookup,
-geometry creation, spatial neighborhoods, weights, lags, distances and
+geometry creation, spatial neighborhoods, weights, spatial and temporal
+lags, rolling summaries, temporal changes, event timing, distances and
 buffer summaries, panel validation and completion, safe joins, and rapid
 mapping.
 
@@ -54,6 +55,16 @@ All user-facing functions begin with `pg_` and use snake case:
   constructs binary or inverse-distance spatial weights.
 - [`pg_spatial_lag()`](https://christianoswald.github.io/priogridR/reference/pg_spatial_lag.md)
   calculates weighted neighboring-cell values.
+- [`pg_temporal_lag()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lag.md)
+  and
+  [`pg_temporal_lead()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lead.md)
+  shift observations within cells.
+- [`pg_temporal_change()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_change.md)
+  calculates differences, percentage changes, or log differences.
+- [`pg_rolling_summary()`](https://christianoswald.github.io/priogridR/reference/pg_rolling_summary.md)
+  calculates explicitly aligned within-cell windows.
+- [`pg_time_since()`](https://christianoswald.github.io/priogridR/reference/pg_time_since.md)
+  measures periods or days since the latest event.
 - [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md),
   [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md),
   and
@@ -81,7 +92,22 @@ All user-facing functions begin with `pg_` and use snake case:
 library(priogridR)
 
 pg_create_indices(nrow = 3, ncol = 3)
+```
+
+``` R
+##      [,1] [,2] [,3]
+## [1,]    7    8    9
+## [2,]    4    5    6
+## [3,]    1    2    3
+```
+
+``` r
+
 pg_neighbors(5, nrow = 3, ncol = 3)
+```
+
+``` R
+## [1] 7 8 9 4 6 1 2 3
 ```
 
 Point-event data can be aggregated using the temporal and spatial

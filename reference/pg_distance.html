@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,7 @@
     <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
+    <li><a class="dropdown-item" href="../articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -50,12 +51,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pg_distance</span><span class="op">(</span></span>
-<span>  <span class="va">from</span>,</span>
-<span>  <span class="va">to</span>,</span>
-<span>  pairwise <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  config <span class="op">=</span> <span class="fu">priogrid</span><span class="fu">::</span><span class="fu"><a href="http://prio-data.github.io/priogrid/reference/pg_current_config.html" class="external-link">pg_current_config</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pg_distance</span><span class="op">(</span><span class="va">from</span>, <span class="va">to</span>, pairwise <span class="op">=</span> <span class="cn">TRUE</span>, config <span class="op">=</span> <span class="fu">priogrid</span><span class="fu">::</span><span class="fu"><a href="http://prio-data.github.io/priogrid/reference/pg_current_config.html" class="external-link">pg_current_config</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -65,11 +61,15 @@
 <dl><dt id="arg-from">from<a class="anchor" aria-label="anchor" href="#arg-from"></a></dt>
 <dd><p>Source cell IDs.</p></dd>
 
+
 <dt id="arg-to">to<a class="anchor" aria-label="anchor" href="#arg-to"></a></dt>
 <dd><p>Destination cell IDs.</p></dd>
 
+
 <dt id="arg-pairwise">pairwise<a class="anchor" aria-label="anchor" href="#arg-pairwise"></a></dt>
-<dd><p>If <code>TRUE</code>, calculate element-wise distances with safe scalar recycling. If <code>FALSE</code>, calculate every source-destination combination.</p></dd>
+<dd><p>If <code>TRUE</code>, calculate element-wise distances with safe scalar
+recycling. If <code>FALSE</code>, calculate every source-destination combination.</p></dd>
+
 
 <dt id="arg-config">config<a class="anchor" aria-label="anchor" href="#arg-config"></a></dt>
 <dd><p>A PRIO-GRID configuration object.</p></dd>

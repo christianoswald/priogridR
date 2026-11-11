@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,7 @@
     <li><a class="dropdown-item" href="../articles/grid-foundations.html">Grid foundations</a></li>
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
+    <li><a class="dropdown-item" href="../articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -40,7 +41,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Convert PRIO-GRID cell IDs to centre coordinates</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/main/R/pg_coords_from_id.R" class="external-link"><code>R/pg_coords_from_id.R</code></a></small>
       <div class="d-none name"><code>pg_coords_from_id.Rd</code></div>
     </div>
 
@@ -65,11 +66,16 @@
 <dl><dt id="arg-pgid">pgid<a class="anchor" aria-label="anchor" href="#arg-pgid"></a></dt>
 <dd><p>Numeric vector of PRIO-GRID cell IDs.</p></dd>
 
+
 <dt id="arg-crs">crs<a class="anchor" aria-label="anchor" href="#arg-crs"></a></dt>
-<dd><p>Coordinate reference system for the returned coordinates. Any value accepted by <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::st_crs()</a></code> may be used.</p></dd>
+<dd><p>Coordinate reference system for the returned coordinates. Any
+value accepted by <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::st_crs()</a></code> may be used.</p></dd>
+
 
 <dt id="arg-invalid">invalid<a class="anchor" aria-label="anchor" href="#arg-invalid"></a></dt>
-<dd><p>How unknown or missing IDs should be handled: raise an error or return missing coordinates.</p></dd>
+<dd><p>How unknown or missing IDs should be handled: raise an error
+or return missing coordinates.</p></dd>
+
 
 <dt id="arg-config">config<a class="anchor" aria-label="anchor" href="#arg-config"></a></dt>
 <dd><p>A PRIO-GRID configuration object.</p></dd>

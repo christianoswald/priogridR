@@ -11,13 +11,12 @@ Source:
 [`inst/CITATION`](https://github.com/christianoswald/priogridR/blob/main/inst/CITATION)
 
 Oswald C (2026). *priogridR: Functions for Working with PRIO-GRID Data*.
-R package version 0.6.0.9000,
-<https://github.com/christianoswald/priogridR>.
+R package version 0.7.0, <https://github.com/christianoswald/priogridR>.
 
     @Manual{,
       title = {priogridR: Functions for Working with PRIO-GRID Data},
       author = {Christian Oswald},
       year = {2026},
-      note = {R package version 0.6.0.9000},
+      note = {R package version 0.7.0},
       url = {https://github.com/christianoswald/priogridR},
     }

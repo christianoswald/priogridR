@@ -1,6 +1,35 @@
 # Changelog
 
-## priogridR 0.6.0.9000
+## priogridR 0.7.0
+
+### New functionality
+
+- Added
+  [`pg_temporal_lag()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lag.md)
+  and
+  [`pg_temporal_lead()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lead.md)
+  for row-based shifts within cells and optional additional groups.
+- Added
+  [`pg_temporal_change()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_change.md)
+  for differences, percentage changes, and log differences over
+  configurable lags.
+- Added
+  [`pg_rolling_summary()`](https://christianoswald.github.io/priogridR/reference/pg_rolling_summary.md)
+  for trailing, centered, and forward rolling windows with explicit
+  missing-value and minimum-observation rules.
+- Added
+  [`pg_time_since()`](https://christianoswald.github.io/priogridR/reference/pg_time_since.md)
+  for periods or days since the most recent event.
+
+### Documentation and quality
+
+- Added a temporal-utilities vignette and focused tests for ordering,
+  cell and group isolation, missing values, event resets, duplicate
+  keys, and invalid arguments.
+- Documented that shifts and windows are row based and that users should
+  call
+  [`pg_complete_panel()`](https://christianoswald.github.io/priogridR/reference/pg_complete_panel.md)
+  first when calculations require calendar-complete periods.
 
 ### Development infrastructure
 
@@ -14,6 +43,10 @@
   `R CMD check` and coverage instrumentation.
 - Standardized GitHub Actions on `actions/checkout@v6` and narrowed
   read-only workflow permissions.
+- Kept the R-devel check visible but temporarily non-blocking while the
+  upstream `terra` package adapts to R-devel’s changed
+  [`median()`](https://rdrr.io/r/stats/median.html) generic; it should
+  become mandatory again once upstream compatibility is restored.
 
 ### Breaking changes
 

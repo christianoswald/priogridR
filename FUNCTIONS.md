@@ -1,8 +1,8 @@
 # priogridR function inventory
 
-This inventory describes the functions in priogridR 0.6.0.9000. All
-exported package functions begin with `pg_`. The two exported S3 methods
-retain the names required by R’s method dispatch system.
+This inventory describes the functions in priogridR 0.7.0. All exported
+package functions begin with `pg_`. The two exported S3 methods retain
+the names required by R’s method dispatch system.
 
 ## Public API
 
@@ -16,6 +16,11 @@ retain the names required by R’s method dispatch system.
 | [`pg_neighbor_table()`](https://christianoswald.github.io/priogridR/reference/pg_neighbor_table.md) | Build reusable queen, rook, distance-band, or k-nearest-neighbor relationships. | Data frame of directed cell pairs, with distances where relevant. | Core spatial-context foundation. |
 | [`pg_weights()`](https://christianoswald.github.io/priogridR/reference/pg_weights.md) | Add binary or inverse-distance weights to a neighbor table. | Weighted neighbor table. | Core spatial-context foundation with explicit row standardization. |
 | [`pg_spatial_lag()`](https://christianoswald.github.io/priogridR/reference/pg_spatial_lag.md) | Calculate weighted neighboring-cell values within optional temporal groups. | Input data with an appended lag column. | Core spatial-context foundation; temporal isolation is tested. |
+| [`pg_temporal_lag()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lag.md) | Shift observations backward within cells and optional groups after ordering by time. | Input data with an appended lag column. | Core temporal utility with explicit row-based semantics. |
+| [`pg_temporal_lead()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lead.md) | Shift observations forward within cells and optional groups after ordering by time. | Input data with an appended lead column. | Core temporal utility with explicit row-based semantics. |
+| [`pg_temporal_change()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_change.md) | Calculate differences, percentage changes, or log differences within cells. | Input data with an appended change column. | Core temporal utility with explicit zero and positivity behavior. |
+| [`pg_rolling_summary()`](https://christianoswald.github.io/priogridR/reference/pg_rolling_summary.md) | Calculate aligned rolling summaries within cells and optional groups. | Input data with an appended summary column. | Core temporal utility with explicit window, missing-value, and minimum-observation rules. |
+| [`pg_time_since()`](https://christianoswald.github.io/priogridR/reference/pg_time_since.md) | Measure periods or days since the most recent event within cells. | Input data with an appended elapsed-time column. | Core event-history convenience function. |
 | [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md) | Calculate paired or all-combination great-circle distances between cell centres. | Data frame of cell pairs and kilometres. | Keep as a transparent distance primitive. |
 | [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md) | Summarize cell values within a centre-to-centre distance radius. | Input data with an appended summary column. | Core convenience function with explicit time grouping and self inclusion. |
 | [`pg_nearest()`](https://christianoswald.github.io/priogridR/reference/pg_nearest.md) | Identify the nearest candidate cells to each source cell. | Ranked data frame with distances. | Keep as a deterministic nearest-cell helper. |
@@ -79,6 +84,12 @@ These are implementation details and are not exported.
 | `normalize_pg_time()` | Normalize layer dates, date strings, or years to `Date`. |
 | `map_dates_to_pg_intervals()` | Map observation dates to configured PRIO-GRID interval end dates. |
 | `add_measurement_date()` | Add a mapped measurement date to vector observations. |
+| `validate_temporal_panel()` | Validate panel keys, cell IDs, grouping columns, and temporal ordering inputs. |
+| `validate_periods()` | Validate positive integer lag and window sizes. |
+| `temporal_shift_values()` | Shift a vector within precomputed panel groups. |
+| `validate_new_column()` | Protect existing columns from accidental replacement. |
+| `rolling_bounds()` | Determine aligned row-window bounds. |
+| `apply_rolling_function()` | Apply supported rolling summaries with explicit missing-value behavior. |
 | `new_pg_result()` | Construct and validate the package’s combined result object. |
 | `write_pg_table()` | Write a data frame in a supported table format. |
 | `write_pg_raster()` | Write a `SpatRaster` with overwrite protection. |
@@ -117,12 +128,10 @@ These are implementation details and are not exported.
     belongs in the long-term public scope; it is the only exported
     function not directly concerned with grids, conversion, output, or
     visualization.
-2.  Add reference fixtures for line and polygon aggregation, temporal
-    boundary dates, duplicate table keys, missing geometries, and
-    multi-layer NetCDF.
-3.  Decide whether compatibility wrappers for the four former names are
+2.  Decide whether compatibility wrappers for the four former names are
     needed. They were deliberately omitted here to enforce the requested
     clean API.
-4.  Before submission, replace the affiliation placeholder in
-    `paper/paper.md`, update `cran-comments.md`, and run checks on
-    released, old-release, and development R versions.
+3.  Before CRAN or JOSS submission, finalize the paper and
+    `cran-comments.md`, run checks on released, old-release, and
+    development R versions, and make the R-devel CI job mandatory again
+    once the upstream `terra` incompatibility has been resolved.

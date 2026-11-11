@@ -26,6 +26,12 @@
   Define neighbors and weights, calculate spatial lags and distances,
   and summarize nearby cell values.
 
+- [Temporal utilities for PRIO-GRID
+  panels](https://christianoswald.github.io/priogridR/articles/temporal-utilities.md):
+
+  Create within-cell lags, changes, rolling summaries, and event-history
+  measures with explicit panel semantics.
+
 - [Results, output, and
   visualization](https://christianoswald.github.io/priogridR/articles/results-output-visualization.md):
 
