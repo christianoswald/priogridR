@@ -26,7 +26,8 @@ grid-oriented data-management tasks. It provides a consistent interface for
 raster, vector, point-event, NetCDF, and tabular inputs. It also supports cell
 identification, grid geometries, validated panels, spatial neighborhoods,
 weights, spatial and temporal lags, rolling summaries, temporal changes,
-event timing, distances, buffers, joins, output, and visualization. The
+event timing, distances, buffers, spatial crosswalks, area-weighted transfers,
+resolution changes, joins, output, and visualization. The
 package builds on the official `priogrid` package for configurable grid
 definitions and core raster transformations [@priogrid], while keeping
 researchers' aggregation and missing-data choices explicit.
@@ -82,6 +83,9 @@ package also provides grid-index creation, reusable spatial neighborhoods and
 weights, spatial and temporal lags, rolling summaries, temporal changes,
 event timing, distances, buffer summaries, reproducible path construction,
 output writing, and plot styling.
+Cross-level functions distinguish extensive totals from intensive rates,
+retain overlap and coverage diagnostics, and require researchers to supply
+the boundary definitions used for country aggregation.
 
 # Software design
 

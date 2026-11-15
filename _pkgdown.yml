@@ -32,6 +32,14 @@ reference:
       - pg_temporal_change
       - pg_rolling_summary
       - pg_time_since
+  - title: Aggregation and cross-level workflows
+    contents:
+      - pg_aggregate
+      - pg_crosswalk
+      - pg_area_weight
+      - pg_to_country
+      - pg_change_resolution
+      - pg_compare_resolutions
   - title: Visualization and workflow
     contents:
       - pg_plot
@@ -51,6 +59,7 @@ articles:
       - grid-utilities
       - spatial-context
       - temporal-utilities
+      - cross-level-workflows
       - results-output-visualization
       - conversion-workflows
   - title: Conversion guides

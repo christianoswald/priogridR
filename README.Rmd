@@ -20,8 +20,9 @@ It combines grid utilities with general converters that transfer raster,
 vector, point-event, NetCDF, and geographically indexed tabular data to a
 configurable PRIO-GRID. It also supports coordinate lookup, geometry creation,
 spatial neighborhoods, weights, spatial and temporal lags, rolling summaries,
-temporal changes, event timing, distances and buffer summaries, panel
-validation and completion, safe joins, and rapid mapping.
+temporal changes, event timing, distances, buffer summaries, spatial
+crosswalks, area-weighted aggregation, resolution changes, panel validation
+and completion, safe joins, and rapid mapping.
 
 The package builds on the official [`priogrid`](https://prio-data.github.io/priogrid/)
 package for grid definitions and raster transformations.
@@ -59,6 +60,13 @@ All user-facing functions begin with `pg_` and use snake case:
   differences.
 * `pg_rolling_summary()` calculates explicitly aligned within-cell windows.
 * `pg_time_since()` measures periods or days since the latest event.
+* `pg_aggregate()` creates explicit grouped summaries.
+* `pg_crosswalk()` constructs cell-to-polygon overlap tables.
+* `pg_area_weight()` transfers extensive or intensive values using
+  type-appropriate weights.
+* `pg_to_country()` aggregates cells to user-supplied country boundaries.
+* `pg_change_resolution()` transfers values between configured grids.
+* `pg_compare_resolutions()` reports differences, coverage, and agreement.
 * `pg_distance()`, `pg_buffer_summary()`, and `pg_nearest()` support common
   spatial-context workflows.
 * `pg_validate_data()` checks cell and panel structure.
@@ -109,6 +117,12 @@ See `vignette("getting-started", package = "priogridR")` and
 `vignette("conversion-workflows", package = "priogridR")` for an introduction
 and a guide to choosing a converter. The package website also provides a
 focused article for every `pg_from_*()` function.
+
+Cross-level workflows deliberately require researchers to identify variables
+as extensive totals or intensive rates. Country aggregation also requires
+explicitly supplied boundaries, keeping the territorial definition and date
+visible in the analysis. See
+`vignette("cross-level-workflows", package = "priogridR")`.
 
 ## Package direction
 
