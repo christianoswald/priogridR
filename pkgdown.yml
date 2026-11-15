@@ -3,6 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   conversion-workflows: conversion-workflows.html
+  cross-level-workflows: cross-level-workflows.html
   getting-started: getting-started.html
   grid-foundations: grid-foundations.html
   grid-utilities: grid-utilities.html
@@ -14,7 +15,7 @@ articles:
   results-output-visualization: results-output-visualization.html
   spatial-context: spatial-context.html
   temporal-utilities: temporal-utilities.html
-last_built: 2026-11-11T09:12Z
+last_built: 2026-11-15T17:20Z
 urls:
   reference: https://christianoswald.github.io/priogridR/reference
   article: https://christianoswald.github.io/priogridR/articles

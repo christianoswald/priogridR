@@ -64,16 +64,16 @@ directory:
 
 pg_paths(root = tempdir())
 #> $root
-#> [1] "/tmp/RtmpnjlKdz"
+#> [1] "/tmp/Rtmp2UKpmT"
 #> 
 #> $raw
-#> [1] "/tmp/RtmpnjlKdz/data/raw"
+#> [1] "/tmp/Rtmp2UKpmT/data/raw"
 #> 
 #> $processed
-#> [1] "/tmp/RtmpnjlKdz/data/processed"
+#> [1] "/tmp/Rtmp2UKpmT/data/processed"
 #> 
 #> $temporary
-#> [1] "/tmp/RtmpnjlKdz/data/temp"
+#> [1] "/tmp/Rtmp2UKpmT/data/temp"
 ```
 
 Pass `create = TRUE` when the directories should be created.

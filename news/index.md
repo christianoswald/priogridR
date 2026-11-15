@@ -1,5 +1,43 @@
 # Changelog
 
+## priogridR 0.8.0
+
+### New functionality
+
+- Added
+  [`pg_aggregate()`](https://christianoswald.github.io/priogridR/reference/pg_aggregate.md)
+  for explicit grouped summaries and weighted means.
+- Added
+  [`pg_crosswalk()`](https://christianoswald.github.io/priogridR/reference/pg_crosswalk.md)
+  for fractional, largest-overlap, and centroid assignment between
+  PRIO-GRID cells and user-supplied polygons.
+- Added
+  [`pg_area_weight()`](https://christianoswald.github.io/priogridR/reference/pg_area_weight.md)
+  for transferring extensive totals and intensive values with explicit,
+  type-appropriate weights and coverage diagnostics.
+- Added
+  [`pg_to_country()`](https://christianoswald.github.io/priogridR/reference/pg_to_country.md)
+  as a boundary-explicit country aggregation wrapper.
+- Added
+  [`pg_change_resolution()`](https://christianoswald.github.io/priogridR/reference/pg_change_resolution.md)
+  for transferring extensive and intensive variables between configured
+  grids.
+- Added
+  [`pg_compare_resolutions()`](https://christianoswald.github.io/priogridR/reference/pg_compare_resolutions.md)
+  for cell-level differences and summary diagnostics across alternative
+  representations.
+
+### Documentation and quality
+
+- Added a cross-level aggregation vignette and executable examples for
+  every new function.
+- Added synthetic tests for overlap fractions, discrete assignment,
+  empty and unmatched geometries, mass preservation, intensive-variable
+  weighting, missing-data coverage, resolution changes, and comparison
+  diagnostics.
+- Changed the author-role ordering in `DESCRIPTION` so pkgdown presents
+  “Author, maintainer”.
+
 ## priogridR 0.7.0
 
 ### New functionality

@@ -1,6 +1,6 @@
 # priogridR function inventory
 
-This inventory describes the functions in priogridR 0.7.0. All exported
+This inventory describes the functions in priogridR 0.8.0. All exported
 package functions begin with `pg_`. The two exported S3 methods retain
 the names required by R’s method dispatch system.
 
@@ -21,6 +21,12 @@ the names required by R’s method dispatch system.
 | [`pg_temporal_change()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_change.md) | Calculate differences, percentage changes, or log differences within cells. | Input data with an appended change column. | Core temporal utility with explicit zero and positivity behavior. |
 | [`pg_rolling_summary()`](https://christianoswald.github.io/priogridR/reference/pg_rolling_summary.md) | Calculate aligned rolling summaries within cells and optional groups. | Input data with an appended summary column. | Core temporal utility with explicit window, missing-value, and minimum-observation rules. |
 | [`pg_time_since()`](https://christianoswald.github.io/priogridR/reference/pg_time_since.md) | Measure periods or days since the most recent event within cells. | Input data with an appended elapsed-time column. | Core event-history convenience function. |
+| [`pg_aggregate()`](https://christianoswald.github.io/priogridR/reference/pg_aggregate.md) | Summarize numeric variables over explicit groups, with optional weighted means. | Data frame with one row per group. | Core aggregation helper with explicit missing-value behavior. |
+| [`pg_crosswalk()`](https://christianoswald.github.io/priogridR/reference/pg_crosswalk.md) | Relate configured cells to user-supplied polygons by fractional overlap, largest overlap, or cell centre. | Crosswalk with overlap, allocation, and fraction diagnostics. | Core cross-level foundation that keeps boundary definitions explicit. |
+| [`pg_area_weight()`](https://christianoswald.github.io/priogridR/reference/pg_area_weight.md) | Transfer extensive totals or intensive values from cells to polygon targets. | Target-level data with per-variable coverage diagnostics. | Core weighting function that prevents totals and rates from being treated alike. |
+| [`pg_to_country()`](https://christianoswald.github.io/priogridR/reference/pg_to_country.md) | Aggregate cells to user-supplied country boundaries. | Country-level data, optionally with its crosswalk. | Convenience wrapper that avoids bundling a politically contingent boundary dataset. |
+| [`pg_change_resolution()`](https://christianoswald.github.io/priogridR/reference/pg_change_resolution.md) | Transfer cell values between configured grid resolutions. | Data frame on the target grid, optionally with its crosswalk. | Core resolution-sensitivity helper with explicit variable semantics. |
+| [`pg_compare_resolutions()`](https://christianoswald.github.io/priogridR/reference/pg_compare_resolutions.md) | Compare aligned representations at a common resolution. | Summary diagnostics or cell-level differences. | Core diagnostic for coverage, bias, error, and correlation. |
 | [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md) | Calculate paired or all-combination great-circle distances between cell centres. | Data frame of cell pairs and kilometres. | Keep as a transparent distance primitive. |
 | [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md) | Summarize cell values within a centre-to-centre distance radius. | Input data with an appended summary column. | Core convenience function with explicit time grouping and self inclusion. |
 | [`pg_nearest()`](https://christianoswald.github.io/priogridR/reference/pg_nearest.md) | Identify the nearest candidate cells to each source cell. | Ranked data frame with distances. | Keep as a deterministic nearest-cell helper. |
@@ -114,6 +120,13 @@ These are implementation details and are not exported.
 | `split_panel_rows()` | Split spatial operations into temporal groups. |
 | `summarise_buffer_values()` | Apply the selected buffer statistic with explicit missing-value behavior. |
 | `check_distance_workload()` | Guard against accidental all-global distance matrices and direct users toward chunked workflows. |
+| `validate_column_names()` | Validate vectors of column names used by cross-level functions. |
+| `validate_variable_types()` | Match extensive or intensive semantics to value columns. |
+| `prepare_target_geometry()` | Validate, filter, and dissolve target polygons by identifier. |
+| `add_unmatched_crosswalk_rows()` | Add explicit unmatched cells to a crosswalk. |
+| `summarise_weighted_value()` | Calculate transferred values and observed-weight coverage. |
+| `cross_level_groups()` | Split rows by cross-level aggregation keys. |
+| `safe_correlation()` | Calculate correlation only when sufficient variation is available. |
 
 ## Test-only helper
 

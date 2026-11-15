@@ -6,6 +6,7 @@
 <url><loc>https://christianoswald.github.io/priogridR/LICENSE.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/PULL_REQUEST_TEMPLATE.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/conversion-workflows.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/articles/cross-level-workflows.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/getting-started.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/grid-foundations.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/grid-utilities.html</loc></url>
@@ -23,10 +24,15 @@
 <url><loc>https://christianoswald.github.io/priogridR/news/index.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/as.data.frame.pg_result.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/index.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_aggregate.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_area_weight.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_change_resolution.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_compare_resolutions.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_complete_panel.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_create_indices.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_crosswalk.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_distance.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_from_netcdf.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_from_points.html</loc></url>
@@ -48,6 +54,7 @@
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_temporal_lead.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_theme.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_time_since.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_to_country.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_validate_data.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_weights.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_write_result.html</loc></url>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
     <li><a class="dropdown-item" href="articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
+    <li><a class="dropdown-item" href="articles/cross-level-workflows.html">Aggregation and cross-level workflows</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -41,12 +42,12 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>priogridR function inventory</h1>
-      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/v0.7.0/FUNCTIONS.md" class="external-link"><code>FUNCTIONS.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/main/FUNCTIONS.md" class="external-link"><code>FUNCTIONS.md</code></a></small>
     </div>
 
 <div id="priogridr-function-inventory" class="section level1">
 
-<p>This inventory describes the functions in priogridR 0.7.0. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
+<p>This inventory describes the functions in priogridR 0.8.0. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
 <div class="section level2">
 <h2 id="public-api">Public API<a class="anchor" aria-label="anchor" href="#public-api"></a></h2>
 <table class="table"><colgroup><col width="25%"><col width="25%"><col width="25%"><col width="25%"></colgroup><thead><tr><th>Function</th>
@@ -106,6 +107,30 @@
 <td>Measure periods or days since the most recent event within cells.</td>
 <td>Input data with an appended elapsed-time column.</td>
 <td>Core event-history convenience function.</td>
+</tr><tr><td><code><a href="reference/pg_aggregate.html">pg_aggregate()</a></code></td>
+<td>Summarize numeric variables over explicit groups, with optional weighted means.</td>
+<td>Data frame with one row per group.</td>
+<td>Core aggregation helper with explicit missing-value behavior.</td>
+</tr><tr><td><code><a href="reference/pg_crosswalk.html">pg_crosswalk()</a></code></td>
+<td>Relate configured cells to user-supplied polygons by fractional overlap, largest overlap, or cell centre.</td>
+<td>Crosswalk with overlap, allocation, and fraction diagnostics.</td>
+<td>Core cross-level foundation that keeps boundary definitions explicit.</td>
+</tr><tr><td><code><a href="reference/pg_area_weight.html">pg_area_weight()</a></code></td>
+<td>Transfer extensive totals or intensive values from cells to polygon targets.</td>
+<td>Target-level data with per-variable coverage diagnostics.</td>
+<td>Core weighting function that prevents totals and rates from being treated alike.</td>
+</tr><tr><td><code><a href="reference/pg_to_country.html">pg_to_country()</a></code></td>
+<td>Aggregate cells to user-supplied country boundaries.</td>
+<td>Country-level data, optionally with its crosswalk.</td>
+<td>Convenience wrapper that avoids bundling a politically contingent boundary dataset.</td>
+</tr><tr><td><code><a href="reference/pg_change_resolution.html">pg_change_resolution()</a></code></td>
+<td>Transfer cell values between configured grid resolutions.</td>
+<td>Data frame on the target grid, optionally with its crosswalk.</td>
+<td>Core resolution-sensitivity helper with explicit variable semantics.</td>
+</tr><tr><td><code><a href="reference/pg_compare_resolutions.html">pg_compare_resolutions()</a></code></td>
+<td>Compare aligned representations at a common resolution.</td>
+<td>Summary diagnostics or cell-level differences.</td>
+<td>Core diagnostic for coverage, bias, error, and correlation.</td>
 </tr><tr><td><code><a href="reference/pg_distance.html">pg_distance()</a></code></td>
 <td>Calculate paired or all-combination great-circle distances between cell centres.</td>
 <td>Data frame of cell pairs and kilometres.</td>
@@ -305,6 +330,20 @@
 <td>Apply the selected buffer statistic with explicit missing-value behavior.</td>
 </tr><tr><td><code>check_distance_workload()</code></td>
 <td>Guard against accidental all-global distance matrices and direct users toward chunked workflows.</td>
+</tr><tr><td><code>validate_column_names()</code></td>
+<td>Validate vectors of column names used by cross-level functions.</td>
+</tr><tr><td><code>validate_variable_types()</code></td>
+<td>Match extensive or intensive semantics to value columns.</td>
+</tr><tr><td><code>prepare_target_geometry()</code></td>
+<td>Validate, filter, and dissolve target polygons by identifier.</td>
+</tr><tr><td><code>add_unmatched_crosswalk_rows()</code></td>
+<td>Add explicit unmatched cells to a crosswalk.</td>
+</tr><tr><td><code>summarise_weighted_value()</code></td>
+<td>Calculate transferred values and observed-weight coverage.</td>
+</tr><tr><td><code>cross_level_groups()</code></td>
+<td>Split rows by cross-level aggregation keys.</td>
+</tr><tr><td><code>safe_correlation()</code></td>
+<td>Calculate correlation only when sufficient variation is available.</td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="test-only-helper">Test-only helper<a class="anchor" aria-label="anchor" href="#test-only-helper"></a></h2>

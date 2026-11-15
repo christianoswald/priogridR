@@ -61,6 +61,21 @@
 - [`pg_time_since()`](https://christianoswald.github.io/priogridR/reference/pg_time_since.md)
   : Calculate time since the most recent within-cell event
 
+## Aggregation and cross-level workflows
+
+- [`pg_aggregate()`](https://christianoswald.github.io/priogridR/reference/pg_aggregate.md)
+  : Aggregate PRIO-GRID data by explicit groups
+- [`pg_crosswalk()`](https://christianoswald.github.io/priogridR/reference/pg_crosswalk.md)
+  : Construct a crosswalk from PRIO-GRID cells to polygons
+- [`pg_area_weight()`](https://christianoswald.github.io/priogridR/reference/pg_area_weight.md)
+  : Transfer cell values to polygons with explicit area weights
+- [`pg_to_country()`](https://christianoswald.github.io/priogridR/reference/pg_to_country.md)
+  : Aggregate PRIO-GRID values to supplied country boundaries
+- [`pg_change_resolution()`](https://christianoswald.github.io/priogridR/reference/pg_change_resolution.md)
+  : Transfer PRIO-GRID values between configured resolutions
+- [`pg_compare_resolutions()`](https://christianoswald.github.io/priogridR/reference/pg_compare_resolutions.md)
+  : Compare values represented on a common grid
+
 ## Visualization and workflow
 
 - [`pg_plot()`](https://christianoswald.github.io/priogridR/reference/pg_plot.md)

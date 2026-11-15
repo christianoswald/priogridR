@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="../articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
+    <li><a class="dropdown-item" href="../articles/cross-level-workflows.html">Aggregation and cross-level workflows</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -68,7 +69,7 @@
       <h1>Results, output, and visualization</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/v0.7.0/vignettes/results-output-visualization.Rmd" class="external-link"><code>vignettes/results-output-visualization.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/main/vignettes/results-output-visualization.Rmd" class="external-link"><code>vignettes/results-output-visualization.Rmd</code></a></small>
       <div class="d-none name"><code>results-output-visualization.Rmd</code></div>
     </div>
 
@@ -90,16 +91,16 @@ temporary data paths without changing the working directory.</p>
 <span><span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pg_paths.html">pg_paths</a></span><span class="op">(</span><span class="va">project_root</span>, create <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">paths</span></span>
 <span><span class="co">#&gt; $root</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpO6dWby/priogridR-vignette-project"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmpd0h6iz/priogridR-vignette-project"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $raw</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpO6dWby/priogridR-vignette-project/data/raw"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmpd0h6iz/priogridR-vignette-project/data/raw"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $processed</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpO6dWby/priogridR-vignette-project/data/processed"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmpd0h6iz/priogridR-vignette-project/data/processed"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $temporary</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpO6dWby/priogridR-vignette-project/data/temp"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/Rtmpd0h6iz/priogridR-vignette-project/data/temp"</span></span></code></pre></div>
 <p>The returned list can be passed directly to <code><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path()</a></code>
 when creating input or output filenames.</p>
 </div>

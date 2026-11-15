@@ -5,9 +5,10 @@ data. It combines grid utilities with general converters that transfer
 raster, vector, point-event, NetCDF, and geographically indexed tabular
 data to a configurable PRIO-GRID. It also supports coordinate lookup,
 geometry creation, spatial neighborhoods, weights, spatial and temporal
-lags, rolling summaries, temporal changes, event timing, distances and
-buffer summaries, panel validation and completion, safe joins, and rapid
-mapping.
+lags, rolling summaries, temporal changes, event timing, distances,
+buffer summaries, spatial crosswalks, area-weighted aggregation,
+resolution changes, panel validation and completion, safe joins, and
+rapid mapping.
 
 The package builds on the official
 [`priogrid`](https://prio-data.github.io/priogrid/) package for grid
@@ -65,6 +66,19 @@ All user-facing functions begin with `pg_` and use snake case:
   calculates explicitly aligned within-cell windows.
 - [`pg_time_since()`](https://christianoswald.github.io/priogridR/reference/pg_time_since.md)
   measures periods or days since the latest event.
+- [`pg_aggregate()`](https://christianoswald.github.io/priogridR/reference/pg_aggregate.md)
+  creates explicit grouped summaries.
+- [`pg_crosswalk()`](https://christianoswald.github.io/priogridR/reference/pg_crosswalk.md)
+  constructs cell-to-polygon overlap tables.
+- [`pg_area_weight()`](https://christianoswald.github.io/priogridR/reference/pg_area_weight.md)
+  transfers extensive or intensive values using type-appropriate
+  weights.
+- [`pg_to_country()`](https://christianoswald.github.io/priogridR/reference/pg_to_country.md)
+  aggregates cells to user-supplied country boundaries.
+- [`pg_change_resolution()`](https://christianoswald.github.io/priogridR/reference/pg_change_resolution.md)
+  transfers values between configured grids.
+- [`pg_compare_resolutions()`](https://christianoswald.github.io/priogridR/reference/pg_compare_resolutions.md)
+  reports differences, coverage, and agreement.
 - [`pg_distance()`](https://christianoswald.github.io/priogridR/reference/pg_distance.md),
   [`pg_buffer_summary()`](https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.md),
   and
@@ -145,6 +159,12 @@ and
 for an introduction and a guide to choosing a converter. The package
 website also provides a focused article for every `pg_from_*()`
 function.
+
+Cross-level workflows deliberately require researchers to identify
+variables as extensive totals or intensive rates. Country aggregation
+also requires explicitly supplied boundaries, keeping the territorial
+definition and date visible in the analysis. See
+[`vignette("cross-level-workflows", package = "priogridR")`](https://christianoswald.github.io/priogridR/articles/cross-level-workflows.md).
 
 ## Package direction
 

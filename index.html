@@ -10,8 +10,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Functions for Working with PRIO-GRID Data">
-<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
-<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances and buffer summaries, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <li><a class="dropdown-item" href="articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
+    <li><a class="dropdown-item" href="articles/cross-level-workflows.html">Aggregation and cross-level workflows</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -64,7 +65,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances and buffer summaries, panel validation and completion, safe joins, and rapid mapping.</p>
+<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, panel validation and completion, safe joins, and rapid mapping.</p>
 <p>The package builds on the official <a href="https://prio-data.github.io/priogrid/" class="external-link"><code>priogrid</code></a> package for grid definitions and raster transformations.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -111,6 +112,18 @@
 <code><a href="reference/pg_rolling_summary.html">pg_rolling_summary()</a></code> calculates explicitly aligned within-cell windows.</li>
 <li>
 <code><a href="reference/pg_time_since.html">pg_time_since()</a></code> measures periods or days since the latest event.</li>
+<li>
+<code><a href="reference/pg_aggregate.html">pg_aggregate()</a></code> creates explicit grouped summaries.</li>
+<li>
+<code><a href="reference/pg_crosswalk.html">pg_crosswalk()</a></code> constructs cell-to-polygon overlap tables.</li>
+<li>
+<code><a href="reference/pg_area_weight.html">pg_area_weight()</a></code> transfers extensive or intensive values using type-appropriate weights.</li>
+<li>
+<code><a href="reference/pg_to_country.html">pg_to_country()</a></code> aggregates cells to user-supplied country boundaries.</li>
+<li>
+<code><a href="reference/pg_change_resolution.html">pg_change_resolution()</a></code> transfers values between configured grids.</li>
+<li>
+<code><a href="reference/pg_compare_resolutions.html">pg_compare_resolutions()</a></code> reports differences, coverage, and agreement.</li>
 <li>
 <code><a href="reference/pg_distance.html">pg_distance()</a></code>, <code><a href="reference/pg_buffer_summary.html">pg_buffer_summary()</a></code>, and <code><a href="reference/pg_nearest.html">pg_nearest()</a></code> support common spatial-context workflows.</li>
 <li>
@@ -167,6 +180,7 @@
 <span>  config <span class="op">=</span> <span class="va">config</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>See <code><a href="articles/getting-started.html">vignette("getting-started", package = "priogridR")</a></code> and <code><a href="articles/conversion-workflows.html">vignette("conversion-workflows", package = "priogridR")</a></code> for an introduction and a guide to choosing a converter. The package website also provides a focused article for every <code>pg_from_*()</code> function.</p>
+<p>Cross-level workflows deliberately require researchers to identify variables as extensive totals or intensive rates. Country aggregation also requires explicitly supplied boundaries, keeping the territorial definition and date visible in the analysis. See <code><a href="articles/cross-level-workflows.html">vignette("cross-level-workflows", package = "priogridR")</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="package-direction">Package direction<a class="anchor" aria-label="anchor" href="#package-direction"></a>
@@ -232,7 +246,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Christian Oswald <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0001-8291-9544" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Christian Oswald <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-8291-9544" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 

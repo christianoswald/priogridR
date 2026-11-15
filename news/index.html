@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
     <li><a class="dropdown-item" href="../articles/grid-utilities.html">Grid identifiers and neighborhoods</a></li>
     <li><a class="dropdown-item" href="../articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="../articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
+    <li><a class="dropdown-item" href="../articles/cross-level-workflows.html">Aggregation and cross-level workflows</a></li>
     <li><a class="dropdown-item" href="../articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="../articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -41,9 +42,27 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/christianoswald/priogridR/blob/v0.7.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/christianoswald/priogridR/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.8.0" id="priogridr-080">priogridR 0.8.0<a class="anchor" aria-label="anchor" href="#priogridr-080"></a></h2>
+<div class="section level3">
+<h3 id="new-functionality-0-8-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-0-8-0"></a></h3>
+<ul><li>Added <code><a href="../reference/pg_aggregate.html">pg_aggregate()</a></code> for explicit grouped summaries and weighted means.</li>
+<li>Added <code><a href="../reference/pg_crosswalk.html">pg_crosswalk()</a></code> for fractional, largest-overlap, and centroid assignment between PRIO-GRID cells and user-supplied polygons.</li>
+<li>Added <code><a href="../reference/pg_area_weight.html">pg_area_weight()</a></code> for transferring extensive totals and intensive values with explicit, type-appropriate weights and coverage diagnostics.</li>
+<li>Added <code><a href="../reference/pg_to_country.html">pg_to_country()</a></code> as a boundary-explicit country aggregation wrapper.</li>
+<li>Added <code><a href="../reference/pg_change_resolution.html">pg_change_resolution()</a></code> for transferring extensive and intensive variables between configured grids.</li>
+<li>Added <code><a href="../reference/pg_compare_resolutions.html">pg_compare_resolutions()</a></code> for cell-level differences and summary diagnostics across alternative representations.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-and-quality-0-8-0">Documentation and quality<a class="anchor" aria-label="anchor" href="#documentation-and-quality-0-8-0"></a></h3>
+<ul><li>Added a cross-level aggregation vignette and executable examples for every new function.</li>
+<li>Added synthetic tests for overlap fractions, discrete assignment, empty and unmatched geometries, mass preservation, intensive-variable weighting, missing-data coverage, resolution changes, and comparison diagnostics.</li>
+<li>Changed the author-role ordering in <code>DESCRIPTION</code> so pkgdown presents “Author, maintainer”.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.0" id="priogridr-070">priogridR 0.7.0<a class="anchor" aria-label="anchor" href="#priogridr-070"></a></h2>
 <div class="section level3">

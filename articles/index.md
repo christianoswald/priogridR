@@ -32,6 +32,12 @@
   Create within-cell lags, changes, rolling summaries, and event-history
   measures with explicit panel semantics.
 
+- [Aggregation and cross-level
+  workflows](https://christianoswald.github.io/priogridR/articles/cross-level-workflows.md):
+
+  Construct spatial crosswalks, transfer totals and rates, aggregate to
+  countries, and compare grid resolutions.
+
 - [Results, output, and
   visualization](https://christianoswald.github.io/priogridR/articles/results-output-visualization.md):
 
