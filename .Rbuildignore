@@ -12,3 +12,4 @@
 ^paper$
 ^_pkgdown\.yml$
 ^FUNCTIONS\.md$
+^data-raw$

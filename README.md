@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Edit README.Rmd, not README.md. -->
 
-# priogridR
+# priogridR <a href="https://christianoswald.github.io/priogridR/"><img src="man/figures/logo.png" align="right" height="139" alt="priogridR website" /></a>
 
 <!-- badges: start -->
 
