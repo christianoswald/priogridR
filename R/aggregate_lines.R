@@ -23,7 +23,12 @@ aggregate_pg_lines <- function(
     x[keep]
   ))
   if (!nrow(intersections)) {
-    return(empty_pg_data(variable, !is.null(time) || !is.null(time_column), group_columns))
+    return(empty_pg_data(
+      variable,
+      !is.null(time) || !is.null(time_column),
+      group_columns,
+      prototype = x
+    ))
   }
   intersections$.segment_length <- geometry_length_m(intersections)
   data <- sf::st_drop_geometry(intersections)

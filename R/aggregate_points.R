@@ -23,7 +23,8 @@ aggregate_pg_points <- function(
     return(empty_pg_data(
       variable,
       temporal = !is.null(time) || !is.null(time_column),
-      group_columns = group_columns
+      group_columns = group_columns,
+      prototype = x
     ))
   }
   if (any(sf::st_geometry_type(x) == "MULTIPOINT")) {

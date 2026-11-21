@@ -1,6 +1,6 @@
 # priogridR function inventory
 
-This inventory describes the functions in priogridR 0.8.0. All exported
+This inventory describes the functions in priogridR 0.8.1. All exported
 package functions begin with
 `pg_`. The two exported S3 methods retain the names required by R's method
 dispatch system.

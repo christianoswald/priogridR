@@ -28,6 +28,30 @@ read_vector_input <- function(x) {
   sf::st_read(x, quiet = TRUE)
 }
 
+validate_vector_input <- function(x) {
+  if (is.na(sf::st_crs(x))) {
+    stop(
+      "Vector input must have a coordinate reference system.",
+      call. = FALSE
+    )
+  }
+  empty <- sf::st_is_empty(x)
+  if (any(is.na(empty) | empty)) {
+    stop("Vector input contains empty geometries.", call. = FALSE)
+  }
+  valid <- sf::st_is_valid(x)
+  if (any(is.na(valid) | !valid)) {
+    stop(
+      paste0(
+        "Vector input contains invalid geometries. Repair them before ",
+        "conversion, for example with `sf::st_make_valid()`."
+      ),
+      call. = FALSE
+    )
+  }
+  invisible(x)
+}
+
 as_point_sf <- function(
   x,
   longitude = NULL,
@@ -56,6 +80,13 @@ as_point_sf <- function(
     )
   }
   validate_columns(x, c(longitude, latitude))
+  if (!is.numeric(x[[longitude]]) || !is.numeric(x[[latitude]])) {
+    stop("Coordinate columns must be numeric.", call. = FALSE)
+  }
+  coordinates <- cbind(x[[longitude]], x[[latitude]])
+  if (any(!is.finite(coordinates))) {
+    stop("Coordinate columns must contain finite values.", call. = FALSE)
+  }
   sf::st_as_sf(
     x,
     coords = c(longitude, latitude),

@@ -10,7 +10,6 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE.md)
-<!-- [![Codecov test coverage](https://codecov.io/gh/christianoswald/priogridR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/christianoswald/priogridR) -->
 <!-- badges: end -->
 
 `priogridR` provides a consistent interface for working with PRIO-GRID

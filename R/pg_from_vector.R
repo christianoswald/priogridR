@@ -5,11 +5,14 @@
 #' @param value Optional source value column.
 #' @param aggregation Geometry-specific aggregation rule.
 #' @param geometry Geometry type, or `"auto"`.
-#' @param time Optional static observation date or year.
-#' @param time_column Optional observation-date column.
+#' @param time Optional static observation date or year. It must fall within
+#'   the configured temporal intervals.
+#' @param time_column Optional observation-date column. All dates must be
+#'   non-missing and fall within the configured temporal intervals.
 #' @param group_columns Optional additional grouping columns.
-#' @param keep_empty For points, complete unobserved cells with zero when the
-#'   aggregation has a meaningful zero.
+#' @param keep_empty For points, complete structurally unobserved cells with
+#'   zero when the aggregation has a meaningful zero. Observed groups whose
+#'   source values are all missing remain missing.
 #' @param return One of `"data"`, `"raster"`, or `"result"`.
 #' @param config A PRIO-GRID configuration object.
 #' @param filename Optional output filename.
@@ -51,6 +54,7 @@ pg_from_vector <- function(
   if (!nrow(vector)) {
     stop("`x` contains no vector features.", call. = FALSE)
   }
+  validate_vector_input(vector)
   detected <- detect_geometry_type(vector)
   if (geometry == "auto") {
     geometry <- detected

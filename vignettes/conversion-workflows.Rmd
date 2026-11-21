@@ -72,3 +72,25 @@ Check the coordinate reference system before conversion, distinguish missing
 values from meaningful zeros, and choose an aggregation rule that matches the
 meaning of the source variable. In particular, totals generally require a
 different transfer rule from rates, proportions, or categories.
+
+## Missing values and structural zeros
+
+`priogridR` distinguishes a cell with no source observations from an observed
+group whose source values are all missing. With `keep_empty = TRUE`, an
+unobserved cell receives zero for point counts, presence indicators, and sums,
+because zero is meaningful for those aggregations. An observed group containing
+only missing source values remains `NA`; it is not silently converted to zero.
+
+Rows with missing values in an explicit `group_columns` variable are retained
+as a missing-value group. This prevents observations from disappearing during
+aggregation, but users should normally clean or explain missing group labels
+before analysis.
+
+## Temporal and geometry validation
+
+Dates supplied through `time` or `time_column` must fall within the intervals
+defined by the selected `pg_config`. Values outside that range produce an
+error instead of an undated output row. Vector inputs must have a declared CRS
+and non-empty, valid geometries. Repair invalid polygons explicitly—for example
+with `sf::st_make_valid()`—so that the analytical transformation remains
+visible in the research workflow.

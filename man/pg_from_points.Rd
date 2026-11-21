@@ -33,15 +33,19 @@ pg_from_points(
 
 \item{aggregation}{Point aggregation rule.}
 
-\item{time}{Optional static observation date or year.}
+\item{time}{Optional static observation date or year. It must fall within
+the configured temporal intervals.}
 
-\item{time_column}{Optional observation-date column.}
+\item{time_column}{Optional observation-date column. All dates must be
+non-missing and fall within the configured temporal intervals.}
 
 \item{group_columns}{Optional additional grouping columns.}
 
 \item{input_crs}{CRS of tabular coordinates.}
 
-\item{keep_empty}{Complete unobserved cells with zero when meaningful?}
+\item{keep_empty}{Complete structurally unobserved cells with zero when
+meaningful? Observed groups whose source values are all missing remain
+missing.}
 
 \item{return}{One of \code{"data"}, \code{"raster"}, or \code{"result"}.}
 

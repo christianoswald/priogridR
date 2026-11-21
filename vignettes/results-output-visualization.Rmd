@@ -82,6 +82,12 @@ utils::read.csv(csv_file)
 Use explicit overwrite permission in reproducible scripts when replacing an
 earlier output is intended.
 
+The filename extension determines which component is written. A tabular
+extension requires tabular data, while a raster extension requires a raster
+component; incompatible or unsupported extensions produce an error. Raster
+construction also requires a unique row for every cell-period combination, so
+duplicate keys should be resolved before requesting raster output.
+
 ```{r raster-output, eval=FALSE}
 pg_write_result(raster_result, "data/processed/variable.tif", overwrite = TRUE)
 ```

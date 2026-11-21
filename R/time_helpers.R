@@ -24,7 +24,12 @@ normalize_pg_time <- function(
     }
     return(result)
   }
-  result <- as.Date(time)
+  result <- tryCatch(
+    suppressWarnings(as.Date(time)),
+    error = function(error) {
+      as.Date(rep(NA_real_, length(time)), origin = "1970-01-01")
+    }
+  )
   if (anyNA(result)) {
     stop("`time` must contain Dates, date-like strings, or years.", call. = FALSE)
   }
@@ -35,7 +40,13 @@ map_dates_to_pg_intervals <- function(
   x,
   config = priogrid::pg_current_config()
 ) {
-  x <- as.Date(x)
+  original_length <- length(x)
+  x <- tryCatch(
+    suppressWarnings(as.Date(x)),
+    error = function(error) {
+      as.Date(rep(NA_real_, original_length), origin = "1970-01-01")
+    }
+  )
   if (anyNA(x)) {
     stop("The time column contains values that cannot be converted to Date.", call. = FALSE)
   }
@@ -61,7 +72,14 @@ add_measurement_date <- function(
   }
   if (!is.null(time_column)) {
     validate_columns(x, time_column)
-    x$measurement_date <- map_dates_to_pg_intervals(x[[time_column]], config)
+    measurement_date <- map_dates_to_pg_intervals(x[[time_column]], config)
+    if (anyNA(measurement_date)) {
+      stop(
+        "The time column contains dates outside the configured intervals.",
+        call. = FALSE
+      )
+    }
+    x$measurement_date <- measurement_date
     return(x)
   }
   if (!is.null(time)) {
@@ -69,7 +87,11 @@ add_measurement_date <- function(
       stop("For vector data, `time` must be a single date or year.", call. = FALSE)
     }
     date <- normalize_pg_time(time, 1L, config)
-    x$measurement_date <- map_dates_to_pg_intervals(date, config)[1L]
+    measurement_date <- map_dates_to_pg_intervals(date, config)[1L]
+    if (is.na(measurement_date)) {
+      stop("`time` falls outside the configured intervals.", call. = FALSE)
+    }
+    x$measurement_date <- measurement_date
   }
   x
 }

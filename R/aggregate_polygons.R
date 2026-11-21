@@ -26,6 +26,9 @@ aggregate_pg_polygons <- function(
   validate_geodesic_engine(grid)
   x$.feature_id <- seq_len(nrow(x))
   x$.source_area <- geometry_area_m2(x)
+  if (any(!is.finite(x$.source_area) | x$.source_area <= 0)) {
+    stop("Polygon inputs must have finite, positive area.", call. = FALSE)
+  }
   grid$.cell_area <- geometry_area_m2(grid)
   keep <- unique(c(
     value, "measurement_date", group_columns, ".feature_id", ".source_area"
@@ -36,9 +39,27 @@ aggregate_pg_polygons <- function(
     x[keep]
   ))
   if (!nrow(intersections)) {
-    return(empty_pg_data(variable, !is.null(time) || !is.null(time_column), group_columns))
+    return(empty_pg_data(
+      variable,
+      !is.null(time) || !is.null(time_column),
+      group_columns,
+      prototype = x
+    ))
   }
   intersections$.overlap_area <- geometry_area_m2(intersections)
+  intersections <- intersections[
+    is.finite(intersections$.overlap_area) & intersections$.overlap_area > 0,
+    ,
+    drop = FALSE
+  ]
+  if (!nrow(intersections)) {
+    return(empty_pg_data(
+      variable,
+      !is.null(time) || !is.null(time_column),
+      group_columns,
+      prototype = x
+    ))
+  }
   data <- sf::st_drop_geometry(intersections)
   grouping <- c(
     "pgid",
@@ -65,17 +86,18 @@ aggregate_pg_polygons <- function(
       ),
       count = length(unique(data$.feature_id[index])),
       presence = 1,
-      sum = sum(values, na.rm = TRUE),
+      sum = if (all(is.na(values))) NA_real_ else sum(values, na.rm = TRUE),
       mean = if (all(is.na(values))) NA_real_ else mean(values, na.rm = TRUE),
       weighted_mean = if (all(is.na(values))) {
         NA_real_
       } else {
         stats::weighted.mean(values, w = area, na.rm = TRUE)
       },
-      weighted_sum = sum(
-        values * (area / data$.source_area[index]),
-        na.rm = TRUE
-      ),
+      weighted_sum = if (all(is.na(values))) {
+        NA_real_
+      } else {
+        sum(values * (area / data$.source_area[index]), na.rm = TRUE)
+      },
       min = if (all(is.na(values))) NA_real_ else min(values, na.rm = TRUE),
       max = if (all(is.na(values))) NA_real_ else max(values, na.rm = TRUE),
       modal = if (all(is.na(values))) {

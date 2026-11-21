@@ -6,7 +6,13 @@ group_rows <- function(x, group_columns) {
     return(list(seq_len(nrow(x))))
   }
   key_parts <- lapply(x[group_columns], function(value) {
-    if (inherits(value, "Date")) format(value, "%Y-%m-%d") else as.character(value)
+    if (inherits(value, "Date")) {
+      value <- format(value, "%Y-%m-%d")
+    }
+    if (inherits(value, "POSIXt")) {
+      value <- format(value, "%Y-%m-%d %H:%M:%OS", tz = "UTC")
+    }
+    addNA(factor(value, exclude = NULL), ifany = TRUE)
   })
   key <- do.call(
     interaction,
@@ -39,13 +45,22 @@ geometry_length_m <- function(x) {
   as.numeric(units::set_units(sf::st_length(x), "m"))
 }
 
-empty_pg_data <- function(variable, temporal = FALSE, group_columns = NULL) {
+empty_pg_data <- function(
+  variable,
+  temporal = FALSE,
+  group_columns = NULL,
+  prototype = NULL
+) {
   result <- data.frame(pgid = integer())
   if (temporal) {
     result$measurement_date <- as.Date(character())
   }
   for (column in group_columns) {
-    result[[column]] <- character()
+    result[[column]] <- if (!is.null(prototype) && column %in% names(prototype)) {
+      prototype[[column]][0L]
+    } else {
+      character()
+    }
   }
   result[[variable]] <- numeric()
   result
@@ -73,7 +88,7 @@ summarise_point_groups <- function(
       aggregation,
       count = length(index),
       presence = 1,
-      sum = sum(values, na.rm = TRUE),
+      sum = if (all(is.na(values))) NA_real_ else sum(values, na.rm = TRUE),
       mean = if (all(is.na(values))) NA_real_ else mean(values, na.rm = TRUE),
       min = if (all(is.na(values))) NA_real_ else min(values, na.rm = TRUE),
       max = if (all(is.na(values))) NA_real_ else max(values, na.rm = TRUE)
@@ -92,14 +107,18 @@ fill_empty_pg_cells <- function(data, variable, aggregation, config) {
   }
   pgids <- terra::values(pg_blank(config), mat = FALSE)
   pgids <- pgids[!is.na(pgids)]
+  data$.pg_observed <- TRUE
   if (!"measurement_date" %in% names(data)) {
     full <- data.frame(pgid = pgids)
     result <- merge(full, data, by = "pgid", all.x = TRUE, sort = FALSE)
-    result[[variable]][is.na(result[[variable]])] <- 0
+    structurally_empty <- is.na(result$.pg_observed)
+    result[[variable]][structurally_empty] <- 0
+    result$.pg_observed <- NULL
     return(result)
   }
   dates <- sort(unique(data$measurement_date))
   if (!length(dates)) {
+    data$.pg_observed <- NULL
     return(data)
   }
   full <- expand.grid(
@@ -115,7 +134,9 @@ fill_empty_pg_cells <- function(data, variable, aggregation, config) {
     all.x = TRUE,
     sort = FALSE
   )
-  result[[variable]][is.na(result[[variable]])] <- 0
+  structurally_empty <- is.na(result$.pg_observed)
+  result[[variable]][structurally_empty] <- 0
+  result$.pg_observed <- NULL
   result
 }
 
@@ -125,6 +146,16 @@ pg_data_to_raster <- function(
   config = priogrid::pg_current_config()
 ) {
   validate_columns(data, c("pgid", variable))
+  key_columns <- c(
+    "pgid",
+    if ("measurement_date" %in% names(data)) "measurement_date"
+  )
+  if (anyDuplicated(data[key_columns])) {
+    stop(
+      "Cannot construct a raster from duplicate PRIO-GRID cell-period keys.",
+      call. = FALSE
+    )
+  }
   template <- pg_blank(config)
   pgid_values <- terra::values(template, mat = FALSE)
   if (!"measurement_date" %in% names(data)) {

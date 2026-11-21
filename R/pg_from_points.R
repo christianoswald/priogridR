@@ -5,11 +5,15 @@
 #' @param longitude,latitude Coordinate-column names for tabular input.
 #' @param value Optional source value column.
 #' @param aggregation Point aggregation rule.
-#' @param time Optional static observation date or year.
-#' @param time_column Optional observation-date column.
+#' @param time Optional static observation date or year. It must fall within
+#'   the configured temporal intervals.
+#' @param time_column Optional observation-date column. All dates must be
+#'   non-missing and fall within the configured temporal intervals.
 #' @param group_columns Optional additional grouping columns.
 #' @param input_crs CRS of tabular coordinates.
-#' @param keep_empty Complete unobserved cells with zero when meaningful?
+#' @param keep_empty Complete structurally unobserved cells with zero when
+#'   meaningful? Observed groups whose source values are all missing remain
+#'   missing.
 #' @param return One of `"data"`, `"raster"`, or `"result"`.
 #' @param config A PRIO-GRID configuration object.
 #' @param filename Optional output filename.
