@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,23 @@
       <small>Source: <a href="https://github.com/christianoswald/priogridR/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.8.1" id="priogridr-081">priogridR 0.8.1<a class="anchor" aria-label="anchor" href="#priogridr-081"></a></h2>
+<div class="section level3">
+<h3 id="reliability-and-validation-0-8-1">Reliability and validation<a class="anchor" aria-label="anchor" href="#reliability-and-validation-0-8-1"></a></h3>
+<ul><li>Distinguished structurally empty cells from observed groups whose source values are all missing: meaningful empty counts and sums remain zero, while all-missing observed groups now return <code>NA</code>.</li>
+<li>Retained missing values in explicit grouping columns instead of silently dropping those observations.</li>
+<li>Added validation for missing coordinate reference systems, empty or invalid vector geometries, zero-area polygons, duplicate cell-period raster keys, and dates outside the configured PRIO-GRID intervals.</li>
+<li>Converted malformed character dates into clear package validation errors instead of exposing platform-dependent base R <code>charToDate()</code> failures.</li>
+<li>Preserved group-column types in empty conversion results and ignored zero-area polygon intersections.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="tests-and-documentation-0-8-1">Tests and documentation<a class="anchor" aria-label="anchor" href="#tests-and-documentation-0-8-1"></a></h3>
+<ul><li>Expanded tests for time normalization and interval boundaries, input readers, grouping and missing-value semantics, output paths, structured results, table and raster writers, geometry validation, and raster construction.</li>
+<li>Expanded the conversion and output vignettes with explicit missing-value, temporal-boundary, CRS, and output-format guidance.</li>
+<li>Added the reproducible <code>priogridR</code> hex sticker and removed the external Codecov workflow and badge while retaining the full test suite in R CMD check.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.0" id="priogridr-080">priogridR 0.8.0<a class="anchor" aria-label="anchor" href="#priogridr-080"></a></h2>
 <div class="section level3">

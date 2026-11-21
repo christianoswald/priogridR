@@ -48,11 +48,13 @@ pg_from_points(
 
 - time:
 
-  Optional static observation date or year.
+  Optional static observation date or year. It must fall within the
+  configured temporal intervals.
 
 - time_column:
 
-  Optional observation-date column.
+  Optional observation-date column. All dates must be non-missing and
+  fall within the configured temporal intervals.
 
 - group_columns:
 
@@ -64,7 +66,8 @@ pg_from_points(
 
 - keep_empty:
 
-  Complete unobserved cells with zero when meaningful?
+  Complete structurally unobserved cells with zero when meaningful?
+  Observed groups whose source values are all missing remain missing.
 
 - return:
 

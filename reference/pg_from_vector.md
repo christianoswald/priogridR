@@ -46,11 +46,13 @@ pg_from_vector(
 
 - time:
 
-  Optional static observation date or year.
+  Optional static observation date or year. It must fall within the
+  configured temporal intervals.
 
 - time_column:
 
-  Optional observation-date column.
+  Optional observation-date column. All dates must be non-missing and
+  fall within the configured temporal intervals.
 
 - group_columns:
 
@@ -58,8 +60,9 @@ pg_from_vector(
 
 - keep_empty:
 
-  For points, complete unobserved cells with zero when the aggregation
-  has a meaningful zero.
+  For points, complete structurally unobserved cells with zero when the
+  aggregation has a meaningful zero. Observed groups whose source values
+  are all missing remain missing.
 
 - return:
 

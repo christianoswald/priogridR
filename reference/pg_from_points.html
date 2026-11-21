@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,11 +95,13 @@
 
 
 <dt id="arg-time">time<a class="anchor" aria-label="anchor" href="#arg-time"></a></dt>
-<dd><p>Optional static observation date or year.</p></dd>
+<dd><p>Optional static observation date or year. It must fall within
+the configured temporal intervals.</p></dd>
 
 
 <dt id="arg-time-column">time_column<a class="anchor" aria-label="anchor" href="#arg-time-column"></a></dt>
-<dd><p>Optional observation-date column.</p></dd>
+<dd><p>Optional observation-date column. All dates must be
+non-missing and fall within the configured temporal intervals.</p></dd>
 
 
 <dt id="arg-group-columns">group_columns<a class="anchor" aria-label="anchor" href="#arg-group-columns"></a></dt>
@@ -111,7 +113,9 @@
 
 
 <dt id="arg-keep-empty">keep_empty<a class="anchor" aria-label="anchor" href="#arg-keep-empty"></a></dt>
-<dd><p>Complete unobserved cells with zero when meaningful?</p></dd>
+<dd><p>Complete structurally unobserved cells with zero when
+meaningful? Observed groups whose source values are all missing remain
+missing.</p></dd>
 
 
 <dt id="arg-return">return<a class="anchor" aria-label="anchor" href="#arg-return"></a></dt>

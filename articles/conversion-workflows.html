@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -172,6 +172,32 @@ missing values from meaningful zeros, and choose an aggregation rule
 that matches the meaning of the source variable. In particular, totals
 generally require a different transfer rule from rates, proportions, or
 categories.</p>
+</div>
+<div class="section level2">
+<h2 id="missing-values-and-structural-zeros">Missing values and structural zeros<a class="anchor" aria-label="anchor" href="#missing-values-and-structural-zeros"></a>
+</h2>
+<p><code>priogridR</code> distinguishes a cell with no source
+observations from an observed group whose source values are all missing.
+With <code>keep_empty = TRUE</code>, an unobserved cell receives zero
+for point counts, presence indicators, and sums, because zero is
+meaningful for those aggregations. An observed group containing only
+missing source values remains <code>NA</code>; it is not silently
+converted to zero.</p>
+<p>Rows with missing values in an explicit <code>group_columns</code>
+variable are retained as a missing-value group. This prevents
+observations from disappearing during aggregation, but users should
+normally clean or explain missing group labels before analysis.</p>
+</div>
+<div class="section level2">
+<h2 id="temporal-and-geometry-validation">Temporal and geometry validation<a class="anchor" aria-label="anchor" href="#temporal-and-geometry-validation"></a>
+</h2>
+<p>Dates supplied through <code>time</code> or <code>time_column</code>
+must fall within the intervals defined by the selected
+<code>pg_config</code>. Values outside that range produce an error
+instead of an undated output row. Vector inputs must have a declared CRS
+and non-empty, valid geometries. Repair invalid polygons explicitly—for
+example with <code><a href="https://r-spatial.github.io/sf/reference/valid.html" class="external-link">sf::st_make_valid()</a></code>—so that the analytical
+transformation remains visible in the research workflow.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

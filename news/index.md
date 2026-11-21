@@ -1,5 +1,35 @@
 # Changelog
 
+## priogridR 0.8.1
+
+### Reliability and validation
+
+- Distinguished structurally empty cells from observed groups whose
+  source values are all missing: meaningful empty counts and sums remain
+  zero, while all-missing observed groups now return `NA`.
+- Retained missing values in explicit grouping columns instead of
+  silently dropping those observations.
+- Added validation for missing coordinate reference systems, empty or
+  invalid vector geometries, zero-area polygons, duplicate cell-period
+  raster keys, and dates outside the configured PRIO-GRID intervals.
+- Converted malformed character dates into clear package validation
+  errors instead of exposing platform-dependent base R `charToDate()`
+  failures.
+- Preserved group-column types in empty conversion results and ignored
+  zero-area polygon intersections.
+
+### Tests and documentation
+
+- Expanded tests for time normalization and interval boundaries, input
+  readers, grouping and missing-value semantics, output paths,
+  structured results, table and raster writers, geometry validation, and
+  raster construction.
+- Expanded the conversion and output vignettes with explicit
+  missing-value, temporal-boundary, CRS, and output-format guidance.
+- Added the reproducible `priogridR` hex sticker and removed the
+  external Codecov workflow and badge while retaining the full test
+  suite in R CMD check.
+
 ## priogridR 0.8.0
 
 ### New functionality

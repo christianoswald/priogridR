@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,16 +91,16 @@ temporary data paths without changing the working directory.</p>
 <span><span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pg_paths.html">pg_paths</a></span><span class="op">(</span><span class="va">project_root</span>, create <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">paths</span></span>
 <span><span class="co">#&gt; $root</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpZPvEjc/priogridR-vignette-project"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp6XSTkJ/priogridR-vignette-project"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $raw</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpZPvEjc/priogridR-vignette-project/data/raw"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp6XSTkJ/priogridR-vignette-project/data/raw"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $processed</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpZPvEjc/priogridR-vignette-project/data/processed"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp6XSTkJ/priogridR-vignette-project/data/processed"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $temporary</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpZPvEjc/priogridR-vignette-project/data/temp"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp6XSTkJ/priogridR-vignette-project/data/temp"</span></span></code></pre></div>
 <p>The returned list can be passed directly to <code><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path()</a></code>
 when creating input or output filenames.</p>
 </div>
@@ -159,6 +159,12 @@ Rasters support TIFF and VRT.</p>
 <span><span class="co">#&gt; 3  525           1</span></span></code></pre></div>
 <p>Use explicit overwrite permission in reproducible scripts when
 replacing an earlier output is intended.</p>
+<p>The filename extension determines which component is written. A
+tabular extension requires tabular data, while a raster extension
+requires a raster component; incompatible or unsupported extensions
+produce an error. Raster construction also requires a unique row for
+every cell-period combination, so duplicate keys should be resolved
+before requesting raster output.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pg_write_result.html">pg_write_result</a></span><span class="op">(</span><span class="va">raster_result</span>, <span class="st">"data/processed/variable.tif"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
