@@ -16,6 +16,7 @@
 <url><loc>https://christianoswald.github.io/priogridR/articles/pg_from_raster.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/pg_from_table.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/pg_from_vector.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/articles/reproducible-workflows.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/results-output-visualization.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/spatial-context.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/articles/temporal-utilities.html</loc></url>
@@ -26,13 +27,18 @@
 <url><loc>https://christianoswald.github.io/priogridR/reference/index.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_aggregate.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_area_weight.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_assert_compatible.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_bind.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_buffer_summary.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_change_resolution.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_compare.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_compare_resolutions.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_complete_panel.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_coords_from_id.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_coverage.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_create_indices.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_crosswalk.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_describe.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_distance.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_from_netcdf.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_from_points.html</loc></url>
@@ -42,6 +48,8 @@
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_geometry.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_id_from_coords.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_join.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_metadata.html</loc></url>
+<url><loc>https://christianoswald.github.io/priogridR/reference/pg_missingness.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_nearest.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_neighbor_table.html</loc></url>
 <url><loc>https://christianoswald.github.io/priogridR/reference/pg_neighbors.html</loc></url>

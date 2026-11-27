@@ -38,6 +38,9 @@
   Construct spatial crosswalks, transfer totals and rates, aggregate to
   countries, and compare grid resolutions.
 
+- [Reproducible PRIO-GRID
+  workflows](https://christianoswald.github.io/priogridR/articles/reproducible-workflows.md):
+
 - [Results, output, and
   visualization](https://christianoswald.github.io/priogridR/articles/results-output-visualization.md):
 

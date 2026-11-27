@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +24,7 @@
     <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="articles/cross-level-workflows.html">Aggregation and cross-level workflows</a></li>
+    <li><a class="dropdown-item" href="articles/reproducible-workflows.html">Reproducible PRIO-GRID workflows</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -41,12 +42,12 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="logo.svg" class="logo" alt=""><h1>priogridR function inventory</h1>
-      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/v0.8.1/FUNCTIONS.md" class="external-link"><code>FUNCTIONS.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/christianoswald/priogridR/blob/main/FUNCTIONS.md" class="external-link"><code>FUNCTIONS.md</code></a></small>
     </div>
 
 <div id="priogridr-function-inventory" class="section level1">
 
-<p>This inventory describes the functions in priogridR 0.8.1. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
+<p>This inventory describes the functions in priogridR 0.9.0. All exported package functions begin with <code>pg_</code>. The two exported S3 methods retain the names required by R’s method dispatch system.</p>
 <div class="section level2">
 <h2 id="public-api">Public API<a class="anchor" aria-label="anchor" href="#public-api"></a></h2>
 <table class="table"><colgroup><col width="25%"><col width="25%"><col width="25%"><col width="25%"></colgroup><thead><tr><th>Function</th>
@@ -130,6 +131,36 @@
 <td>Compare aligned representations at a common resolution.</td>
 <td>Summary diagnostics or cell-level differences.</td>
 <td>Core diagnostic for coverage, bias, error, and correlation.</td>
+</tr><tr><td><code><a href="reference/pg_metadata.html">pg_metadata()</a></code></td>
+<td>Inspect standardized grid, time, variable, transformation, and provenance metadata.</td>
+<td>Structured <code>pg_metadata</code> list.</td>
+<td>Reproducibility foundation; unavailable information is reported as unavailable rather than inferred.</td>
+</tr><tr><td><code><a href="reference/pg_describe.html">pg_describe()</a></code></td>
+<td>Summarize rows, cells, periods, variables, duplicate keys, balance, validation, and missingness.</td>
+<td>
+<code>pg_description</code> object.</td>
+<td>Compact data-quality overview without materializing a full panel.</td>
+</tr><tr><td><code><a href="reference/pg_coverage.html">pg_coverage()</a></code></td>
+<td>Compare observed keys with explicit reference cells and periods.</td>
+<td>Tidy coverage summary.</td>
+<td>Keeps structural absence, observed missingness, and out-of-reference keys separate.</td>
+</tr><tr><td><code><a href="reference/pg_missingness.html">pg_missingness()</a></code></td>
+<td>Summarize missing values among observed rows.</td>
+<td>Tidy missingness summary.</td>
+<td>Complements coverage without treating absent rows as <code>NA</code>.</td>
+</tr><tr><td><code><a href="reference/pg_assert_compatible.html">pg_assert_compatible()</a></code></td>
+<td>Check grid, CRS, temporal, and key compatibility across objects.</td>
+<td>Invisible compatibility report or actionable error.</td>
+<td>Shared safeguard for combination and comparison workflows.</td>
+</tr><tr><td><code><a href="reference/pg_bind.html">pg_bind()</a></code></td>
+<td>Combine compatible datasets across rows or variables.</td>
+<td>Data frame with operation metadata.</td>
+<td>Conservative defaults reject duplicate keys, many-to-many matches, and conflicting values.</td>
+</tr><tr><td><code><a href="reference/pg_compare.html">pg_compare()</a></code></td>
+<td>Compare configurations, keys, missingness, types, and values.</td>
+<td>
+<code>pg_comparison</code> object.</td>
+<td>General dataset comparison distinct from resolution-specific diagnostics.</td>
 </tr><tr><td><code><a href="reference/pg_distance.html">pg_distance()</a></code></td>
 <td>Calculate paired or all-combination great-circle distances between cell centres.</td>
 <td>Data frame of cell pairs and kilometres.</td>
@@ -207,6 +238,15 @@
 </tr><tr><td><code><a href="reference/pg_validate_data.html">print.pg_validation()</a></code></td>
 <td>Print a compact validation status and issue table.</td>
 <td>Keep. The name follows R’s required S3 convention.</td>
+</tr><tr><td><code><a href="reference/pg_metadata.html">print.pg_metadata()</a></code></td>
+<td>Print a compact metadata summary.</td>
+<td>Keep. Standard S3 method for the new metadata schema.</td>
+</tr><tr><td><code><a href="reference/pg_describe.html">print.pg_description()</a></code></td>
+<td>Print a concise structural diagnostic.</td>
+<td>Keep. Standard S3 method for interactive inspection.</td>
+</tr><tr><td><code><a href="reference/pg_compare.html">print.pg_comparison()</a></code></td>
+<td>Print a concise dataset comparison.</td>
+<td>Keep. Standard S3 method while retaining detailed component tables.</td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="internal-conversion-and-aggregation-functions">Internal conversion and aggregation functions<a class="anchor" aria-label="anchor" href="#internal-conversion-and-aggregation-functions"></a></h2>
@@ -343,6 +383,20 @@
 <td>Split rows by cross-level aggregation keys.</td>
 </tr><tr><td><code>safe_correlation()</code></td>
 <td>Calculate correlation only when sufficient variation is available.</td>
+</tr><tr><td><code>pg_data_component()</code></td>
+<td>Extract and validate the tabular component of supported objects.</td>
+</tr><tr><td><code>pg_grid_metadata()</code></td>
+<td>Describe a configured grid without storing machine-specific paths.</td>
+</tr><tr><td><code>pg_time_metadata()</code></td>
+<td>Describe a temporal column and deterministic spacing.</td>
+</tr><tr><td><code>pg_selected_variables()</code></td>
+<td>Validate or infer measurement columns.</td>
+</tr><tr><td>
+<code>pg_key_frame()</code> and <code>pg_key_string()</code>
+</td>
+<td>Validate and compare explicit dataset keys.</td>
+</tr><tr><td><code>pg_typed_na()</code></td>
+<td>Create type-preserving missing columns during row binding.</td>
 </tr></tbody></table></div>
 <div class="section level2">
 <h2 id="test-only-helper">Test-only helper<a class="anchor" aria-label="anchor" href="#test-only-helper"></a></h2>

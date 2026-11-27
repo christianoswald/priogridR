@@ -48,6 +48,26 @@
 - [`pg_join()`](https://christianoswald.github.io/priogridR/reference/pg_join.md)
   : Safely join PRIO-GRID data
 
+## Metadata, diagnostics, and reproducibility
+
+- [`pg_metadata()`](https://christianoswald.github.io/priogridR/reference/pg_metadata.md)
+  [`print(`*`<pg_metadata>`*`)`](https://christianoswald.github.io/priogridR/reference/pg_metadata.md)
+  : Inspect PRIO-GRID metadata
+- [`pg_describe()`](https://christianoswald.github.io/priogridR/reference/pg_describe.md)
+  [`print(`*`<pg_description>`*`)`](https://christianoswald.github.io/priogridR/reference/pg_describe.md)
+  : Describe a PRIO-GRID dataset
+- [`pg_coverage()`](https://christianoswald.github.io/priogridR/reference/pg_coverage.md)
+  : Calculate PRIO-GRID coverage
+- [`pg_missingness()`](https://christianoswald.github.io/priogridR/reference/pg_missingness.md)
+  : Summarize observed missing values
+- [`pg_assert_compatible()`](https://christianoswald.github.io/priogridR/reference/pg_assert_compatible.md)
+  : Assert compatibility of PRIO-GRID objects
+- [`pg_bind()`](https://christianoswald.github.io/priogridR/reference/pg_bind.md)
+  : Bind compatible PRIO-GRID datasets
+- [`pg_compare()`](https://christianoswald.github.io/priogridR/reference/pg_compare.md)
+  [`print(`*`<pg_comparison>`*`)`](https://christianoswald.github.io/priogridR/reference/pg_compare.md)
+  : Compare PRIO-GRID datasets
+
 ## Temporal utilities
 
 - [`pg_temporal_lag()`](https://christianoswald.github.io/priogridR/reference/pg_temporal_lag.md)

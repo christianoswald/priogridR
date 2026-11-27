@@ -10,8 +10,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Functions for Working with PRIO-GRID Data">
-<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
-<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta name="description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, metadata, coverage and missingness diagnostics, compatibility checks, safe dataset combination, comparison, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
+<meta property="og:description" content="Convenience functions for working with PRIO-GRID data, including coordinate and cell conversion, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, metadata, coverage and missingness diagnostics, compatibility checks, safe dataset combination, comparison, panel validation and completion, safe joins, plotting, and conversion of raster, vector, point-event, NetCDF, and geographically indexed tabular data to configurable PRIO-GRID formats.">
 <meta property="og:image" content="https://christianoswald.github.io/priogridR/logo.svg">
 </head>
 <body>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">priogridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,7 @@
     <li><a class="dropdown-item" href="articles/spatial-context.html">Spatial context</a></li>
     <li><a class="dropdown-item" href="articles/temporal-utilities.html">Temporal utilities for PRIO-GRID panels</a></li>
     <li><a class="dropdown-item" href="articles/cross-level-workflows.html">Aggregation and cross-level workflows</a></li>
+    <li><a class="dropdown-item" href="articles/reproducible-workflows.html">Reproducible PRIO-GRID workflows</a></li>
     <li><a class="dropdown-item" href="articles/results-output-visualization.html">Results, output, and visualization</a></li>
     <li><a class="dropdown-item" href="articles/conversion-workflows.html">Choosing a PRIO-GRID conversion workflow</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -69,7 +70,7 @@
 </div>
 <!-- badges: start -->
 
-<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, panel validation and completion, safe joins, and rapid mapping.</p>
+<p><code>priogridR</code> provides a consistent interface for working with PRIO-GRID data. It combines grid utilities with general converters that transfer raster, vector, point-event, NetCDF, and geographically indexed tabular data to a configurable PRIO-GRID. It also supports coordinate lookup, geometry creation, spatial neighborhoods, weights, spatial and temporal lags, rolling summaries, temporal changes, event timing, distances, buffer summaries, spatial crosswalks, area-weighted aggregation, resolution changes, metadata, coverage and missingness diagnostics, compatibility checks, safe dataset combination and comparison, panel validation and completion, safe joins, and rapid mapping.</p>
 <p>The package builds on the official <a href="https://prio-data.github.io/priogrid/" class="external-link"><code>priogrid</code></a> package for grid definitions and raster transformations.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -129,6 +130,16 @@
 <li>
 <code><a href="reference/pg_compare_resolutions.html">pg_compare_resolutions()</a></code> reports differences, coverage, and agreement.</li>
 <li>
+<code><a href="reference/pg_metadata.html">pg_metadata()</a></code> and <code><a href="reference/pg_describe.html">pg_describe()</a></code> inspect provenance and data structure.</li>
+<li>
+<code><a href="reference/pg_coverage.html">pg_coverage()</a></code> and <code><a href="reference/pg_missingness.html">pg_missingness()</a></code> keep structural absence separate from missing values in observed rows.</li>
+<li>
+<code><a href="reference/pg_assert_compatible.html">pg_assert_compatible()</a></code> checks whether datasets can be safely combined.</li>
+<li>
+<code><a href="reference/pg_bind.html">pg_bind()</a></code> combines compatible datasets across rows or variables.</li>
+<li>
+<code><a href="reference/pg_compare.html">pg_compare()</a></code> compares keys, coverage, missingness, types, and values.</li>
+<li>
 <code><a href="reference/pg_distance.html">pg_distance()</a></code>, <code><a href="reference/pg_buffer_summary.html">pg_buffer_summary()</a></code>, and <code><a href="reference/pg_nearest.html">pg_nearest()</a></code> support common spatial-context workflows.</li>
 <li>
 <code><a href="reference/pg_validate_data.html">pg_validate_data()</a></code> checks cell and panel structure.</li>
@@ -185,6 +196,31 @@
 <span><span class="op">)</span></span></code></pre></div>
 <p>See <code><a href="articles/getting-started.html">vignette("getting-started", package = "priogridR")</a></code> and <code><a href="articles/conversion-workflows.html">vignette("conversion-workflows", package = "priogridR")</a></code> for an introduction and a guide to choosing a converter. The package website also provides a focused article for every <code>pg_from_*()</code> function.</p>
 <p>Cross-level workflows deliberately require researchers to identify variables as extensive totals or intensive rates. Country aggregation also requires explicitly supplied boundaries, keeping the territorial definition and date visible in the analysis. See <code><a href="articles/cross-level-workflows.html">vignette("cross-level-workflows", package = "priogridR")</a></code>.</p>
+<p>The reproducibility tools can be used as a compact quality-control sequence:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">priogrid</span><span class="fu">::</span><span class="fu"><a href="http://prio-data.github.io/priogrid/reference/pg_config.html" class="external-link">pg_config</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">3</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  pgid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="fl">2020</span>, <span class="fl">2021</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/pg_describe.html">pg_describe</a></span><span class="op">(</span><span class="va">x</span>, time <span class="op">=</span> <span class="st">"year"</span>, config <span class="op">=</span> <span class="va">config</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="do">## &lt;pg_description&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="do">##   Rows: 3; cells: 2; periods: 2</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="do">##   Variables: 1; duplicate keys: 0</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="do">##   Balanced over observed domain: no</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/pg_coverage.html">pg_coverage</a></span><span class="op">(</span><span class="va">x</span>, time <span class="op">=</span> <span class="st">"year"</span>, config <span class="op">=</span> <span class="va">config</span>, reference_time <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="do">##   n_expected n_present n_structurally_absent n_outside_reference</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="do">## 1         12         3                     9                   0</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="do">##   n_observed_missing coverage_share</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="do">## 1                  1           0.25</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/pg_missingness.html">pg_missingness</a></span><span class="op">(</span><span class="va">x</span>, variables <span class="op">=</span> <span class="st">"value"</span>, time <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="do">##   variable n_observed n_missing n_non_missing missing_share</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="do">## 1    value          3         1             2     0.3333333</span></span></code></pre></div>
+<p>See <code><a href="articles/reproducible-workflows.html">vignette("reproducible-workflows", package = "priogridR")</a></code> for an end-to-end workflow covering metadata, diagnostics, compatibility, safe combination, comparison, and export.</p>
 </div>
 <div class="section level2">
 <h2 id="package-direction">Package direction<a class="anchor" aria-label="anchor" href="#package-direction"></a>

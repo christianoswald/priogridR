@@ -1,5 +1,51 @@
 # Changelog
 
+## priogridR 0.9.0
+
+### Metadata and diagnostics
+
+- Added
+  [`pg_metadata()`](https://christianoswald.github.io/priogridR/reference/pg_metadata.md)
+  with a stable schema for grid, temporal, variable, transformation, and
+  provenance information.
+- Added
+  [`pg_describe()`](https://christianoswald.github.io/priogridR/reference/pg_describe.md)
+  for concise dataset structure, key, balance, and missingness
+  diagnostics.
+- Added
+  [`pg_coverage()`](https://christianoswald.github.io/priogridR/reference/pg_coverage.md)
+  to distinguish present observations, observed missing values,
+  structurally absent cell-periods, and keys outside a reference.
+- Added
+  [`pg_missingness()`](https://christianoswald.github.io/priogridR/reference/pg_missingness.md)
+  for variable-, cell-, time-, and group-level summaries among observed
+  rows.
+
+### Safe combination and comparison
+
+- Added
+  [`pg_assert_compatible()`](https://christianoswald.github.io/priogridR/reference/pg_assert_compatible.md)
+  for grid, CRS, temporal, key-type, and duplicate-key checks across
+  objects.
+- Added
+  [`pg_bind()`](https://christianoswald.github.io/priogridR/reference/pg_bind.md)
+  for conservative row-wise and variable-wise combination of compatible
+  PRIO-GRID data.
+- Added
+  [`pg_compare()`](https://christianoswald.github.io/priogridR/reference/pg_compare.md)
+  for configuration, key, missingness, type, and value comparisons with
+  explicit numeric tolerance.
+
+### Documentation and quality
+
+- Added an end-to-end reproducible-workflows vignette connecting
+  conversion, metadata, diagnostics, compatibility checks, combination,
+  comparison, and export.
+- Added focused tests for empty, missing, duplicated, incompatible,
+  partially covered, and conflicting inputs.
+- Updated the function inventory, pkgdown navigation, README, citations,
+  and JOSS paper draft for the new reproducibility layer.
+
 ## priogridR 0.8.1
 
 ### Reliability and validation
