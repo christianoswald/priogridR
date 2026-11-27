@@ -25,6 +25,15 @@ reference:
       - pg_validate_data
       - pg_complete_panel
       - pg_join
+  - title: Metadata, diagnostics, and reproducibility
+    contents:
+      - pg_metadata
+      - pg_describe
+      - pg_coverage
+      - pg_missingness
+      - pg_assert_compatible
+      - pg_bind
+      - pg_compare
   - title: Temporal utilities
     contents:
       - pg_temporal_lag
@@ -60,6 +69,7 @@ articles:
       - spatial-context
       - temporal-utilities
       - cross-level-workflows
+      - reproducible-workflows
       - results-output-visualization
       - conversion-workflows
   - title: Conversion guides

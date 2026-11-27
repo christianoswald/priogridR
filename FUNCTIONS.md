@@ -1,6 +1,6 @@
 # priogridR function inventory
 
-This inventory describes the functions in priogridR 0.8.1. All exported
+This inventory describes the functions in priogridR 0.9.0. All exported
 package functions begin with
 `pg_`. The two exported S3 methods retain the names required by R's method
 dispatch system.
@@ -28,6 +28,13 @@ dispatch system.
 | `pg_to_country()` | Aggregate cells to user-supplied country boundaries. | Country-level data, optionally with its crosswalk. | Convenience wrapper that avoids bundling a politically contingent boundary dataset. |
 | `pg_change_resolution()` | Transfer cell values between configured grid resolutions. | Data frame on the target grid, optionally with its crosswalk. | Core resolution-sensitivity helper with explicit variable semantics. |
 | `pg_compare_resolutions()` | Compare aligned representations at a common resolution. | Summary diagnostics or cell-level differences. | Core diagnostic for coverage, bias, error, and correlation. |
+| `pg_metadata()` | Inspect standardized grid, time, variable, transformation, and provenance metadata. | Structured `pg_metadata` list. | Reproducibility foundation; unavailable information is reported as unavailable rather than inferred. |
+| `pg_describe()` | Summarize rows, cells, periods, variables, duplicate keys, balance, validation, and missingness. | `pg_description` object. | Compact data-quality overview without materializing a full panel. |
+| `pg_coverage()` | Compare observed keys with explicit reference cells and periods. | Tidy coverage summary. | Keeps structural absence, observed missingness, and out-of-reference keys separate. |
+| `pg_missingness()` | Summarize missing values among observed rows. | Tidy missingness summary. | Complements coverage without treating absent rows as `NA`. |
+| `pg_assert_compatible()` | Check grid, CRS, temporal, and key compatibility across objects. | Invisible compatibility report or actionable error. | Shared safeguard for combination and comparison workflows. |
+| `pg_bind()` | Combine compatible datasets across rows or variables. | Data frame with operation metadata. | Conservative defaults reject duplicate keys, many-to-many matches, and conflicting values. |
+| `pg_compare()` | Compare configurations, keys, missingness, types, and values. | `pg_comparison` object. | General dataset comparison distinct from resolution-specific diagnostics. |
 | `pg_distance()` | Calculate paired or all-combination great-circle distances between cell centres. | Data frame of cell pairs and kilometres. | Keep as a transparent distance primitive. |
 | `pg_buffer_summary()` | Summarize cell values within a centre-to-centre distance radius. | Input data with an appended summary column. | Core convenience function with explicit time grouping and self inclusion. |
 | `pg_nearest()` | Identify the nearest candidate cells to each source cell. | Ranked data frame with distances. | Keep as a deterministic nearest-cell helper. |
@@ -51,6 +58,9 @@ dispatch system.
 | `print.pg_result()` | Print a compact summary of a conversion result. | Keep. The name must follow R's `generic.class` S3 convention. |
 | `as.data.frame.pg_result()` | Extract the tabular component of a conversion result. | Keep. The name must follow R's `generic.class` S3 convention. |
 | `print.pg_validation()` | Print a compact validation status and issue table. | Keep. The name follows R's required S3 convention. |
+| `print.pg_metadata()` | Print a compact metadata summary. | Keep. Standard S3 method for the new metadata schema. |
+| `print.pg_description()` | Print a concise structural diagnostic. | Keep. Standard S3 method for interactive inspection. |
+| `print.pg_comparison()` | Print a concise dataset comparison. | Keep. Standard S3 method while retaining detailed component tables. |
 
 ## Internal conversion and aggregation functions
 
@@ -128,6 +138,12 @@ These are implementation details and are not exported.
 | `summarise_weighted_value()` | Calculate transferred values and observed-weight coverage. |
 | `cross_level_groups()` | Split rows by cross-level aggregation keys. |
 | `safe_correlation()` | Calculate correlation only when sufficient variation is available. |
+| `pg_data_component()` | Extract and validate the tabular component of supported objects. |
+| `pg_grid_metadata()` | Describe a configured grid without storing machine-specific paths. |
+| `pg_time_metadata()` | Describe a temporal column and deterministic spacing. |
+| `pg_selected_variables()` | Validate or infer measurement columns. |
+| `pg_key_frame()` and `pg_key_string()` | Validate and compare explicit dataset keys. |
+| `pg_typed_na()` | Create type-preserving missing columns during row binding. |
 
 ## Test-only helper
 

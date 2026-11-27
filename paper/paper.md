@@ -32,6 +32,14 @@ package builds on the official `priogrid` package for configurable grid
 definitions and core raster transformations [@priogrid], while keeping
 researchers' aggregation and missing-data choices explicit.
 
+The package also provides a reproducibility layer for inspecting standardized
+metadata, diagnosing spatial and temporal coverage, separating structural
+absence from missing measurements, checking whether grid datasets are
+compatible, combining them conservatively, and comparing alternative data
+versions. These functions return ordinary R objects and expose their
+denominators, keys, tolerances, and conflicts rather than resolving them
+silently.
+
 # Statement of need
 
 Research using global grid-cell data repeatedly requires source-specific code

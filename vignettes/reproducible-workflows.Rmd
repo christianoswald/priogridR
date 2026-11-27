@@ -1,0 +1,137 @@
+---
+title: "Reproducible PRIO-GRID workflows"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reproducible PRIO-GRID workflows}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(priogridR)
+config <- priogrid::pg_config(nrow = 2, ncol = 3, verbose = FALSE)
+```
+
+`priogridR` keeps data conversion, quality assessment, combination, and export
+in one explicit workflow. This vignette uses small offline data so that every
+step can run during package checks.
+
+## Construct two cell-period datasets
+
+The first source has one observed missing value and several structurally absent
+cell-periods. These are different conditions and should not be treated as
+interchangeable.
+
+```{r data}
+climate <- data.frame(
+  pgid = c(1, 2, 1, 2),
+  year = c(2020, 2020, 2021, 2021),
+  temperature = c(21, NA, 22, 20)
+)
+
+population <- data.frame(
+  pgid = c(1, 2, 1, 2),
+  year = c(2020, 2020, 2021, 2021),
+  population = c(100, 80, 103, 82)
+)
+```
+
+## Inspect metadata and structure
+
+`pg_metadata()` reports only information that is stored in or supplied with an
+object. It does not invent source provenance for an ordinary data frame.
+
+```{r metadata}
+pg_metadata(climate, config = config, time = "year")
+pg_describe(climate, time = "year", config = config)
+```
+
+## Separate coverage from missingness
+
+Coverage uses the six configured cells and two requested years as its explicit
+reference. Missingness, by contrast, uses only rows that actually exist.
+
+```{r quality}
+pg_coverage(
+  climate,
+  time = "year",
+  variables = "temperature",
+  config = config,
+  reference_time = 2020:2021
+)
+
+pg_missingness(climate, variables = "temperature", time = "year")
+```
+
+An absent row does not imply a measured zero. Use `pg_complete_panel()` only
+when a complete panel is substantively required, and provide `fill` values
+only for variables with meaningful structural zeros.
+
+## Check compatibility and combine sources
+
+`pg_assert_compatible()` checks grid, CRS, temporal, and key definitions.
+`pg_bind()` applies these safeguards before joining variables.
+
+```{r combine}
+pg_assert_compatible(
+  climate,
+  population,
+  config = config,
+  time = "year"
+)
+
+analysis_data <- pg_bind(
+  climate,
+  population,
+  along = "variables",
+  config = config,
+  time = "year"
+)
+analysis_data
+```
+
+Row-wise binding is also supported. Duplicate keys and conflicting values fail
+by default; `conflict = "first"` or `"last"` must be requested explicitly.
+
+## Compare versions
+
+`pg_compare()` distinguishes keys found in only one dataset, paired missing
+values, one-sided missing values, and unequal observed values.
+
+```{r compare}
+revised <- climate
+revised$temperature[revised$pgid == 1 & revised$year == 2021] <- 22.25
+
+comparison <- pg_compare(
+  climate,
+  revised,
+  time = "year",
+  variables = "temperature",
+  config_x = config,
+  config_y = config
+)
+comparison
+comparison$variables
+```
+
+## Apply existing utilities and export
+
+The checked result remains an ordinary data frame and can be passed directly
+to temporal, spatial, plotting, and output functions.
+
+```{r finish, eval=FALSE}
+analysis_data <- pg_temporal_lag(
+  analysis_data,
+  variable = "temperature",
+  time = "year"
+)
+
+pg_write_result(analysis_data, "analysis-data.parquet")
+```
+
+For a reproducible analysis, record the input data release, grid configuration,
+variable semantics, transformations, and package version alongside the
+result. `pg_metadata()` provides a common schema for this information, but it
+cannot recover provenance that was never recorded.
+

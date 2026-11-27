@@ -3,8 +3,10 @@
 #' Convenience functions for grid indexing, coordinate conversion, geometry,
 #' spatial neighborhoods, weights, spatial and temporal lags, rolling
 #' summaries, temporal changes, event timing, distances, buffer summaries,
-#' crosswalks, area-weighted aggregation, resolution changes, validation,
-#' panel completion, safe joins, plotting, and converting common spatial data
+#' crosswalks, area-weighted aggregation, resolution changes, metadata,
+#' coverage and missingness diagnostics, compatibility checks, safe dataset
+#' combination and comparison, validation, panel completion, safe joins,
+#' plotting, and converting common spatial data
 #' formats to configurable PRIO-GRID rasters and data frames.
 #'
 #' @keywords internal

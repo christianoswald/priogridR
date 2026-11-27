@@ -1,3 +1,35 @@
+# priogridR 0.9.0
+
+## Metadata and diagnostics
+
+* Added `pg_metadata()` with a stable schema for grid, temporal, variable,
+  transformation, and provenance information.
+* Added `pg_describe()` for concise dataset structure, key, balance, and
+  missingness diagnostics.
+* Added `pg_coverage()` to distinguish present observations, observed missing
+  values, structurally absent cell-periods, and keys outside a reference.
+* Added `pg_missingness()` for variable-, cell-, time-, and group-level
+  summaries among observed rows.
+
+## Safe combination and comparison
+
+* Added `pg_assert_compatible()` for grid, CRS, temporal, key-type, and
+  duplicate-key checks across objects.
+* Added `pg_bind()` for conservative row-wise and variable-wise combination of
+  compatible PRIO-GRID data.
+* Added `pg_compare()` for configuration, key, missingness, type, and value
+  comparisons with explicit numeric tolerance.
+
+## Documentation and quality
+
+* Added an end-to-end reproducible-workflows vignette connecting conversion,
+  metadata, diagnostics, compatibility checks, combination, comparison, and
+  export.
+* Added focused tests for empty, missing, duplicated, incompatible, partially
+  covered, and conflicting inputs.
+* Updated the function inventory, pkgdown navigation, README, citations, and
+  JOSS paper draft for the new reproducibility layer.
+
 # priogridR 0.8.1
 
 ## Reliability and validation

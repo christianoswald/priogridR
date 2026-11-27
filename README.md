@@ -19,8 +19,9 @@ data to a configurable PRIO-GRID. It also supports coordinate lookup,
 geometry creation, spatial neighborhoods, weights, spatial and temporal
 lags, rolling summaries, temporal changes, event timing, distances,
 buffer summaries, spatial crosswalks, area-weighted aggregation,
-resolution changes, panel validation and completion, safe joins, and
-rapid mapping.
+resolution changes, metadata, coverage and missingness diagnostics,
+compatibility checks, safe dataset combination and comparison, panel
+validation and completion, safe joins, and rapid mapping.
 
 The package builds on the official
 [`priogrid`](https://prio-data.github.io/priogrid/) package for grid
@@ -71,6 +72,15 @@ All user-facing functions begin with `pg_` and use snake case:
 - `pg_change_resolution()` transfers values between configured grids.
 - `pg_compare_resolutions()` reports differences, coverage, and
   agreement.
+- `pg_metadata()` and `pg_describe()` inspect provenance and data
+  structure.
+- `pg_coverage()` and `pg_missingness()` keep structural absence
+  separate from missing values in observed rows.
+- `pg_assert_compatible()` checks whether datasets can be safely
+  combined.
+- `pg_bind()` combines compatible datasets across rows or variables.
+- `pg_compare()` compares keys, coverage, missingness, types, and
+  values.
 - `pg_distance()`, `pg_buffer_summary()`, and `pg_nearest()` support
   common spatial-context workflows.
 - `pg_validate_data()` checks cell and panel structure.
@@ -137,6 +147,45 @@ variables as extensive totals or intensive rates. Country aggregation
 also requires explicitly supplied boundaries, keeping the territorial
 definition and date visible in the analysis. See
 `vignette("cross-level-workflows", package = "priogridR")`.
+
+The reproducibility tools can be used as a compact quality-control
+sequence:
+
+``` r
+config <- priogrid::pg_config(nrow = 2, ncol = 3, verbose = FALSE)
+x <- data.frame(
+  pgid = c(1, 2, 1),
+  year = c(2020, 2020, 2021),
+  value = c(1, NA, 3)
+)
+
+pg_describe(x, time = "year", config = config)
+```
+
+    ## <pg_description>
+    ##   Rows: 3; cells: 2; periods: 2
+    ##   Variables: 1; duplicate keys: 0
+    ##   Balanced over observed domain: no
+
+``` r
+pg_coverage(x, time = "year", config = config, reference_time = 2020:2021)
+```
+
+    ##   n_expected n_present n_structurally_absent n_outside_reference
+    ## 1         12         3                     9                   0
+    ##   n_observed_missing coverage_share
+    ## 1                  1           0.25
+
+``` r
+pg_missingness(x, variables = "value", time = "year")
+```
+
+    ##   variable n_observed n_missing n_non_missing missing_share
+    ## 1    value          3         1             2     0.3333333
+
+See `vignette("reproducible-workflows", package = "priogridR")` for an
+end-to-end workflow covering metadata, diagnostics, compatibility, safe
+combination, comparison, and export.
 
 ## Package direction
 
